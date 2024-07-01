@@ -23,26 +23,26 @@
 <meta property="og:site_name" content="Ninja&#39;s blog">
 <meta property="og:description" content="0x01 序先通过CS生成C格式的shellcode:Attacks -&gt; packages -&gt; Payload Generator选择一个listener然后生成payload.c 0x02 CS-Avoid-killing 工具地址：Gality369&#x2F;CS-Loader: CS免杀 (github.com) 这里测试go版本 121、将一张不要太大的图片放入同一文件夹">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-1.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-2-1024x402.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-3.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-4-1024x541.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-5.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-6.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-7-1024x491.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-8-1024x489.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-9.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-10-1024x540.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-11-1024x534.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-12-1024x517.png">
-<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-13-1024x518.png">
+<meta property="og:image" content="http://example.com/images/image.png">
+<meta property="og:image" content="http://example.com/images/image-1.png">
+<meta property="og:image" content="http://example.com/images/image-2-1024x402.png">
+<meta property="og:image" content="http://example.com/images/image-3.png">
+<meta property="og:image" content="http://example.com/images/image-4-1024x541.png">
+<meta property="og:image" content="http://example.com/images/image-5.png">
+<meta property="og:image" content="http://example.com/images/image-6.png">
+<meta property="og:image" content="http://example.com/images/image-7-1024x491.png">
+<meta property="og:image" content="http://example.com/images/image-8-1024x489.png">
+<meta property="og:image" content="http://example.com/images/image-9.png">
+<meta property="og:image" content="http://example.com/images/image-10-1024x540.png">
+<meta property="og:image" content="http://example.com/images/image-11-1024x534.png">
+<meta property="og:image" content="http://example.com/images/image-12-1024x517.png">
+<meta property="og:image" content="http://example.com/images/image-13-1024x518.png">
 <meta property="article:published_time" content="2021-11-27T09:46:25.000Z">
-<meta property="article:modified_time" content="2024-07-01T08:45:25.762Z">
+<meta property="article:modified_time" content="2024-07-01T06:16:55.839Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="免杀">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image.png">
+<meta name="twitter:image" content="http://example.com/images/image.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -311,40 +311,40 @@
               <div class="markdown-body">
                 
                 <h4 id="0x01-序"><a href="#0x01-序" class="headerlink" title="0x01 序"></a>0x01 序</h4><p>先通过CS生成C格式的shellcode:Attacks -&gt; packages -&gt; Payload Generator选择一个listener然后生成payload.c</p>
-<h4 id="0x02-CS-Avoid-killing"><a href="#0x02-CS-Avoid-killing" class="headerlink" title="0x02 CS-Avoid-killing"></a>0x02 CS-Avoid-killing</h4><p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="0x02-CS-Avoid-killing"><a href="#0x02-CS-Avoid-killing" class="headerlink" title="0x02 CS-Avoid-killing"></a>0x02 CS-Avoid-killing</h4><p><img src="/./images/image.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>工具地址：<a target="_blank" rel="noopener" href="https://github.com/Gality369/CS-Loader">Gality369&#x2F;CS-Loader: CS免杀 (github.com)</a></p>
 <p><strong>这里测试go版本</strong></p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-number">1</span>、将一张不要太大的图片放入同一文件夹下<br><span class="hljs-number">2</span>、将shellcode填入generator.<span class="hljs-keyword">py</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-2-1024x402.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-2-1024x402.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-meta"># 生成的shellcode会自动追加到图片末尾</span><br><span class="hljs-number">3</span>、python2 generator.py YourRC4key ImageName<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>将shellcode图片上传至<a target="_blank" rel="noopener" href="https://imgtp.com/">ImgTP</a></p>
 <figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode"><span class="hljs-number">4</span>、将shellcode图片上传至图床<span class="hljs-comment">(找那种不会压缩的图床,保证shellcode不会被删掉)</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-4-1024x541.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-4-1024x541.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-number">5</span>、在CS-Loader.<span class="hljs-keyword">go</span>中填入你的图片url和RC4key<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-number">6</span>、编译生成<span class="hljs-keyword">exe</span><br><span class="hljs-keyword">go</span> build -ldflags=<span class="hljs-string">&quot;-H windowsgui&quot;</span> CS-Loader.<span class="hljs-keyword">go</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-6.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-6.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>火绒</p>
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-7-1024x491.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-7-1024x491.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>腾讯电脑管家</p>
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-8-1024x489.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h4 id="0x03-bypassAV"><a href="#0x03-bypassAV" class="headerlink" title="0x03 bypassAV"></a>0x03 <strong>bypassAV</strong></h4><p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-9.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-8-1024x489.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="0x03-bypassAV"><a href="#0x03-bypassAV" class="headerlink" title="0x03 bypassAV"></a>0x03 <strong>bypassAV</strong></h4><p><img src="/./images/image-9.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>工具地址：<a target="_blank" rel="noopener" href="https://github.com/pureqh/bypassAV">pureqh&#x2F;bypassAV: 免杀shellcode加载器 (github.com)</a></p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-number">1</span>. 将shellcode填至go_shellcode_encode.py生成混淆后的<span class="hljs-built_in">base64</span> payload<br><span class="hljs-number">2</span>. 将生成的<span class="hljs-built_in">base64</span> payload填至main.<span class="hljs-built_in">go</span> build(<span class="hljs-string">&quot;shellcode&quot;</span>)<br><span class="hljs-number">3</span>. 将main.<span class="hljs-built_in">go</span>中的url替换为某个网页（可以正常访问）<br><span class="hljs-number">4</span>. 编译：<span class="hljs-built_in">go</span> build -trimpath -ldflags=<span class="hljs-string">&quot;-w -s -H=windowsgui&quot;</span> main.<span class="hljs-built_in">go</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-10-1024x540.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-11-1024x534.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-10-1024x540.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-11-1024x534.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>火绒</p>
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-12-1024x517.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-12-1024x517.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>腾讯电脑管家</p>
-<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-13-1024x518.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/./images/image-13-1024x518.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 
                 
               </div>
