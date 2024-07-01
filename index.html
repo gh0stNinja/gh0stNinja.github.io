@@ -13,7 +13,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
     <meta property="og:type" content="website">
@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Ninja">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -238,15 +238,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/07/01/hello-world/" target="_self">
-          Hello World
+        <a href="/2024/07/01/XSS%20%E6%9E%84%E9%80%A0%E6%80%9D%E8%B7%AF/" target="_self">
+          XSS 构造思路
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/hello-world/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/XSS%20%E6%9E%84%E9%80%A0%E6%80%9D%E8%B7%AF/" target="_self">
         <div>
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick
+          基本语句12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061&lt;script&gt;alert(1)&lt;/script&gt;&lt;script&gt;prompt(1)&lt;/script&gt;&lt;scri
         </div>
       </a>
 
@@ -254,12 +254,284 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-01 10:14" pubdate>
+            <time datetime="2024-07-01 12:18" pubdate>
               2024-07-01
             </time>
           </div>
         
         
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" class="category-chain-item">奇技淫巧</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%9D%E8%B7%AF/">#思路</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/07/01/Nuclei%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" target="_self">
+          Nuclei 使用方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/Nuclei%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" target="_self">
+        <div>
+          常用命令12345678910111213# 扫描单个目标nuclei -u https://example.com -o nuclei_result.txt# 扫描多个目标 线程[100] 扫描等级[中 高 严重] 排除协议[ssl]nuclei -l url.txt -rl 300 -s medium,high,critical -ept ssl -o nuclei_result.txt# 指
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-07-01 12:18" pubdate>
+              2024-07-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" class="category-chain-item">工具的使用</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/07/01/Nmap%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" target="_self">
+          Nmap 使用方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/Nmap%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" target="_self">
+        <div>
+          常用命令1234567891011121314151617181920212223242526272829303132333435# 批量资产扫描nohup nmap  -sT  -iL ip.txt -PN -p- --min-rate 2000 -oX result.xml &amp;	# 扫描单个目标nmap 192.168.1.100# 扫描多个目标nmao 192.168.1.100 1
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-07-01 12:18" pubdate>
+              2024-07-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" class="category-chain-item">工具的使用</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/07/01/Sqlmap%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" target="_self">
+          Sqlmap 使用方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/Sqlmap%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" target="_self">
+        <div>
+          常用命令1python sqlmap.py --random-agent --batch --level=2 --tamper=randomcase -u &lt;url&gt;  进阶使用123456789101112131415161718# 指定注入点参数python sqlmap.py -r &quot;request.txt&quot; -p &quot;id&quot;# 延时注入py
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-07-01 12:18" pubdate>
+              2024-07-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" class="category-chain-item">工具的使用</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/07/01/Dirsearch%20%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" target="_self">
+          Dirsearch 使用方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/Dirsearch%20%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" target="_self">
+        <div>
+          简单用法12345678910# 扫描单个目标python dirsearch.py -u https://target -r -x 400,500-599# 扫描多个目标python dirsearch.py -l url.txt -r -x 400,500-599 -w web_dirs_ext.txt # 扩展后缀名[php,jsp]python dirsearch.py -e php,js
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-07-01 12:07" pubdate>
+              2024-07-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" class="category-chain-item">工具的使用</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
+            
+          </div>
         
       </div>
     </article>
