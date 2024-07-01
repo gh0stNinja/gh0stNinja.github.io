@@ -60,7 +60,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -246,7 +246,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2021/09/09/docker%E6%90%AD%E5%BB%BA%E6%BC%8F%E6%B4%9E%E7%8E%AF%E5%A2%83/" target="_self">
         <div>
-          0x01 序docker的安装过程就不写了，网上有很多. 使用docker可以下载他人公开的漏洞镜像，从而简单的搭建漏洞复现环境. 下面使用s2-048漏洞环境为例. 0x02 过程1234#搜索struts2镜像docker search struts2#下载s2-048&lt;CVE-2017-9791&gt;漏洞镜像docker pull vulfocus/struts2-cve_2017_
+          0、简介使用docker可以下载公开的漏洞镜像，从而简单的搭建漏洞复测环境。 1、演示(s2-048)12345678# 搜索struts2镜像docker search struts2# 下载s2-048&lt;CVE-2017-9791&gt;镜像docker pull vulfocus/struts2-cve_2017_9791# 查看镜像的详细信息，可以看到镜像运行的端口等信息docker
         </div>
       </a>
 
@@ -307,7 +307,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2021/08/06/Python%E7%BC%96%E5%86%99%E7%9A%84%E5%BC%B1%E5%AF%86%E7%A0%81%E7%94%9F%E6%88%90%E8%84%9A%E6%9C%AC/" target="_self">
         <div>
-          0x01 序根据企业或者单位生成针对性的弱密码，提高成功几率。 0x02 代码123456789101112#!/usr/bin/python3import itertoolsdef result(password):    result = open(&#x27;password.txt&#x27;, &#x27;a+&#x27;)    result.write(password+&#x27;
+          0、简介根据企业或者单位生成针对性的弱密码，提高成功几率。 1、代码123456789101112#!/usr/bin/python3import itertoolsdef result(password):    result = open(&#x27;password.txt&#x27;, &#x27;a+&#x27;)    result.write(password+&#x27;\n&#x
         </div>
       </a>
 
@@ -368,7 +368,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2021/06/21/xss%E7%9A%84%E6%9E%84%E9%80%A0%E6%80%9D%E8%B7%AF/" target="_self">
         <div>
-          基本语句12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061&lt;script&gt;alert(1)&lt;/script&gt;&lt;script&gt;prompt(1)&lt;/script&gt;&lt;scri
+          1、基本语句12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061&lt;script&gt;alert(1)&lt;/script&gt;&lt;script&gt;prompt(1)&lt;/script&gt;&lt;sc
         </div>
       </a>
 
@@ -429,7 +429,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2021/06/15/%E6%B5%85%E8%B0%88%E8%B6%8A%E6%9D%83/" target="_self">
         <div>
-          0x01 简介越权漏洞是我们测试过程中遇到比较多的漏洞，经常出现在后台用户修改密码、修改信息、删除用户这些地方。我们可以这样来理解越权漏洞，一个用户A一般只能够对自己本身的信息进行增删改查，然而由于开发人员的疏忽，没有在信息进行增删改查时候进行用户判断，从而导致用户A可以对其他用户进行增删改查等等操作。 0x02 例子修改test用户密码时，抓包找到用户id。通过修改用户id修改admin用户密码
+          0、简介​	越权是渗透测试经常遇到的漏洞，通常出现在后台，用户修改密码、修改用户信息处。 1、例子​	burp抓请求包： ​	通过修改用户id实现越权，test用户的id是admin_id&#x3D;2，修改admin_id&#x3D;1，越权修改admin密码，成功登录后台。
         </div>
       </a>
 
@@ -490,7 +490,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2021/02/03/winRAR%E5%90%8E%E9%97%A8/" target="_self">
         <div>
-          0x01 序WinRAR压缩程序有个设置自解压格式的功能，可以用来做后门或者钓鱼。 0x02 方法打开新建的压缩文件，上方有个自解压格式的功能。  设置过程：  运行效果：  注：可以配合shift后门使用，或者使用邮件附件方式进行钓鱼。 可以设置解压时替换或跳过已存在的文件
+          0、简介WinRAR压缩程序有个设置自解压格式的功能，可以用来做后门或者钓鱼。 1、方法打开新建的压缩文件，上方有个自解压格式的功能。  设置过程：  运行效果：  注：可以配合shift后门使用，或者使用邮件附件方式进行钓鱼。 可以设置解压时替换或跳过已存在的文件
         </div>
       </a>
 
@@ -551,7 +551,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2021/01/28/%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E7%AB%AF%E5%8F%A3%E5%92%8CSSH%E7%AB%AF%E5%8F%A3/" target="_self">
         <div>
-          0x01 简介修改远程桌面默认端口和ssh默认端口，可以防止被人批量爆破时的困扰。注意！阿里云、腾讯云等云服务器，修改前一定…一定..一定.记得在安全组中放通想要修改的端口 0x02 远程桌面默认端口修改打开注册表，路径打开： 1计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\Tds
+          0、简介​	修改远程桌面和ssh的默认端口，可以简单预防被爆破的困扰。 ​	注意！阿里云、腾讯云等，修改前一定…一定..一定.记得在安全组策略中放通端口。 1、远程桌面默认端口修改​	打开注册表，修改PortNumber键值。 1计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\Tds
         </div>
       </a>
 
@@ -612,7 +612,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2020/09/10/phpMyAdmin%20getshell/" target="_self">
         <div>
-          0x01 序可以利用phpMyAdmin报错日志的功能进行getshell。 0x02 利用报错日志getshell123456789#查看日子记录状态show variables like &quot;general_log%&quot;#开启日志设置为onset global general_log=&#x27;on&#x27;#设置日志保存路径set global  general_log_
+          0、简介可以利用phpMyAdmin报错日志的功能进行getshell。 1、利用报错日志getshell123456789#查看日子记录状态show variables like &quot;general_log%&quot;#开启日志设置为onset global general_log=&#x27;on&#x27;#设置日志保存路径set global  general_log_file
         </div>
       </a>
 
@@ -673,7 +673,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2020/04/30/burpsuite%E9%9A%8F%E6%9C%BA%E7%88%86%E7%A0%B46%E4%BD%8D%E9%AA%8C%E8%AF%81%E7%A0%81/" target="_self">
         <div>
-          0x01 简介遇到6位数验证码的时候，如果用字典全部跑一遍的话，就太多了。我们可以使用Burpsuite 进行随机性的爆破 0x02 过程在Intruder模块中找到Payload Sets设置为Numbers  在Payload Options [Numbers]中设置为Random How many : 爆破次数   可以看到 Payload 中就是我们随机的6位验证码结果
+          0、简介遇到6位数验证码的时候，如果把字典全跑一遍的话，耗时就太多了。使用burp可以进行随机性的枚举。 1、过程设置 Intruder模块 ——&gt; Payload Sets 为 Numbers  设置 Payload Options [Numbers] 为 Random How many : 爆破次数
         </div>
       </a>
 
@@ -734,7 +734,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2020/04/30/arp%E6%94%BB%E5%87%BB(%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB)/" target="_self">
         <div>
-          0x01 前言arp攻击又称为中间人攻击，是一种在局域网中常用的攻击手段。  0x02 使目标断网 首先我们要保证自己和目标主机处于一个局域网内，且网络是通的。  123456#探测存活主机fping -a -g 192.168.118.1/24#arpspoof -i 网卡 -t   目标IP          网关arpspoof -i eth0 -t 192.168.118.138 192.
+          0、简介arp攻击又称为中间人攻击，是一种在局域网中使用的攻击手段。  1、断网攻击攻击时,目标网络断开。攻击结束后,目标网络恢复。 1234# 探测存活主机fping -a -g 192.168.118.1/24# arpspoof -i 网卡 -t 目标IP 网关arpspoof -i eth0 -t 192.168.118.138 192.168.118.2     2、arp欺骗arp欺骗
         </div>
       </a>
 
@@ -795,7 +795,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2020/03/19/mimikatz%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" target="_self">
         <div>
-          0x01 前言mimikatz可以获取Windows的账户密码，下载地址：https://github.com/gentilkiwi/mimikatz/releases/tag/2.2.0-20200308-1  0x02 使用方法12345#日志记录所有操作log#获取用户密码privilege::debugsekurlsa::logonpasswords  0x03 杀软对抗procdump6
+          0、简介mimikatz可以获取Windows的账户密码 下载地址：https://github.com/gentilkiwi/mimikatz/releases/tag/2.2.0-20200308-1  1、命令12345#日志记录所有操作log#获取用户密码privilege::debugsekurlsa::logonpasswords  2、保存内存procdump64 是微软官方出的一款
         </div>
       </a>
 
@@ -900,30 +900,6 @@
     </div>
   
   
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-  
-</div>
-
-  
   
   
 </div>
@@ -976,8 +952,6 @@
 
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

