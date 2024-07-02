@@ -1,1 +1,0 @@
-{"source":"index.html","scripts":{"build":"rm -rf ./dist && ./node_modules/.bin/parcel build --no-cache"},"targets":{"default":{"sourceMap":false}},"devDependencies":{"parcel":"2.3.2","parcel-transformer-obfuscation":"file:parcel-transformer-obfuscation"},"resolutions":{"bin-wrapper":"npm:bin-wrapper-china"}}

