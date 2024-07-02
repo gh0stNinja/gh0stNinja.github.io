@@ -16,19 +16,19 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1、frp 服务端配置 提示：在安全组策略放通对应的端口  frp服务端配置文件：frps.ini 12345678910111213# 服务器(vps)配置[common]bind_addr &#x3D; 0.0.0.0bind_port &#x3D; 501kcp_bind_port &#x3D; 501bind_udp_port &#x3D; 502vhost_http_port &#x3D; 580token &#x3D; 123456# 开启we">
+    <meta name="description" content="frp 是一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议，且支持 P2P 通信。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。 下载地址：https:&#x2F;&#x2F;github.com&#x2F;fatedier&#x2F;frp 1、frp 服务端配置 提示：在安全组策略放通对应的端口  frp服务端配置文件：frps.ini 1234567891">
 <meta property="og:type" content="article">
 <meta property="og:title" content="frp使用笔记">
 <meta property="og:url" content="http://example.com/2024/07/02/frp%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
-<meta property="og:description" content="1、frp 服务端配置 提示：在安全组策略放通对应的端口  frp服务端配置文件：frps.ini 12345678910111213# 服务器(vps)配置[common]bind_addr &#x3D; 0.0.0.0bind_port &#x3D; 501kcp_bind_port &#x3D; 501bind_udp_port &#x3D; 502vhost_http_port &#x3D; 580token &#x3D; 123456# 开启we">
+<meta property="og:description" content="frp 是一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议，且支持 P2P 通信。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。 下载地址：https:&#x2F;&#x2F;github.com&#x2F;fatedier&#x2F;frp 1、frp 服务端配置 提示：在安全组策略放通对应的端口  frp服务端配置文件：frps.ini 1234567891">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702152257070.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702154405585.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702152527573.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702152928485.png">
 <meta property="article:published_time" content="2024-07-02T06:56:39.742Z">
-<meta property="article:modified_time" content="2024-07-02T07:44:16.986Z">
+<meta property="article:modified_time" content="2024-07-02T07:45:44.647Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="代理工具">
 <meta name="twitter:card" content="summary_large_image">
@@ -259,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          385 字
+          464 字
         
       </span>
     
@@ -320,7 +320,9 @@
             
               <div class="markdown-body">
                 
-                <h3 id="1、frp-服务端配置"><a href="#1、frp-服务端配置" class="headerlink" title="1、frp 服务端配置"></a>1、frp 服务端配置</h3><blockquote>
+                <p>frp 是一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议，且支持 P2P 通信。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></p>
+<h3 id="1、frp-服务端配置"><a href="#1、frp-服务端配置" class="headerlink" title="1、frp 服务端配置"></a>1、frp 服务端配置</h3><blockquote>
 <p>提示：在安全组策略放通对应的端口</p>
 </blockquote>
 <p>frp服务端配置文件：<code>frps.ini</code></p>
