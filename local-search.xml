@@ -429,31 +429,6 @@
   
   
   <entry>
-    <title>burpsuite随机爆破6位验证码</title>
-    <link href="/2020/04/30/burpsuite%E9%9A%8F%E6%9C%BA%E7%88%86%E7%A0%B46%E4%BD%8D%E9%AA%8C%E8%AF%81%E7%A0%81/"/>
-    <url>/2020/04/30/burpsuite%E9%9A%8F%E6%9C%BA%E7%88%86%E7%A0%B46%E4%BD%8D%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
-    
-    <content type="html"><![CDATA[<h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>遇到6位数验证码的时候，如果把字典全跑一遍的话，耗时就太多了。使用burp可以进行随机性的枚举。</p><h4 id="1、过程"><a href="#1、过程" class="headerlink" title="1、过程"></a>1、过程</h4><p>设置 Intruder模块 ——&gt; Payload Sets 为 Numbers</p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E5%9B%BE%E7%89%8720200430145122.png" alt="img"></p><p>设置 Payload Options [Numbers] 为 Random</p><p>How many : 爆破次数</p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200430145421-1024x742.jpg" alt="img"></p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200430151410.jpg" alt="img"></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>工具使用</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>burp</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>arp攻击(中间人攻击)</title>
     <link href="/2020/04/30/arp%E6%94%BB%E5%87%BB(%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB)/"/>
     <url>/2020/04/30/arp%E6%94%BB%E5%87%BB(%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB)/</url>
@@ -471,6 +446,31 @@
     <tags>
       
       <tag>arpg攻击</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>burpsuite随机爆破6位验证码</title>
+    <link href="/2020/04/30/burpsuite%E9%9A%8F%E6%9C%BA%E7%88%86%E7%A0%B46%E4%BD%8D%E9%AA%8C%E8%AF%81%E7%A0%81/"/>
+    <url>/2020/04/30/burpsuite%E9%9A%8F%E6%9C%BA%E7%88%86%E7%A0%B46%E4%BD%8D%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
+    
+    <content type="html"><![CDATA[<h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>遇到6位数验证码的时候，如果把字典全跑一遍的话，耗时就太多了。使用burp可以进行随机性的枚举。</p><h4 id="1、过程"><a href="#1、过程" class="headerlink" title="1、过程"></a>1、过程</h4><p>设置 Intruder模块 ——&gt; Payload Sets 为 Numbers</p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E5%9B%BE%E7%89%8720200430145122.png" alt="img"></p><p>设置 Payload Options [Numbers] 为 Random</p><p>How many : 爆破次数</p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200430145421-1024x742.jpg" alt="img"></p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200430151410.jpg" alt="img"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具使用</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>burp</tag>
       
     </tags>
     
