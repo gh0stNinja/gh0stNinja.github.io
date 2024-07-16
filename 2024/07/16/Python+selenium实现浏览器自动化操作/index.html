@@ -16,29 +16,29 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="frp 是一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议，且支持 P2P 通信。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。 下载地址：https:&#x2F;&#x2F;github.com&#x2F;fatedier&#x2F;frp 1、frp 服务端配置 提示：在安全组策略放通对应的端口  frp服务端配置文件：frps.ini 1234567891">
+    <meta name="description" content="0、简介Selenium 可以在没有人参与的情况下使用浏览器，并通过代码实现自动化流程，例如模拟用户输入、提交表单。 1、安装 首先安装selenium库  1pip3 install selenium   查看浏览器版本    3.下载浏览器驱动文件 Chrome驱动下载地址：https:&#x2F;&#x2F;googlechromelabs.github.io&#x2F;chrome-for-testing&#x2F; Firef">
 <meta property="og:type" content="article">
-<meta property="og:title" content="frp使用笔记">
-<meta property="og:url" content="http://example.com/2024/07/02/frp%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="Python+selenium实现浏览器自动化操作">
+<meta property="og:url" content="http://example.com/2024/07/16/Python+selenium%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
-<meta property="og:description" content="frp 是一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议，且支持 P2P 通信。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。 下载地址：https:&#x2F;&#x2F;github.com&#x2F;fatedier&#x2F;frp 1、frp 服务端配置 提示：在安全组策略放通对应的端口  frp服务端配置文件：frps.ini 1234567891">
+<meta property="og:description" content="0、简介Selenium 可以在没有人参与的情况下使用浏览器，并通过代码实现自动化流程，例如模拟用户输入、提交表单。 1、安装 首先安装selenium库  1pip3 install selenium   查看浏览器版本    3.下载浏览器驱动文件 Chrome驱动下载地址：https:&#x2F;&#x2F;googlechromelabs.github.io&#x2F;chrome-for-testing&#x2F; Firef">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702152257070.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702154405585.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702152527573.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702152928485.png">
-<meta property="article:published_time" content="2024-07-02T06:56:39.742Z">
-<meta property="article:modified_time" content="2024-07-03T01:36:22.829Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240716144724361.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240716144545993.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240716144857117.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/IMG_20240716150127.gif">
+<meta property="article:published_time" content="2024-07-16T06:21:38.590Z">
+<meta property="article:modified_time" content="2024-07-16T07:16:57.619Z">
 <meta property="article:author" content="Ninja">
-<meta property="article:tag" content="代理工具">
+<meta property="article:tag" content="自动化">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702152257070.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240716144724361.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>frp使用笔记 - Ninja&#39;s blog - 学与用</title>
+  <title>Python+selenium实现浏览器自动化操作 - Ninja&#39;s blog - 学与用</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -248,7 +248,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="frp使用笔记"></span>
+            <span id="subtitle" data-typed-text="Python+selenium实现浏览器自动化操作"></span>
           
         </div>
 
@@ -259,8 +259,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-02 14:56" pubdate>
-          2024年7月2日 下午
+        <time datetime="2024-07-16 14:21" pubdate>
+          2024年7月16日 下午
         </time>
       </span>
     
@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          464 字
+          621 字
         
       </span>
     
@@ -282,7 +282,7 @@
         
         
         
-          4 分钟
+          6 分钟
         
       </span>
     
@@ -327,44 +327,33 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">frp使用笔记</h1>
+            <h1 id="seo-header">Python+selenium实现浏览器自动化操作</h1>
             
             
               <div class="markdown-body">
                 
-                <p>frp 是一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议，且支持 P2P 通信。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。</p>
-<p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></p>
-<h3 id="1、frp-服务端配置"><a href="#1、frp-服务端配置" class="headerlink" title="1、frp 服务端配置"></a>1、frp 服务端配置</h3><blockquote>
-<p>提示：在安全组策略放通对应的端口</p>
-</blockquote>
-<p>frp服务端配置文件：<code>frps.ini</code></p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># 服务器(vps)配置</span><br><span class="hljs-section">[common]</span><br><span class="hljs-attr">bind_addr</span> = <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span><br><span class="hljs-attr">bind_port</span> = <span class="hljs-number">501</span><br><span class="hljs-attr">kcp_bind_port</span> = <span class="hljs-number">501</span><br><span class="hljs-attr">bind_udp_port</span> = <span class="hljs-number">502</span><br><span class="hljs-attr">vhost_http_port</span> = <span class="hljs-number">580</span><br><span class="hljs-attr">token</span> = <span class="hljs-number">123456</span><br><br><span class="hljs-comment"># 开启web控制面板</span><br><span class="hljs-attr">dashboard_port</span> = <span class="hljs-number">500</span><br><span class="hljs-attr">dashboard_user</span> = frp<br><span class="hljs-attr">dashboard_pwd</span> = <span class="hljs-number">123456</span><br></code></pre></td></tr></table></figure>
-
-<p>运行frps：<code>nohup ./frps -c ./frps.ini &gt;/dev/null 2&gt;&amp;1 &amp;</code></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702152257070.png" srcset="/img/loading.gif" lazyload alt="image-20240702152257070"></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702154405585.png" srcset="/img/loading.gif" lazyload alt="image-20240702154405585"></p>
-<h3 id="2、P2P-端口映射"><a href="#2、P2P-端口映射" class="headerlink" title="2、P2P 端口映射"></a>2、P2P 端口映射</h3><h4 id="主机A-被访问端"><a href="#主机A-被访问端" class="headerlink" title="主机A - 被访问端"></a>主机A - 被访问端</h4><p>修改配置文件：<code>frpc.ini</code></p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[common]</span><br><span class="hljs-attr">server_addr</span> = vps ip<br><span class="hljs-attr">server_port</span> = <span class="hljs-number">501</span><br><span class="hljs-attr">token</span> = <span class="hljs-number">123456</span><br><br><span class="hljs-comment"># 远程桌面端口</span><br><span class="hljs-section">[mstsc]</span><br><span class="hljs-attr">type</span> = stcp<br><span class="hljs-comment"># 只有 sk 一致的用户才能访问到此服务</span><br><span class="hljs-attr">sk</span> = <span class="hljs-number">123456</span><br><span class="hljs-attr">local_ip</span> = <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br><span class="hljs-attr">local_port</span> = <span class="hljs-number">3389</span><br><br><span class="hljs-comment"># vnc端口</span><br><span class="hljs-section">[vnc]</span><br><span class="hljs-attr">type</span> = stcp<br><span class="hljs-comment"># 设置密钥</span><br><span class="hljs-attr">sk</span> = <span class="hljs-number">123456</span><br><span class="hljs-attr">local_ip</span> = <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br><span class="hljs-attr">local_port</span> = <span class="hljs-number">5900</span><br><br><span class="hljs-comment"># awvs扫描器</span><br><span class="hljs-section">[awvs]</span><br><span class="hljs-attr">type</span> = stcp<br><span class="hljs-attr">local_ip</span> = <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br><span class="hljs-attr">local_port</span> = <span class="hljs-number">13443</span><br><br><span class="hljs-comment"># socks5代理</span><br><span class="hljs-section">[socks5]</span><br><span class="hljs-attr">type</span> = tcp<br><span class="hljs-attr">remote_port</span> = <span class="hljs-number">510</span><br><span class="hljs-attr">plugin</span> = socks5<br><span class="hljs-attr">plugin_user</span> = root<br><span class="hljs-attr">plugin_passwd</span> = <span class="hljs-number">123456</span><br></code></pre></td></tr></table></figure>
-
-<p>运行：<code>frpc.exe -c frpc.ini</code></p>
-<h4 id="主机B-访问端"><a href="#主机B-访问端" class="headerlink" title="主机B - 访问端"></a>主机B - 访问端</h4><p>修改配置文件：<code>frpc.ini</code></p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[common]</span><br><span class="hljs-attr">server_addr</span> = vps ip<br><span class="hljs-attr">server_port</span> = <span class="hljs-number">501</span><br><span class="hljs-attr">token</span> = <span class="hljs-number">123456</span><br><br><span class="hljs-comment"># 远程桌面端口</span><br><span class="hljs-section">[mstsc]</span><br><span class="hljs-comment"># 协议</span><br><span class="hljs-attr">type</span> = stcp<br><span class="hljs-comment"># 角色</span><br><span class="hljs-attr">role</span> = visitor<br><span class="hljs-comment"># 要访问的 stcp 代理的名字</span><br><span class="hljs-attr">server_name</span> = mstsc<br><span class="hljs-comment"># 访问者和被访问者的密钥相同</span><br><span class="hljs-attr">sk</span> = <span class="hljs-number">123456</span><br><span class="hljs-comment"># 绑定本地地址和端口</span><br><span class="hljs-attr">bind_addr</span> = <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br><span class="hljs-attr">bind_port</span> = <span class="hljs-number">3390</span><br><br><br><span class="hljs-comment"># vnc远程端口</span><br><span class="hljs-section">[vnc]</span><br><span class="hljs-attr">type</span> = stcp<br><span class="hljs-attr">role</span> = visitor<br><span class="hljs-attr">server_name</span> = vnc<br><span class="hljs-attr">sk</span> = <span class="hljs-number">123456</span><br><span class="hljs-attr">bind_addr</span> = <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br><span class="hljs-attr">bind_port</span> = <span class="hljs-number">5900</span><br><br><span class="hljs-comment"># awvs扫描器</span><br><span class="hljs-section">[awvs]</span><br><span class="hljs-attr">type</span> = stcp<br><span class="hljs-attr">role</span> = visitor<br><span class="hljs-attr">server_name</span> = awvs<br><span class="hljs-attr">bind_addr</span> = <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span><br><span class="hljs-attr">bind_port</span> = <span class="hljs-number">13443</span><br></code></pre></td></tr></table></figure>
-<p>运行：<code>frpc.exe -c frpc.ini</code></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702152527573.png" srcset="/img/loading.gif" lazyload alt="image-20240702152527573"></p>
-<h4 id="主机B-远程桌面-主机A"><a href="#主机B-远程桌面-主机A" class="headerlink" title="主机B 远程桌面 主机A"></a>主机B 远程桌面 主机A</h4><ol>
-<li>运行：<code>frpc.exe -c frpc.ini</code></li>
-<li>主机B<code>3390</code>端口 绑定 主机A<code>3389</code>端口</li>
-<li>远程桌面地址：<code>127.0.0.1:3390</code></li>
+                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>Selenium 可以在没有人参与的情况下使用浏览器，并通过代码实现自动化流程，例如模拟用户输入、提交表单。</p>
+<h4 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h4><ol>
+<li>首先安装selenium库</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702152928485.png" srcset="/img/loading.gif" lazyload alt="image-20240702152928485"></p>
-<h3 id="3、搭建-socks5-隧道"><a href="#3、搭建-socks5-隧道" class="headerlink" title="3、搭建 socks5 隧道"></a>3、搭建 socks5 隧道</h3><ol>
-<li>修改客户端配置文件：<code>frpc.ini</code>，使用代理后，流量通过客户端的网络进行访问。</li>
-<li>代理地址：<code>socks5://vps_ip:510</code></li>
-<li>认证信息：<code>root/123456</code></li>
-</ol>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[common]</span><br><span class="hljs-attr">server_addr</span> = vps ip<br><span class="hljs-attr">server_port</span> = <span class="hljs-number">501</span><br><span class="hljs-attr">token</span> = <span class="hljs-number">123456</span><br><br><span class="hljs-section">[socks5]</span><br><span class="hljs-attr">type</span> = tcp<br><span class="hljs-attr">remote_port</span> = <span class="hljs-number">510</span><br><span class="hljs-attr">plugin</span> = socks5<br><span class="hljs-attr">plugin_user</span> = root<br><span class="hljs-attr">plugin_passwd</span> = <span class="hljs-number">123456</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip3 install selenium<br></code></pre></td></tr></table></figure>
 
-<p>运行：<code>frpc.exe -c frpc.ini</code></p>
+<ol start="2">
+<li><p>查看浏览器版本</p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240716144724361.png" srcset="/img/loading.gif" lazyload alt="image-20240716144724361"></p>
+</li>
+</ol>
+<p>3.下载浏览器驱动文件</p>
+<p>Chrome驱动下载地址：<a target="_blank" rel="noopener" href="https://googlechromelabs.github.io/chrome-for-testing/">https://googlechromelabs.github.io/chrome-for-testing/</a></p>
+<p>Firefox驱动下载地址：<a target="_blank" rel="noopener" href="https://github.com/mozilla/geckodriver/releases">https://github.com/mozilla/geckodriver/releases</a></p>
+<p>下载对应版本的驱动文件，把文件放到Python根目录。</p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240716144545993.png" srcset="/img/loading.gif" lazyload alt="image-20240716144545993"></p>
+<p>   <img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240716144857117.png" srcset="/img/loading.gif" lazyload alt="image-20240716144857117"></p>
+<h4 id="2、演示代码"><a href="#2、演示代码" class="headerlink" title="2、演示代码"></a>2、演示代码</h4><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">import <span class="hljs-built_in">time</span><br><span class="hljs-built_in">from</span> selenium import webdriver<br><span class="hljs-built_in">from</span> selenium.webdriver.common.<span class="hljs-keyword">by</span> import By<br><br><span class="hljs-comment"># 定义元素</span><br>input_location = (By.XPATH, <span class="hljs-string">&#x27;//*[@id=&quot;ww&quot;]&#x27;</span>)<br>button_location = (By.XPATH, <span class="hljs-string">&#x27;//*[@id=&quot;s_btn_wr&quot;]&#x27;</span>)<br>news_location = (By.XPATH, <span class="hljs-string">&#x27;//*[@id=&quot;1&quot;]/div/h3/a&#x27;</span>)<br><br><br><span class="hljs-comment"># 初始化Chrome浏览器启动参数</span><br>chrome_options = webdriver.ChromeOptions()<br><span class="hljs-comment"># 隐身模式</span><br>chrome_options.add_argument(<span class="hljs-string">&quot;--incognito&quot;</span>)<br><span class="hljs-comment"># 禁用浏览器的信息和日志记录</span><br>chrome_options.add_experimental_option(<span class="hljs-string">&quot;excludeSwitches&quot;</span>, [<span class="hljs-string">&quot;enable-automation&quot;</span>, <span class="hljs-string">&quot;enable-logging&quot;</span>])<br><br><span class="hljs-comment"># 创建实例</span><br>browser = webdriver.Chrome(chrome_options)<br><span class="hljs-comment"># 打开网站</span><br>browser.<span class="hljs-built_in">get</span>(<span class="hljs-string">&quot;https://news.baidu.com/&quot;</span>)<br><span class="hljs-comment"># 最大化窗口</span><br>browser.maximize_window()<br><span class="hljs-comment"># 设置隐式等待时间</span><br>browser.implicitly_wait(<span class="hljs-number">5</span>)<br><br><span class="hljs-comment"># 输入框输入文字</span><br><span class="hljs-keyword">element</span> = browser.find_element(*input_location).send_keys(<span class="hljs-string">&quot;熊猫&quot;</span>)<br><span class="hljs-comment"># 百度一下</span><br><span class="hljs-keyword">element</span> = browser.find_element(*button_location).click()<br><span class="hljs-comment"># 获取一条新闻</span><br><span class="hljs-keyword">text</span> = browser.find_element(*news_location).<span class="hljs-keyword">text</span><br>print(<span class="hljs-keyword">text</span>)<br><span class="hljs-comment"># 等待3秒</span><br><span class="hljs-built_in">time</span>.sleep(<span class="hljs-number">3</span>)<br><span class="hljs-comment"># 关闭浏览器</span><br>browser.quit()<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/IMG_20240716150127.gif" srcset="/img/loading.gif" lazyload alt="IMG_20240716150127"></p>
+<h4 id="3、扩展"><a href="#3、扩展" class="headerlink" title="3、扩展"></a>3、扩展</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">初始化 Chrome 浏览器。</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>chrome_options = webdriver.ChromeOptions()<br><span class="hljs-comment"># 隐身模式</span><br>chrome_options.add_argument(<span class="hljs-string">&quot;--incognito&quot;</span>)<br><span class="hljs-comment"># 无界面模式</span><br><span class="hljs-comment"># chrome_options.add_argument(&#x27;--headless&#x27;)</span><br><span class="hljs-comment"># 禁用缓存</span><br>chrome_options.add_argument(<span class="hljs-string">&quot;--disable-cach&quot;</span>)<br><span class="hljs-comment"># 禁用插件</span><br>chrome_options.add_argument(<span class="hljs-string">&quot;--disable-plugins&quot;</span>)<br><span class="hljs-comment"># 禁用通知</span><br>chrome_options.add_argument(<span class="hljs-string">&quot;--disable-notifications&quot;</span>)<br><span class="hljs-comment"># 禁用组件更新</span><br>chrome_options.add_argument(<span class="hljs-string">&quot;--disable-component-update&quot;</span>)<br><span class="hljs-comment"># 忽略证书错误</span><br>chrome_options.add_argument(<span class="hljs-string">&quot;--ignore-certificate-errors&quot;</span>)<br><span class="hljs-comment"># 禁用浏览器默认的自动化扩展</span><br>chrome_options.add_experimental_option(<span class="hljs-string">&quot;useAutomationExtension&quot;</span>, <span class="hljs-literal">False</span>)<br><span class="hljs-comment"># 禁用浏览器的信息和日志记录</span><br>chrome_options.add_experimental_option(<span class="hljs-string">&quot;excludeSwitches&quot;</span>, [<span class="hljs-string">&quot;enable-automation&quot;</span>, <span class="hljs-string">&quot;enable-logging&quot;</span>])<br><br><span class="hljs-comment"># 创建实例</span><br>browser = webdriver.Chrome(chrome_options)<br><span class="hljs-comment"># 最大化窗口</span><br>browser.maximize_window()<br><span class="hljs-comment"># 设置隐式等待时间</span><br>browser.implicitly_wait(<span class="hljs-number">5</span>)<br><br><br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">初始化 Firefox 浏览器。</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>firefox_options  = webdriver.FirefoxOptions()<br><span class="hljs-comment"># 隐私模式</span><br><span class="hljs-comment"># firefox_options.add_argument(&quot;--private&quot;)</span><br><span class="hljs-comment"># 禁用自动更新</span><br>firefox_options.set_preference(<span class="hljs-string">&quot;app.update.auto&quot;</span>, <span class="hljs-literal">False</span>)<br>firefox_options.set_preference(<span class="hljs-string">&quot;app.update.enabled&quot;</span>, <span class="hljs-literal">False</span>)<br><span class="hljs-comment"># 忽略证书错误</span><br>firefox_options.set_preference(<span class="hljs-string">&quot;browser.ssl_override_behavior&quot;</span>, <span class="hljs-number">1</span>)<br><span class="hljs-comment"># 禁用浏览器通知</span><br>firefox_options.set_preference(<span class="hljs-string">&quot;dom.webnotifications.enabled&quot;</span>, <span class="hljs-literal">False</span>)<br><span class="hljs-comment"># 禁用窗口日志</span><br>firefox_options.set_preference(<span class="hljs-string">&quot;browser.dom.window.dump.enabled&quot;</span>, <span class="hljs-literal">False</span>)<br><span class="hljs-comment"># 禁用控制台日志</span><br>firefox_options.set_preference(<span class="hljs-string">&quot;browser.console.showInPanel&quot;</span>, <span class="hljs-literal">False</span>)<br><span class="hljs-comment"># 禁用首次运行数据报告</span><br>firefox_options.set_preference(<span class="hljs-string">&quot;toolkit.telemetry.reportingpolicy.firstRun&quot;</span>, <span class="hljs-literal">False</span>)<br><span class="hljs-comment"># 无界面模式</span><br><span class="hljs-comment"># firefox_options.headless = True</span><br><br><span class="hljs-comment"># 创建实例</span><br>browser = webdriver.Firefox(firefox_options)<br><span class="hljs-comment"># 最大化窗口</span><br>browser.maximize_window()<br><span class="hljs-comment"># 设置隐式等待时间</span><br>browser.implicitly_wait(<span class="hljs-number">5</span>)<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -383,7 +372,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" class="category-chain-item">工具使用</a>
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
   
   
 
@@ -398,7 +387,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/" class="print-no-link">#代理工具</a>
+        <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" class="print-no-link">#自动化</a>
       
     </div>
   
@@ -412,18 +401,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/16/Python+selenium%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96%E6%93%8D%E4%BD%9C/" title="Python+selenium实现浏览器自动化操作">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Python+selenium实现浏览器自动化操作</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/02/burp%E4%BB%A3%E7%90%86%E5%88%87%E6%8D%A2%E6%8F%92%E4%BB%B6/" title="burp代理切换插件">
-                        <span class="hidden-mobile">burp代理切换插件</span>
+                      <a href="/2024/07/02/frp%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" title="frp使用笔记">
+                        <span class="hidden-mobile">frp使用笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
