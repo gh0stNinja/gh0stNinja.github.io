@@ -16,29 +16,29 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="0、简介遇到6位数验证码的时候，如果把字典全跑一遍的话，耗时就太多了。使用burp可以进行随机性的枚举。 1、过程设置 Intruder模块 ——&gt; Payload Sets 为 Numbers  设置 Payload Options [Numbers] 为 Random How many : 爆破次数">
+    <meta name="description" content="0、简介使用burp对手机号、4位数、6位数验证码进行随机的枚举。 1、过程设置 Payload type 为 Numbers Random：随机 How many : 爆破次数 Min integer digits：最少位 Max integer digits：最多位">
 <meta property="og:type" content="article">
-<meta property="og:title" content="burp随机爆破6位验证码">
+<meta property="og:title" content="burp随机枚举验证码或手机号">
 <meta property="og:url" content="http://example.com/2024/07/01/burp%E9%9A%8F%E6%9C%BA%E7%88%86%E7%A0%B46%E4%BD%8D%E9%AA%8C%E8%AF%81%E7%A0%81/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
-<meta property="og:description" content="0、简介遇到6位数验证码的时候，如果把字典全跑一遍的话，耗时就太多了。使用burp可以进行随机性的枚举。 1、过程设置 Intruder模块 ——&gt; Payload Sets 为 Numbers  设置 Payload Options [Numbers] 为 Random How many : 爆破次数">
+<meta property="og:description" content="0、简介使用burp对手机号、4位数、6位数验证码进行随机的枚举。 1、过程设置 Payload type 为 Numbers Random：随机 How many : 爆破次数 Min integer digits：最少位 Max integer digits：最多位">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E5%9B%BE%E7%89%8720200430145122.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200430145421-1024x742.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200430151410.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20241217164935896.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20241217165953828.png">
 <meta property="article:published_time" content="2024-07-01T09:13:20.297Z">
-<meta property="article:modified_time" content="2024-08-23T09:29:36.821Z">
+<meta property="article:modified_time" content="2024-12-17T09:01:56.595Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="burp">
 <meta property="article:tag" content="验证码">
+<meta property="article:tag" content="随机枚举">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E5%9B%BE%E7%89%8720200430145122.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20241217164935896.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>burp随机爆破6位验证码 - Ninja&#39;s blog - 学与用</title>
+  <title>burp随机枚举验证码或手机号 - Ninja&#39;s blog - 学与用</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -268,7 +268,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="burp随机爆破6位验证码"></span>
+            <span id="subtitle" data-typed-text="burp随机枚举验证码或手机号"></span>
           
         </div>
 
@@ -291,7 +291,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          64 字
+          48 字
         
       </span>
     
@@ -347,18 +347,19 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">burp随机爆破6位验证码</h1>
+            <h1 id="seo-header">burp随机枚举验证码或手机号</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>遇到6位数验证码的时候，如果把字典全跑一遍的话，耗时就太多了。使用burp可以进行随机性的枚举。</p>
-<h4 id="1、过程"><a href="#1、过程" class="headerlink" title="1、过程"></a>1、过程</h4><p>设置 Intruder模块 ——&gt; Payload Sets 为 Numbers</p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E5%9B%BE%E7%89%8720200430145122.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>设置 Payload Options [Numbers] 为 Random</p>
+                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>使用burp对手机号、4位数、6位数验证码进行随机的枚举。</p>
+<h4 id="1、过程"><a href="#1、过程" class="headerlink" title="1、过程"></a>1、过程</h4><p>设置 Payload type 为 Numbers</p>
+<p>Random：随机</p>
 <p>How many : 爆破次数</p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200430145421-1024x742.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200430151410.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>Min integer digits：最少位</p>
+<p>Max integer digits：最多位</p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20241217164935896.png" srcset="/img/loading.gif" lazyload alt="image-20241217164935896"></p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20241217165953828.png" srcset="/img/loading.gif" lazyload alt="image-20241217165953828"></p>
 
                 
               </div>
@@ -395,6 +396,8 @@
         <a href="/tags/burp/" class="print-no-link">#burp</a>
       
         <a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/" class="print-no-link">#验证码</a>
+      
+        <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%9E%9A%E4%B8%BE/" class="print-no-link">#随机枚举</a>
       
     </div>
   
