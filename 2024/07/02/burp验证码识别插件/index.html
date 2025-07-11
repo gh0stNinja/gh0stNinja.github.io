@@ -16,18 +16,18 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="插件下载地址：https:&#x2F;&#x2F;github.com&#x2F;f0ng&#x2F;captcha-killer-modified burp插件配合ddddocr实现验证码识别，适配新版burpsuite。 1、burp配置 2、本地启动验证码识别脚本python ocr_server.py --port 9898 --ocr  3、插件配置右键发送验证码请求包到插件，接口url填写验证码识别接口：http:&#x2F;&#x2F;127">
+    <meta name="description" content="🎯 本文介绍如何使用 burp 插件配合 ddddocr 实现自动验证码识别，支持新版 Burp Suite，提升渗透测试效率。  🔗 插件下载https:&#x2F;&#x2F;github.com&#x2F;f0ng&#x2F;captcha-killer-modified  1、Burp 插件配置在 Burp Suite 中导入插件后，打开插件面板，进行相应配置：   2、本地启动验证码识别服务执行以下命令启动本地 OCR 服">
 <meta property="og:type" content="article">
 <meta property="og:title" content="burp 验证码识别插件">
 <meta property="og:url" content="http://example.com/2024/07/02/burp%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB%E6%8F%92%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
-<meta property="og:description" content="插件下载地址：https:&#x2F;&#x2F;github.com&#x2F;f0ng&#x2F;captcha-killer-modified burp插件配合ddddocr实现验证码识别，适配新版burpsuite。 1、burp配置 2、本地启动验证码识别脚本python ocr_server.py --port 9898 --ocr  3、插件配置右键发送验证码请求包到插件，接口url填写验证码识别接口：http:&#x2F;&#x2F;127">
+<meta property="og:description" content="🎯 本文介绍如何使用 burp 插件配合 ddddocr 实现自动验证码识别，支持新版 Burp Suite，提升渗透测试效率。  🔗 插件下载https:&#x2F;&#x2F;github.com&#x2F;f0ng&#x2F;captcha-killer-modified  1、Burp 插件配置在 Burp Suite 中导入插件后，打开插件面板，进行相应配置：   2、本地启动验证码识别服务执行以下命令启动本地 OCR 服">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/1704508608454-ce7c17f2-3399-4696-b329-678e043ccf2c.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702101657734.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/1704515183908-f86a9e55-8602-4059-a8fe-74fb8de7a2f0.gif">
 <meta property="article:published_time" content="2024-07-02T02:03:17.686Z">
-<meta property="article:modified_time" content="2025-07-11T05:23:07.208Z">
+<meta property="article:modified_time" content="2025-07-11T08:20:21.287Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="burp">
 <meta property="article:tag" content="验证码">
@@ -280,7 +280,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          191 字
+          364 字
         
       </span>
     
@@ -291,7 +291,7 @@
         
         
         
-          2 分钟
+          4 分钟
         
       </span>
     
@@ -349,16 +349,31 @@
             
               <div class="markdown-body">
                 
-                <p>插件下载地址：<a target="_blank" rel="noopener" href="https://github.com/f0ng/captcha-killer-modified">https://github.com/f0ng/captcha-killer-modified</a></p>
-<p>burp插件配合<a target="_blank" rel="noopener" href="https://github.com/sml2h3/ddddocr">ddddocr</a>实现验证码识别，适配新版burpsuite。</p>
-<h3 id="1、burp配置"><a href="#1、burp配置" class="headerlink" title="1、burp配置"></a>1、burp配置</h3><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1704508608454-ce7c17f2-3399-4696-b329-678e043ccf2c.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h3 id="2、本地启动验证码识别脚本"><a href="#2、本地启动验证码识别脚本" class="headerlink" title="2、本地启动验证码识别脚本"></a>2、本地启动验证码识别脚本</h3><p><code>python ocr_server.py --port 9898 --ocr</code></p>
+                <p>🎯 本文介绍如何使用 burp 插件配合 <a target="_blank" rel="noopener" href="https://github.com/sml2h3/ddddocr">ddddocr</a> 实现自动验证码识别，支持新版 Burp Suite，提升渗透测试效率。</p>
+<hr>
+<h3 id="🔗-插件下载"><a href="#🔗-插件下载" class="headerlink" title="🔗 插件下载"></a>🔗 插件下载</h3><p><a target="_blank" rel="noopener" href="https://github.com/f0ng/captcha-killer-modified">https://github.com/f0ng/captcha-killer-modified</a></p>
+<hr>
+<h3 id="1、Burp-插件配置"><a href="#1、Burp-插件配置" class="headerlink" title="1、Burp 插件配置"></a>1、Burp 插件配置</h3><p>在 Burp Suite 中导入插件后，打开插件面板，进行相应配置：</p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1704508608454-ce7c17f2-3399-4696-b329-678e043ccf2c.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<hr>
+<h3 id="2、本地启动验证码识别服务"><a href="#2、本地启动验证码识别服务" class="headerlink" title="2、本地启动验证码识别服务"></a>2、本地启动验证码识别服务</h3><p>执行以下命令启动本地 OCR 服务，默认监听端口 9898：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python ocr_server.py --port 9898 --ocr<br></code></pre></td></tr></table></figure>
+
+<p>启动成功界面：</p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240702101657734.png" srcset="/img/loading.gif" lazyload alt="image-20240702101657734"></p>
-<h3 id="3、插件配置"><a href="#3、插件配置" class="headerlink" title="3、插件配置"></a>3、插件配置</h3><p>右键发送验证码请求包到插件，接口url填写验证码识别接口：<a target="_blank" rel="noopener" href="http://127.0.0.1:9898/">http://127.0.0.1:9898</a></p>
-<p><strong>Requst数据包</strong>：</p>
+<hr>
+<h3 id="3、插件请求配置"><a href="#3、插件请求配置" class="headerlink" title="3、插件请求配置"></a>3、插件请求配置</h3><p>右键发送验证码请求包到插件，填写验证码识别接口地址：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">http:</span><span class="hljs-comment">//127.0.0.1:9898</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4、请求包示例"><a href="#4、请求包示例" class="headerlink" title="4、请求包示例"></a>4、请求包示例</h3><p>插件发送的请求示例如下，使用 POST 方法，内容包含 Base64 编码的图片数据：</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">POST</span> <span class="hljs-string">/ocr/b64/text</span> <span class="hljs-meta">HTTP/1.1</span><br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>127.0.0.1:9898<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>close<br><span class="hljs-attribute">Cache-Control</span><span class="hljs-punctuation">: </span>max-age=0<br><span class="hljs-attribute">Upgrade-Insecure-Requests</span><span class="hljs-punctuation">: </span>1<br><span class="hljs-attribute">User-Agent</span><span class="hljs-punctuation">: </span>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36<br><span class="hljs-attribute">Sec-Fetch-Mode</span><span class="hljs-punctuation">: </span>navigate<br><span class="hljs-attribute">Sec-Fetch-User</span><span class="hljs-punctuation">: </span>?1<br><span class="hljs-attribute">Accept</span><span class="hljs-punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3<br><span class="hljs-attribute">Sec-Fetch-Site</span><span class="hljs-punctuation">: </span>none<br><span class="hljs-attribute">Accept-Encoding</span><span class="hljs-punctuation">: </span>gzip, deflate<br><span class="hljs-attribute">Accept-Language</span><span class="hljs-punctuation">: </span>zh-CN,zh;q=0.9<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/x-www-form-urlencoded<br><span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>55<br><br><span class="language-apache"><span class="hljs-section">&lt;@BASE64&gt;</span><span class="hljs-section">&lt;@IMG_RAW&gt;</span><span class="hljs-section">&lt;/@IMG_RAW&gt;</span><span class="hljs-section">&lt;/@BASE64&gt;</span></span><br></code></pre></td></tr></table></figure>
 
-<h3 id="4、在Intruder模块调用"><a href="#4、在Intruder模块调用" class="headerlink" title="4、在Intruder模块调用"></a>4、在Intruder模块调用</h3><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1704515183908-f86a9e55-8602-4059-a8fe-74fb8de7a2f0.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<hr>
+<h3 id="5、在-Intruder-模块中调用"><a href="#5、在-Intruder-模块中调用" class="headerlink" title="5、在 Intruder 模块中调用"></a>5、在 Intruder 模块中调用</h3><p>将验证码识别插件集成到 Burp Intruder，自动识别并填充验证码，提升批量测试效率。</p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/1704515183908-f86a9e55-8602-4059-a8fe-74fb8de7a2f0.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<hr>
+<p>✨ 这样一来，Burp Suite 就能智能自动识别验证码，大大降低了手动输入验证码的繁琐工作，提升渗透测试效率。祝你使用愉快！🚀</p>
 
                 
               </div>

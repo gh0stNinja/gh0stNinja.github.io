@@ -16,12 +16,12 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="0、简介发现后台有war上传点，尝试拿一下webshell。  1、制作war木马[管理员模式]打开CMD，执行下面的命令 123cd &quot;C:\Program Files\Java\jdk1.8.0_131\bin&quot; # 制作war文件jar cvf shell.war xx.jsp     2、getshell上传shell.war木马文件，使用蚁剑或菜刀链接： http:&#x2F;">
+    <meta name="description" content="0、简介发现后台存在 WAR 文件上传点，可以通过上传带有后门的 WAR 包，实现 Webshell 的落地和远程控制。     1、制作 WAR 木马以管理员权限打开 CMD，切换到 JDK 的 bin 目录，使用 jar 命令将 JSP 木马打包成 WAR 文件。 12cd &quot;C:\Program Files\Java\jdk1.8.0_131\bin&quot;jar cvf s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="制作 war后门，上传木马 getshell">
+<meta property="og:title" content="制作 WAR 后门，实现上传木马拿 Shell">
 <meta property="og:url" content="http://example.com/2020/01/13/%E5%88%B6%E4%BD%9C%20war%E5%90%8E%E9%97%A8%EF%BC%8C%E4%B8%8A%E4%BC%A0%E6%9C%A8%E9%A9%AC%20getshell/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
-<meta property="og:description" content="0、简介发现后台有war上传点，尝试拿一下webshell。  1、制作war木马[管理员模式]打开CMD，执行下面的命令 123cd &quot;C:\Program Files\Java\jdk1.8.0_131\bin&quot; # 制作war文件jar cvf shell.war xx.jsp     2、getshell上传shell.war木马文件，使用蚁剑或菜刀链接： http:&#x2F;">
+<meta property="og:description" content="0、简介发现后台存在 WAR 文件上传点，可以通过上传带有后门的 WAR 包，实现 Webshell 的落地和远程控制。     1、制作 WAR 木马以管理员权限打开 CMD，切换到 JDK 的 bin 目录，使用 jar 命令将 JSP 木马打包成 WAR 文件。 12cd &quot;C:\Program Files\Java\jdk1.8.0_131\bin&quot;jar cvf s">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113091803-1024x263.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113093055.png">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113093235.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113094609-1024x440.png">
 <meta property="article:published_time" content="2020-01-13T01:57:25.000Z">
-<meta property="article:modified_time" content="2025-07-11T05:23:15.925Z">
+<meta property="article:modified_time" content="2025-07-11T08:22:49.219Z">
 <meta property="article:author" content="Ninja">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113091803-1024x263.png">
@@ -38,7 +38,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>制作 war后门，上传木马 getshell - Ninja&#39;s blog - 学与用</title>
+  <title>制作 WAR 后门，实现上传木马拿 Shell - Ninja&#39;s blog - 学与用</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -256,7 +256,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="制作 war后门，上传木马 getshell"></span>
+            <span id="subtitle" data-typed-text="制作 WAR 后门，实现上传木马拿 Shell"></span>
           
         </div>
 
@@ -279,7 +279,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          82 字
+          232 字
         
       </span>
     
@@ -290,7 +290,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -335,7 +335,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">制作 war后门，上传木马 getshell</h1>
+            <h1 id="seo-header">制作 WAR 后门，实现上传木马拿 Shell</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
@@ -348,16 +348,34 @@
             
               <div class="markdown-body">
                 
-                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>发现后台有war上传点，尝试拿一下webshell。</p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113091803-1024x263.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h4 id="1、制作war木马"><a href="#1、制作war木马" class="headerlink" title="1、制作war木马"></a>1、制作war木马</h4><p>[管理员模式]打开CMD，执行下面的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;C:\Program Files\Java\jdk1.8.0_131\bin&quot;</span> <br><span class="hljs-comment"># 制作war文件</span><br>jar cvf shell.war xx.jsp<br></code></pre></td></tr></table></figure>
+                <hr>
+<h3 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h3><p>发现后台存在 WAR 文件上传点，可以通过上传带有后门的 WAR 包，实现 Webshell 的落地和远程控制。</p>
+<blockquote>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113091803-1024x263.png" srcset="/img/loading.gif" lazyload alt="后台WAR上传点示例"></p>
+</blockquote>
+<hr>
+<h3 id="1、制作-WAR-木马"><a href="#1、制作-WAR-木马" class="headerlink" title="1、制作 WAR 木马"></a>1、制作 WAR 木马</h3><p>以管理员权限打开 CMD，切换到 JDK 的 <code>bin</code> 目录，使用 <code>jar</code> 命令将 JSP 木马打包成 WAR 文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;C:\Program Files\Java\jdk1.8.0_131\bin&quot;</span><br>jar cvf shell.war xx.jsp<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113093055.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113093152.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113093235.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h4 id="2、getshell"><a href="#2、getshell" class="headerlink" title="2、getshell"></a>2、getshell</h4><p>上传shell.war木马文件，使用蚁剑或菜刀链接： <a target="_blank" rel="noopener" href="http://x.x.x.x:8080/shell/xx.jsp">http://x.x.x.x:8080/shell/xx.jsp</a></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113094609-1024x440.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>具体操作截图：</p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113093055.png" srcset="/img/loading.gif" lazyload alt="制作WAR包步骤1"></p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113093152.png" srcset="/img/loading.gif" lazyload alt="制作WAR包步骤2"></p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113093235.png" srcset="/img/loading.gif" lazyload alt="制作WAR包步骤3"></p>
+<hr>
+<h3 id="2、上传并获取-Shell"><a href="#2、上传并获取-Shell" class="headerlink" title="2、上传并获取 Shell"></a>2、上传并获取 Shell</h3><p>将 <code>shell.war</code> 文件上传到后台上传点后，通过蚁剑或菜刀等 Webshell 管理工具访问：</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm"><span class="hljs-symbol">http:</span>//<span class="hljs-keyword">x</span>.<span class="hljs-keyword">x</span>.<span class="hljs-keyword">x</span>.<span class="hljs-keyword">x</span>:<span class="hljs-number">8080</span>/shell/xx.jsp<br></code></pre></td></tr></table></figure>
+
+<p>成功拿到 Shell 后，可以远程执行命令。</p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20200113094609-1024x440.png" srcset="/img/loading.gif" lazyload alt="Webshell访问示例"></p>
+<hr>
+<p>💡 <strong>提示</strong></p>
+<ul>
+<li>制作木马时，<code>xx.jsp</code> 文件需为功能完整的 Webshell 脚本。</li>
+<li>上传前确保目标服务器支持 WAR 包自动部署（如 Tomcat）。</li>
+<li>此技巧用于安全测试，禁止用于非法攻击。</li>
+</ul>
+<hr>
+<p>这样，你就可以通过上传 WAR 包木马，快速实现 Webshell 获取和远程控制。</p>
 
                 
               </div>

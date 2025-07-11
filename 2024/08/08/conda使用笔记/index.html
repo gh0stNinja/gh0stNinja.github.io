@@ -16,15 +16,15 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="创建Conda环境使用conda可以在电脑上创建很多套相互隔离的Python环境 12# 样例 创建一个名为test的环境，python版本为3.9conda create -n test python&#x3D;3.9  切换Conda环境1234# 进入环境conda activate &lt;env_name&gt;# 退出环境conda deactivate  查看已安装的环境12# 查看全部环境c">
+    <meta name="description" content="🐍 创建Conda环境Conda 可以帮助你在同一台机器上创建多个相互隔离的 Python 环境，方便管理不同项目的依赖。 12# 示例：创建一个名为 test 的环境，Python 版本为 3.9conda create -n test python&#x3D;3.9   🔄 切换Conda环境12345# 激活指定环境conda activate &lt;env_name&gt;# 退出当前环境co">
 <meta property="og:type" content="article">
 <meta property="og:title" content="conda 使用笔记">
 <meta property="og:url" content="http://example.com/2024/08/08/conda%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
-<meta property="og:description" content="创建Conda环境使用conda可以在电脑上创建很多套相互隔离的Python环境 12# 样例 创建一个名为test的环境，python版本为3.9conda create -n test python&#x3D;3.9  切换Conda环境1234# 进入环境conda activate &lt;env_name&gt;# 退出环境conda deactivate  查看已安装的环境12# 查看全部环境c">
+<meta property="og:description" content="🐍 创建Conda环境Conda 可以帮助你在同一台机器上创建多个相互隔离的 Python 环境，方便管理不同项目的依赖。 12# 示例：创建一个名为 test 的环境，Python 版本为 3.9conda create -n test python&#x3D;3.9   🔄 切换Conda环境12345# 激活指定环境conda activate &lt;env_name&gt;# 退出当前环境co">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-08T07:07:26.025Z">
-<meta property="article:modified_time" content="2025-07-11T05:22:46.588Z">
+<meta property="article:modified_time" content="2025-07-11T08:18:49.205Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="conda">
 <meta name="twitter:card" content="summary_large_image">
@@ -274,7 +274,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          152 字
+          273 字
         
       </span>
     
@@ -285,7 +285,7 @@
         
         
         
-          2 分钟
+          3 分钟
         
       </span>
     
@@ -343,21 +343,35 @@
             
               <div class="markdown-body">
                 
-                <h4 id="创建Conda环境"><a href="#创建Conda环境" class="headerlink" title="创建Conda环境"></a>创建Conda环境</h4><p>使用conda可以在电脑上创建很多套相互隔离的Python环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 样例 创建一个名为test的环境，python版本为3.9</span><br>conda create -n <span class="hljs-built_in">test</span> python=3.9<br></code></pre></td></tr></table></figure>
+                <h4 id="🐍-创建Conda环境"><a href="#🐍-创建Conda环境" class="headerlink" title="🐍 创建Conda环境"></a>🐍 创建Conda环境</h4><p>Conda 可以帮助你在同一台机器上创建多个相互隔离的 Python 环境，方便管理不同项目的依赖。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 示例：创建一个名为 test 的环境，Python 版本为 3.9</span><br>conda create -n <span class="hljs-built_in">test</span> python=3.9<br></code></pre></td></tr></table></figure>
 
-<h4 id="切换Conda环境"><a href="#切换Conda环境" class="headerlink" title="切换Conda环境"></a>切换Conda环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 进入环境</span><br>conda activate &lt;env_name&gt;<br><span class="hljs-comment"># 退出环境</span><br>conda deactivate<br></code></pre></td></tr></table></figure>
+<hr>
+<h4 id="🔄-切换Conda环境"><a href="#🔄-切换Conda环境" class="headerlink" title="🔄 切换Conda环境"></a>🔄 切换Conda环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 激活指定环境</span><br>conda activate &lt;env_name&gt;<br><br><span class="hljs-comment"># 退出当前环境</span><br>conda deactivate<br></code></pre></td></tr></table></figure>
 
-<h4 id="查看已安装的环境"><a href="#查看已安装的环境" class="headerlink" title="查看已安装的环境"></a>查看已安装的环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看全部环境</span><br>conda info --envs <br></code></pre></td></tr></table></figure>
+<hr>
+<h4 id="📋-查看已安装环境"><a href="#📋-查看已安装环境" class="headerlink" title="📋 查看已安装环境"></a>📋 查看已安装环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看所有已创建的环境</span><br>conda info --envs<br></code></pre></td></tr></table></figure>
 
-<h4 id="删除Conda环境"><a href="#删除Conda环境" class="headerlink" title="删除Conda环境"></a>删除Conda环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 删除环境</span><br>conda remove -n &lt;env_name&gt; --all<br></code></pre></td></tr></table></figure>
+<hr>
+<h4 id="❌-删除Conda环境"><a href="#❌-删除Conda环境" class="headerlink" title="❌ 删除Conda环境"></a>❌ 删除Conda环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 删除指定环境及其所有包</span><br>conda remove -n &lt;env_name&gt; --all<br></code></pre></td></tr></table></figure>
 
-<h4 id="查看Conda信息"><a href="#查看Conda信息" class="headerlink" title="查看Conda信息"></a>查看Conda信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看当前conda环境安装的所有依赖包</span><br>conda list<br><br><span class="hljs-comment"># 查看全部环境</span><br>conda info --envs <br></code></pre></td></tr></table></figure>
+<hr>
+<h4 id="🔍-查看Conda信息"><a href="#🔍-查看Conda信息" class="headerlink" title="🔍 查看Conda信息"></a>🔍 查看Conda信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看当前环境中安装的所有依赖包</span><br>conda list<br><br><span class="hljs-comment"># 查看所有环境信息</span><br>conda info --envs<br></code></pre></td></tr></table></figure>
 
-<h4 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装新的依赖包</span><br>conda install requests<br></code></pre></td></tr></table></figure>
+<hr>
+<h4 id="📦-安装依赖包"><a href="#📦-安装依赖包" class="headerlink" title="📦 安装依赖包"></a>📦 安装依赖包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 在当前环境安装新的依赖包，例如 requests</span><br>conda install requests<br></code></pre></td></tr></table></figure>
 
-<h4 id="设置不默认打开base环境"><a href="#设置不默认打开base环境" class="headerlink" title="设置不默认打开base环境"></a>设置不默认打开base环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 设置不默认打开base环境</span><br>conda config --<span class="hljs-built_in">set</span> auto_activate_base <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h4 id="⚙️-设置关闭启动时自动激活-base-环境"><a href="#⚙️-设置关闭启动时自动激活-base-环境" class="headerlink" title="⚙️ 设置关闭启动时自动激活 base 环境"></a>⚙️ 设置关闭启动时自动激活 base 环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 设置后启动终端不会自动进入 base 环境</span><br>conda config --<span class="hljs-built_in">set</span> auto_activate_base <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
 
+<hr>
+<p>💡 小贴士</p>
+<ul>
+<li>建议为不同项目创建独立环境，避免依赖冲突。</li>
+<li>使用 <code>conda env export &gt; environment.yml</code> 可以导出环境配置，方便分享和复现。</li>
+<li>结合 <code>conda update conda</code> 定期更新conda工具，保证稳定性和安全。</li>
+</ul>
+<p>祝你使用顺利！🚀</p>
 
                 
               </div>
@@ -415,8 +429,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/16/python%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" title="python实现浏览器自动化">
-                        <span class="hidden-mobile">python实现浏览器自动化</span>
+                      <a href="/2024/07/16/python%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" title="Python实现浏览器自动化">
+                        <span class="hidden-mobile">Python实现浏览器自动化</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

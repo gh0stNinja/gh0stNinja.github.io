@@ -473,7 +473,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/08/23/nps%20%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/" target="_self">
         <div>
-          📌 VPS配置123456# docker拉取镜像docker pull ffdfgdfg/nps# nps服务启动docker run -d -p 12100-12200:12100-12200 -v （配置路径例子：/root/nps/conf:/conf） --name=nps_server ffdfgdfg/nps# nps管理界面	admin：adminhttp://vps:12100
+          📌 VPS 端配置123456789101112# 拉取 nps Docker 镜像docker pull ffdfgdfg/nps# 启动 nps 服务docker run -d \  -p 12100-12200:12100-12200 \  -v /root/nps/conf:/conf \  --name=nps_server \  ffdfgdfg/nps# 管理后台访问（默认账号：a
         </div>
       </a>
 
@@ -534,7 +534,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/08/23/heapdump%20%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" target="_self">
         <div>
-          🚀 简介渗透测试的时候老遇到spring的heapdump能下载但是不知道怎么利用，今天发几个工具让漏洞危害最大化。通过heapdump获取明文密码在深入利用。 📌 利用查看泄露的端点信息：http://127.0.0.1:8088/actuator 下载heapdump文件：http://127.0.0.1:8088/actuator/heapdump 🎯 工具1：JDumpSpider-
+          🚀 简介在渗透测试中，常见Spring应用暴露的heapdump文件能够被下载，但很多测试者不知道如何高效利用。本文分享几款实用工具，帮助最大化利用heapdump漏洞，快速提取明文密码、密钥等敏感信息，从而助力后续深度渗透。  📌 漏洞发现与利用流程 查看暴露的Actuator端点http://127.0.0.1:8088/actuator  下载heapdump文件http://127.0
         </div>
       </a>
 
@@ -575,6 +575,8 @@
             
               <a href="/tags/Springboot/">#Springboot</a>
             
+              <a href="/tags/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/">#信息泄露</a>
+            
           </div>
         
       </div>
@@ -595,7 +597,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/08/23/fastjson%E7%9A%84%E5%88%A9%E7%94%A8%E5%A7%BF%E5%8A%BF/" target="_self">
         <div>
-          说明 本项目涉及的一些姿势和payload是从之前的随手记的笔记直接粘进来的，很多找不到出处了所以来源未贴出来，望师傅们见谅。  判断是否用了fastjson鉴别fastjsonDNSLOG 1&#123;&quot;@type&quot;:&quot;java.net.InetSocketAddress&quot;&#123;&quot;address&quot;:,&quot;val&quot
+          🚀说明 本项目涉及的一些姿势和payload是从之前的随手记的笔记直接粘进来的，很多找不到出处了所以来源未贴出来，望师傅们见谅。  判断是否用了fastjson鉴别fastjsonDNSLOG 1&#123;&quot;@type&quot;:&quot;java.net.InetSocketAddress&quot;&#123;&quot;address&quot;:,&quot;val&qu
         </div>
       </a>
 
@@ -656,7 +658,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/08/16/python%E7%BC%96%E5%86%99%E7%9A%84%E6%94%BB%E5%87%BB%E6%BA%AF%E6%BA%90%E5%B7%A5%E5%85%B7/" target="_self">
         <div>
-          0、简介python编写的溯源工具，方便查询恶意IP地址绑定的历史域名、域名解析IP、备案信息等。 1、代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777
+          0、简介 🛠️这是一个用 Python 编写的溯源工具，方便快捷地查询恶意 IP 地址绑定的历史域名、域名解析 IP 以及备案信息等，助你轻松追踪网络威胁来源。🔍🌐 1、代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596
         </div>
       </a>
 
@@ -717,7 +719,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/08/08/conda%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" target="_self">
         <div>
-          创建Conda环境使用conda可以在电脑上创建很多套相互隔离的Python环境 12# 样例 创建一个名为test的环境，python版本为3.9conda create -n test python=3.9  切换Conda环境1234# 进入环境conda activate &lt;env_name&gt;# 退出环境conda deactivate  查看已安装的环境12# 查看全部环境c
+          🐍 创建Conda环境Conda 可以帮助你在同一台机器上创建多个相互隔离的 Python 环境，方便管理不同项目的依赖。 12# 示例：创建一个名为 test 的环境，Python 版本为 3.9conda create -n test python=3.9   🔄 切换Conda环境12345# 激活指定环境conda activate &lt;env_name&gt;# 退出当前环境co
         </div>
       </a>
 
@@ -771,14 +773,14 @@
       <h2 class="index-header">
         
         <a href="/2024/07/16/python%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" target="_self">
-          python实现浏览器自动化
+          Python实现浏览器自动化
         </a>
       </h2>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/07/16/python%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" target="_self">
         <div>
-          0、简介Selenium 可以在没有人参与的情况下使用浏览器，并通过代码实现自动化流程，例如模拟用户输入、提交表单。 1、安装 首先安装selenium库  1pip3 install selenium   查看浏览器版本    3.下载浏览器驱动文件 Chrome驱动下载地址：https://googlechromelabs.github.io/chrome-for-testing/ Firef
+          0、简介 ✨Selenium 可以在无人参与的情况下自动操作浏览器，通过代码模拟用户行为，实现自动化流程，比如输入文本、提交表单等。 1、安装 🛠️ 安装 selenium 库  1pip3 install selenium   查看浏览器版本（确保驱动匹配）    下载对应浏览器驱动   Chrome 驱动下载地址：https://googlechromelabs.github.io/chro
         </div>
       </a>
 

