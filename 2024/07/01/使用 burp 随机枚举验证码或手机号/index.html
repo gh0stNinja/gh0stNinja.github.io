@@ -16,17 +16,17 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="0、简介使用burp对手机号、4位数、6位数验证码进行随机的枚举。 1、过程设置 Payload type 为 Numbers Random：随机 How many : 爆破次数 Min integer digits：最少位 Max integer digits：最多位">
+    <meta name="description" content="0、简介利用 Burp Suite 的 Intruder 模块对手机号、4位数或6位数验证码进行随机枚举，模拟爆破尝试。  1、操作流程 在 Intruder 的 Payloads 选项卡中，设置 Payload type 为 Numbers。 选择 Random，表示随机生成数字。 设置 How many 为爆破的总次数（即生成多少随机数字）。 设置 Min integer digits 和 M">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 burp 随机枚举验证码或手机号">
 <meta property="og:url" content="http://example.com/2024/07/01/%E4%BD%BF%E7%94%A8%20burp%20%E9%9A%8F%E6%9C%BA%E6%9E%9A%E4%B8%BE%E9%AA%8C%E8%AF%81%E7%A0%81%E6%88%96%E6%89%8B%E6%9C%BA%E5%8F%B7/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
-<meta property="og:description" content="0、简介使用burp对手机号、4位数、6位数验证码进行随机的枚举。 1、过程设置 Payload type 为 Numbers Random：随机 How many : 爆破次数 Min integer digits：最少位 Max integer digits：最多位">
+<meta property="og:description" content="0、简介利用 Burp Suite 的 Intruder 模块对手机号、4位数或6位数验证码进行随机枚举，模拟爆破尝试。  1、操作流程 在 Intruder 的 Payloads 选项卡中，设置 Payload type 为 Numbers。 选择 Random，表示随机生成数字。 设置 How many 为爆破的总次数（即生成多少随机数字）。 设置 Min integer digits 和 M">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20241217164935896.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20241217165953828.png">
 <meta property="article:published_time" content="2024-07-01T09:13:20.297Z">
-<meta property="article:modified_time" content="2025-07-11T05:23:30.685Z">
+<meta property="article:modified_time" content="2025-07-11T09:01:50.590Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="burp">
 <meta property="article:tag" content="验证码">
@@ -267,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          48 字
+          206 字
         
       </span>
     
@@ -278,7 +278,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -336,14 +336,54 @@
             
               <div class="markdown-body">
                 
-                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>使用burp对手机号、4位数、6位数验证码进行随机的枚举。</p>
-<h4 id="1、过程"><a href="#1、过程" class="headerlink" title="1、过程"></a>1、过程</h4><p>设置 Payload type 为 Numbers</p>
-<p>Random：随机</p>
-<p>How many : 爆破次数</p>
-<p>Min integer digits：最少位</p>
-<p>Max integer digits：最多位</p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20241217164935896.png" srcset="/img/loading.gif" lazyload alt="image-20241217164935896"></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20241217165953828.png" srcset="/img/loading.gif" lazyload alt="image-20241217165953828"></p>
+                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>利用 Burp Suite 的 Intruder 模块对手机号、4位数或6位数验证码进行随机枚举，模拟爆破尝试。</p>
+<hr>
+<h4 id="1、操作流程"><a href="#1、操作流程" class="headerlink" title="1、操作流程"></a>1、操作流程</h4><ul>
+<li>在 Intruder 的 Payloads 选项卡中，设置 <strong>Payload type</strong> 为 <strong>Numbers</strong>。</li>
+<li>选择 <strong>Random</strong>，表示随机生成数字。</li>
+<li>设置 <strong>How many</strong> 为爆破的总次数（即生成多少随机数字）。</li>
+<li>设置 <strong>Min integer digits</strong> 和 <strong>Max integer digits</strong>，分别表示数字的最小和最大长度，比如4位验证码就都填4。</li>
+</ul>
+<hr>
+<h4 id="2、参数示例说明"><a href="#2、参数示例说明" class="headerlink" title="2、参数示例说明"></a>2、参数示例说明</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Payload type</td>
+<td>数字类型</td>
+<td>选择 Numbers</td>
+</tr>
+<tr>
+<td>Random</td>
+<td>随机生成</td>
+<td>生成随机数字</td>
+</tr>
+<tr>
+<td>How many</td>
+<td>生成数量</td>
+<td>枚举总次数</td>
+</tr>
+<tr>
+<td>Min integer digits</td>
+<td>最小位数</td>
+<td>如4位验证码填4</td>
+</tr>
+<tr>
+<td>Max integer digits</td>
+<td>最大位数</td>
+<td>一般与最小位数相同</td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="3、界面示例"><a href="#3、界面示例" class="headerlink" title="3、界面示例"></a>3、界面示例</h4><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20241217164935896.png" srcset="/img/loading.gif" lazyload alt="验证码随机枚举设置"></p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20241217165953828.png" srcset="/img/loading.gif" lazyload alt="验证码爆破执行效果"></p>
+<hr>
+<p>这样即可方便地使用 Burp 的 Intruder 模块针对验证码或手机号进行随机数字爆破测试。</p>
 
                 
               </div>
@@ -351,27 +391,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" class="category-chain-item">工具使用</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
     <div class="post-meta">

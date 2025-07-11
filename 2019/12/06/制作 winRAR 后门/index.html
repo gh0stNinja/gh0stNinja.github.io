@@ -16,19 +16,19 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="0、简介WinRAR压缩程序有个设置自解压格式的功能，可以用来做后门或者钓鱼。 1、方法打开新建的压缩文件，上方有个自解压格式的功能。  设置过程：  运行效果：  注：可以配合shift后门使用，或者使用邮件附件方式进行钓鱼。 可以设置解压时替换或跳过已存在的文件">
+    <meta name="description" content="0、简介WinRAR 自带的自解压格式功能可以被巧妙利用，用来制作后门或者进行钓鱼攻击。本文分享利用 WinRAR 自解压功能制作简单后门的步骤和演示。  1、制作步骤打开 WinRAR，新建一个压缩包，然后点击上方的【自解压格式】按钮，进入自解压设置界面。   2、配置自解压参数通过自解压选项，可以指定压缩包解压时执行的程序或脚本，从而实现后门效果。 具体设置过程如下：   你可以在“运行后执行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="制作 winRAR 后门">
+<meta property="og:title" content="制作 WinRAR 后门小技巧">
 <meta property="og:url" content="http://example.com/2019/12/06/%E5%88%B6%E4%BD%9C%20winRAR%20%E5%90%8E%E9%97%A8/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
-<meta property="og:description" content="0、简介WinRAR压缩程序有个设置自解压格式的功能，可以用来做后门或者钓鱼。 1、方法打开新建的压缩文件，上方有个自解压格式的功能。  设置过程：  运行效果：  注：可以配合shift后门使用，或者使用邮件附件方式进行钓鱼。 可以设置解压时替换或跳过已存在的文件">
+<meta property="og:description" content="0、简介WinRAR 自带的自解压格式功能可以被巧妙利用，用来制作后门或者进行钓鱼攻击。本文分享利用 WinRAR 自解压功能制作简单后门的步骤和演示。  1、制作步骤打开 WinRAR，新建一个压缩包，然后点击上方的【自解压格式】按钮，进入自解压设置界面。   2、配置自解压参数通过自解压选项，可以指定压缩包解压时执行的程序或脚本，从而实现后门效果。 具体设置过程如下：   你可以在“运行后执行">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-2-1719815650307-5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/winrar.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/winrar1.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-3-1719815642949-3.png">
 <meta property="article:published_time" content="2019-12-06T13:01:25.000Z">
-<meta property="article:modified_time" content="2025-07-11T05:23:11.185Z">
+<meta property="article:modified_time" content="2025-07-11T09:02:57.792Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="后门">
 <meta property="article:tag" content="小技巧">
@@ -39,7 +39,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>制作 winRAR 后门 - Ninja&#39;s blog - 学与用</title>
+  <title>制作 WinRAR 后门小技巧 - Ninja&#39;s blog - 学与用</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -245,7 +245,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="制作 winRAR 后门"></span>
+            <span id="subtitle" data-typed-text="制作 WinRAR 后门小技巧"></span>
           
         </div>
 
@@ -268,7 +268,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          105 字
+          344 字
         
       </span>
     
@@ -279,7 +279,7 @@
         
         
         
-          1 分钟
+          3 分钟
         
       </span>
     
@@ -324,7 +324,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">制作 winRAR 后门</h1>
+            <h1 id="seo-header">制作 WinRAR 后门小技巧</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
@@ -337,16 +337,28 @@
             
               <div class="markdown-body">
                 
-                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>WinRAR压缩程序有个设置自解压格式的功能，可以用来做后门或者钓鱼。</p>
-<h4 id="1、方法"><a href="#1、方法" class="headerlink" title="1、方法"></a>1、方法</h4><p>打开新建的压缩文件，上方有个自解压格式的功能。</p>
+                <h3 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h3><p>WinRAR 自带的自解压格式功能可以被巧妙利用，用来制作后门或者进行钓鱼攻击。本文分享利用 WinRAR 自解压功能制作简单后门的步骤和演示。</p>
+<hr>
+<h3 id="1、制作步骤"><a href="#1、制作步骤" class="headerlink" title="1、制作步骤"></a>1、制作步骤</h3><p>打开 WinRAR，新建一个压缩包，然后点击上方的【自解压格式】按钮，进入自解压设置界面。</p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-2-1719815650307-5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>设置过程：</p>
+<hr>
+<h3 id="2、配置自解压参数"><a href="#2、配置自解压参数" class="headerlink" title="2、配置自解压参数"></a>2、配置自解压参数</h3><p>通过自解压选项，可以指定压缩包解压时执行的程序或脚本，从而实现后门效果。</p>
+<p>具体设置过程如下：</p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/winrar.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>运行效果：</p>
+<ul>
+<li>你可以在“运行后执行的程序”中填写你想执行的后门程序或脚本。</li>
+<li>配合 shift 后门使用或作为邮件附件进行钓鱼攻击，效果更佳。</li>
+</ul>
+<hr>
+<h3 id="3、运行效果展示"><a href="#3、运行效果展示" class="headerlink" title="3、运行效果展示"></a>3、运行效果展示</h3><p>解压时，压缩包自动执行指定的后门程序：</p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/winrar1.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>注：可以配合shift后门使用，或者使用邮件附件方式进行钓鱼。</p>
-<p>可以设置解压时替换或跳过已存在的文件</p>
+<hr>
+<h3 id="4、附加设置"><a href="#4、附加设置" class="headerlink" title="4、附加设置"></a>4、附加设置</h3><p>可以在自解压设置中配置“解压时替换或跳过已存在的文件”，提升后门的隐蔽性和成功率。</p>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-3-1719815642949-3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<hr>
+<p>💡 <strong>温馨提示</strong>：<br>此方法仅用于学习和安全研究，切勿用于非法用途。使用后门技术时请遵守法律法规和道德规范。</p>
+<hr>
+<p>这样就能利用 WinRAR 自解压功能，轻松制作简易后门或钓鱼包，适合安全测试和渗透演练场景。</p>
 
                 
               </div>
@@ -354,27 +366,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" class="category-chain-item">奇技淫巧</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
     <div class="post-meta">
@@ -396,9 +387,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/01/13/%E5%88%B6%E4%BD%9C%20war%E5%90%8E%E9%97%A8%EF%BC%8C%E4%B8%8A%E4%BC%A0%E6%9C%A8%E9%A9%AC%20getshell/" title="制作 WAR 后门，实现上传木马拿 Shell">
+                      <a href="/2019/12/06/%E5%88%B6%E4%BD%9C%20shift%20%E5%90%8E%E9%97%A8%EF%BC%8C%E7%BB%B4%E6%8C%81%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/" title="制作 Shift 后门，维持访问权限">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">制作 WAR 后门，实现上传木马拿 Shell</span>
+                        <span class="hidden-mobile">制作 Shift 后门，维持访问权限</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -406,8 +397,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2019/12/06/%E5%88%B6%E4%BD%9C%20shift%20%E5%90%8E%E9%97%A8%EF%BC%8C%E7%BB%B4%E6%8C%81%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/" title="制作 shift 后门，维持访问权限">
-                        <span class="hidden-mobile">制作 shift 后门，维持访问权限</span>
+                      <a href="/2019/12/06/Windows%E7%B3%BB%E7%BB%9F%E6%B7%BB%E5%8A%A0%E9%9A%90%E8%97%8F%E8%B4%A6%E6%88%B7/" title="Windows系统添加隐藏账户">
+                        <span class="hidden-mobile">Windows系统添加隐藏账户</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
