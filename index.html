@@ -1,0 +1,843 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img.icons8.com/ios-filled/50/github.png">
+  <link rel="icon" href="https://img.icons8.com/ios-filled/50/github.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ninja">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Ninja&#39;s blog - 学与用">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Ninja">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Ninja&#39;s blog - 学与用</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ninja&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-codeforces"></i>
+                <span>其他</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hack.chat" target="_self">
+                    
+                    <span>Hack.chat私密聊天频道</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://git.io/linux" target="_self">
+                    
+                    <span>Linux命令大全</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://xssaq.com" target="_self">
+                    
+                    <span>XSS平台</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Don&#39;t give up your dream keep going."></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/11/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%20ProxyPool%E4%BB%A3%E7%90%86IP%E6%B1%A0%E7%9A%84burp%E4%BB%A3%E7%90%86%E5%88%87%E6%8D%A2%E6%8F%92%E4%BB%B6%EF%BC%8C%E5%AE%9E%E7%8E%B0http%E4%BB%A3%E7%90%86%E8%AE%BF%E9%97%AE/" target="_self">
+          一个基于 ProxyPool代理IP池的burp代理切换插件，实现http代理访问
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/11/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%20ProxyPool%E4%BB%A3%E7%90%86IP%E6%B1%A0%E7%9A%84burp%E4%BB%A3%E7%90%86%E5%88%87%E6%8D%A2%E6%8F%92%E4%BB%B6%EF%BC%8C%E5%AE%9E%E7%8E%B0http%E4%BB%A3%E7%90%86%E8%AE%BF%E9%97%AE/" target="_self">
+        <div>
+          🚀 ProxySwitcher代理切换插件+ProxyPool代理IP池，可以实现http代理访问。代理列表可以粘贴、访问代理池URL获取。  项目地址：https://github.com/gh0stNinja/ProxySwitcher ⚙️ 运行截图
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-11 15:31" pubdate>
+              2025-07-11
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/">#隧道代理</a>
+            
+              <a href="/tags/burp/">#burp</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/11/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%20Python%E3%80%81ddddocr%20%E5%92%8C%20AIOHTTP%20%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/" target="_self">
+          一个基于 Python、ddddocr 和 AIOHTTP 的轻量级验证码识别脚本
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/11/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%20Python%E3%80%81ddddocr%20%E5%92%8C%20AIOHTTP%20%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB%E8%84%9A%E6%9C%AC/" target="_self">
+        <div>
+          🚀 一个基于 Python、ddddocr 和 AIOHTTP 的轻量级验证码识别 API 服务，支持算术验证码和多种字符集的通用 OCR 识别。   📌 功能简介 🎯 多种验证码类型  算术验证码自动计算（支持 1+2=、4×5= 等） 数字、字母、大小写混合、多字符集自动识别   🧩 高可用 OCR 引擎  使用 ddddocr 提供高效验证码识别 内置图像预处理（去背景、提取主色、
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-11 13:01" pubdate>
+              2025-07-11
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/">#验证码</a>
+            
+              <a href="/tags/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/">#密码爆破</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/11/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%20Python%20+%20Selenium%20%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%B1%E5%8F%A3%E4%BB%A4%E7%88%86%E7%A0%B4%E8%84%9A%E6%9C%AC/" target="_self">
+          一个基于 Python + Selenium 的自动化浏览器弱口令爆破脚本
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/11/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%20Python%20+%20Selenium%20%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%B1%E5%8F%A3%E4%BB%A4%E7%88%86%E7%A0%B4%E8%84%9A%E6%9C%AC/" target="_self">
+        <div>
+          🔐 一个基于 Python + Selenium 的自动化浏览器弱口令爆破脚本，集成验证码自动识别（依赖本地 OCR API 服务 AutoCaptcha）。  📌 功能概述 使用 Selenium 控制 Chrome 或 Firefox 自动化登录表单 从本地文件批量读取用户名和密码字典进行爆破 支持自动检测是否存在验证码输入框 自动截图验证码、调用本地 AutoCaptcha OCR AP
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-11 12:52" pubdate>
+              2025-07-11
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/">#密码爆破</a>
+            
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">#自动化</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20VMware%20vCenter%20Server%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%20(CVE-2021-22005)/" target="_self">
+          漏洞复现 - VMware vCenter Server 任意文件上传漏洞 (CVE-2021-22005)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20VMware%20vCenter%20Server%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%20(CVE-2021-22005)/" target="_self">
+        <div>
+          📌 漏洞描述CVE-2021-22005 是 VMware vCenter Server 中存在的一个关键任意文件上传漏洞，攻击者无需认证即可向 vCenter Server 上传任意文件并执行，从而在服务器上远程执行任意代码。   🎯 漏洞复现EXP 工具地址：👉 https://github.com/shmilylty/cve-2021-22005-exp 1python exp.py
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-20 17:35" pubdate>
+              2025-03-20
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">#漏洞复现</a>
+            
+              <a href="/tags/VMware/">#VMware</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20VMware%20vCenter%20Server%206.5-7.0%20RCE%20%E6%BC%8F%E6%B4%9E(CVE-2021-21972)/" target="_self">
+          漏洞复现 - VMware vCenter Server 6.5-7.0 RCE 漏洞(CVE-2021-21972)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20VMware%20vCenter%20Server%206.5-7.0%20RCE%20%E6%BC%8F%E6%B4%9E(CVE-2021-21972)/" target="_self">
+        <div>
+          🗂️ 漏洞描述CVE-2021-21972 是 VMware vCenter Server 中一个高危远程代码执行（RCE）漏洞，影响版本包括：  vCenter Server 6.5、6.7 和 7.0 该漏洞位于 vRealize Operations Manager（vROps） 插件中，攻击者可通过未授权访问 /ui/vropspluginui/rest/services/uploado
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-20 17:35" pubdate>
+              2025-03-20
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">#漏洞复现</a>
+            
+              <a href="/tags/VMware/">#VMware</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20Nacos%20%E6%9C%AA%E6%8E%88%E6%9D%83%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E4%B8%8E%E5%90%8E%E9%97%A8%E6%93%8D%E4%BD%9C/" target="_self">
+          漏洞复现 - Nacos 未授权创建用户与后门操作
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20Nacos%20%E6%9C%AA%E6%8E%88%E6%9D%83%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E4%B8%8E%E5%90%8E%E9%97%A8%E6%93%8D%E4%BD%9C/" target="_self">
+        <div>
+          📌 漏洞简介Nacos 是阿里巴巴开源的一个动态服务发现、配置管理和服务管理平台。  在部分版本（或因配置不当），管理端接口对 User-Agent 检测不严格，若请求头伪造为 Nacos-Server，可直接访问部分后端管理 API。 攻击者可利用该逻辑漏洞： 查看用户列表 创建&#x2F;删除用户 后门账户登录后台 横向访问配置     🗂️ 漏洞环境 靶机示例：192.168.199.1
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-20 17:34" pubdate>
+              2025-03-20
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">#漏洞复现</a>
+            
+              <a href="/tags/Nacos/">#Nacos</a>
+            
+              <a href="/tags/%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87/">#权限绕过</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20Struts2%20S2-020%20DoS%20%E4%B8%8E%20RCE%20%E5%88%A9%E7%94%A8/" target="_self">
+          漏洞复现 - Struts2 S2-020 DoS 与 RCE 利用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20Struts2%20S2-020%20DoS%20%E4%B8%8E%20RCE%20%E5%88%A9%E7%94%A8/" target="_self">
+        <div>
+          📌 漏洞简介Struts2 S2-020 是 Apache Struts 2 框架中的一处高危漏洞，其本质是 ClassLoader 可控，导致 OGNL 表达式可以修改服务器上下文属性，从而执行任意代码或破坏配置。  影响版本：Struts 2.0.0 - Struts 2.3.15.1 漏洞点：未对 OGNL 表达式做充分的上下文属性过滤   🚩 利用场景 1️⃣ - 拒绝服务（DoS）⚙
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-20 17:34" pubdate>
+              2025-03-20
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">#漏洞复现</a>
+            
+              <a href="/tags/Struts2/">#Struts2</a>
+            
+              <a href="/tags/%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1/">#拒绝服务</a>
+            
+              <a href="/tags/%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/">#远程代码执行</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20Apache%20APISIX%20%E9%BB%98%E8%AE%A4%20Token%20RCE%20%E6%BC%8F%E6%B4%9E%20(CVE-2020-13945)/" target="_self">
+          漏洞复现 - Apache APISIX 默认 Token RCE 漏洞 (CVE-2020-13945)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20Apache%20APISIX%20%E9%BB%98%E8%AE%A4%20Token%20RCE%20%E6%BC%8F%E6%B4%9E%20(CVE-2020-13945)/" target="_self">
+        <div>
+          🗂️ 简介Apache APISIX 是一款云原生高性能 API 网关和微服务代理，广泛应用于企业网关、API 管理、负载均衡、动态路由等场景。 CVE-2020-13945 漏洞的核心点在于：  默认情况下，APISIX 管理端（Admin API）使用默认配置文件中的 Token（edd1c9f034335f136f87ad84b625c8f1）作为管理员认证凭证。 如果用户未更改 Toke
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-20 17:33" pubdate>
+              2025-03-20
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">#漏洞复现</a>
+            
+              <a href="/tags/Apache-APISIX/">#Apache APISIX</a>
+            
+              <a href="/tags/RCE/">#RCE</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%20(CVE-2017-7921)/" target="_self">
+          漏洞复现 - 海康威视未授权访问漏洞 (CVE-2017-7921)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%20(CVE-2017-7921)/" target="_self">
+        <div>
+          📌 漏洞简介海康威视部分老版本设备存在认证绕过漏洞，攻击者可通过伪造的 Base64 auth 参数直接访问接口：  查看用户列表 抓取实时快照 下载配置文件并解密获取后门账户   🗂️ 漏洞利用步骤 ✅ 1️⃣ 查看系统用户列表访问示例： 1http://&lt;IP&gt;/Security/users?auth=YWRtaW46MTEK    YWRtaW46MTEK 是 admin:1
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-20 17:33" pubdate>
+              2025-03-20
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">#漏洞复现</a>
+            
+              <a href="/tags/%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86/">#海康威视</a>
+            
+              <a href="/tags/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/">#未授权访问</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20%E9%87%91%E8%9D%B6%E4%BA%91%E6%98%9F%E7%A9%BA%20ScpSupRegHandler%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" target="_self">
+          漏洞复现 - 金蝶云星空 ScpSupRegHandler 任意文件上传漏洞
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20%E9%87%91%E8%9D%B6%E4%BA%91%E6%98%9F%E7%A9%BA%20ScpSupRegHandler%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" target="_self">
+        <div>
+          📌 漏洞简介金蝶云·星空（Kingdee Cloud Galaxy）是一款常用于企业 ERP 的云端产品。ScpSupRegHandler 是供应商注册模块的文件上传接口。 漏洞点：  该接口对上传文件的路径和后缀过滤不严； 攻击者可通过构造特殊路径穿越，写入自定义可执行的 .ashx 文件； 再利用 .ashx 文件生成 ASP 一句话木马，实现远程命令执行。   🗂️ 漏洞环境示例 目标：
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-20 17:32" pubdate>
+              2025-03-20
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">#漏洞复现</a>
+            
+              <a href="/tags/%E9%87%91%E8%9D%B6%E4%BA%91/">#金蝶云</a>
+            
+              <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">#文件上传</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

