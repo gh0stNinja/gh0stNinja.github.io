@@ -16,22 +16,21 @@
   <meta name="author" content="Ninja">
   <meta name="keywords" content="">
   
-    <meta name="description" content="🚀 ProxySwitcher代理切换插件+ProxyPool代理IP池，可以实现http代理访问。代理列表可以粘贴、访问代理池URL获取。  项目地址：https:&#x2F;&#x2F;github.com&#x2F;gh0stNinja&#x2F;ProxySwitcher ⚙️ 运行截图">
+    <meta name="description" content="Proxy Switcher v2.0Burp Suite 代理切换插件一个轻量、高效、稳定的 Burp 扩展，用于快速导入、验证、管理和切换代理，支持 HTTP 和 SOCKS5。 项目地址：https:&#x2F;&#x2F;github.com&#x2F;gh0stNinja&#x2F;ProxySwitcher  特性   功能 说明    延迟显示 显示每个代理的响应延迟（ms）   不跳过慢速代理 只要能通，即视为可用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个基于 ProxyPool代理IP池的burp代理切换插件，实现http代理访问">
 <meta property="og:url" content="http://example.com/2025/07/11/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%20ProxyPool%E4%BB%A3%E7%90%86IP%E6%B1%A0%E7%9A%84burp%E4%BB%A3%E7%90%86%E5%88%87%E6%8D%A2%E6%8F%92%E4%BB%B6%EF%BC%8C%E5%AE%9E%E7%8E%B0http%E4%BB%A3%E7%90%86%E8%AE%BF%E9%97%AE/index.html">
 <meta property="og:site_name" content="Ninja&#39;s blog - 学与用">
-<meta property="og:description" content="🚀 ProxySwitcher代理切换插件+ProxyPool代理IP池，可以实现http代理访问。代理列表可以粘贴、访问代理池URL获取。  项目地址：https:&#x2F;&#x2F;github.com&#x2F;gh0stNinja&#x2F;ProxySwitcher ⚙️ 运行截图">
+<meta property="og:description" content="Proxy Switcher v2.0Burp Suite 代理切换插件一个轻量、高效、稳定的 Burp 扩展，用于快速导入、验证、管理和切换代理，支持 HTTP 和 SOCKS5。 项目地址：https:&#x2F;&#x2F;github.com&#x2F;gh0stNinja&#x2F;ProxySwitcher  特性   功能 说明    延迟显示 显示每个代理的响应延迟（ms）   不跳过慢速代理 只要能通，即视为可用">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/IMG_20240702140335.gif">
-<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240918232125795.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20251030103624415.png">
 <meta property="article:published_time" content="2025-07-11T07:31:23.277Z">
-<meta property="article:modified_time" content="2025-07-11T08:53:50.735Z">
+<meta property="article:modified_time" content="2025-10-30T02:42:42.419Z">
 <meta property="article:author" content="Ninja">
 <meta property="article:tag" content="隧道代理">
 <meta property="article:tag" content="burp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/IMG_20240702140335.gif">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20251030103624415.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -266,7 +265,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          49 字
+          600 字
         
       </span>
     
@@ -277,7 +276,7 @@
         
         
         
-          1 分钟
+          6 分钟
         
       </span>
     
@@ -327,7 +326,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年7月11日 下午
+                    本文最后更新于 2025年10月30日 上午
                   
                 
               </p>
@@ -335,12 +334,158 @@
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>🚀 ProxySwitcher代理切换插件+<a target="_blank" rel="noopener" href="https://github.com/jhao104/proxy_pool">ProxyPool</a>代理IP池，可以实现http代理访问。代理列表可以粘贴、访问代理池URL获取。</p>
-</blockquote>
+                <h1 id="Proxy-Switcher-v2-0"><a href="#Proxy-Switcher-v2-0" class="headerlink" title="Proxy Switcher v2.0"></a>Proxy Switcher v2.0</h1><p><strong>Burp Suite 代理切换插件</strong><br>一个轻量、高效、稳定的 Burp 扩展，用于快速导入、验证、管理和切换代理，支持 HTTP 和 SOCKS5。</p>
 <p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/gh0stNinja/ProxySwitcher">https://github.com/gh0stNinja/ProxySwitcher</a></p>
-<h2 id="⚙️-运行截图"><a href="#⚙️-运行截图" class="headerlink" title="⚙️ 运行截图"></a>⚙️ 运行截图</h2><p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/IMG_20240702140335.gif" srcset="/img/loading.gif" lazyload alt="IMG_20240702140335"></p>
-<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20240918232125795.png" srcset="/img/loading.gif" lazyload alt="image-20240918232125795"></p>
+<hr>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>延迟显示</strong></td>
+<td>显示每个代理的响应延迟（ms）</td>
+</tr>
+<tr>
+<td><strong>不跳过慢速代理</strong></td>
+<td>只要能通，即视为可用</td>
+</tr>
+<tr>
+<td><strong>三种切换模式</strong></td>
+<td>随机、轮询、粘性</td>
+</tr>
+<tr>
+<td><strong>右键菜单操作</strong></td>
+<td>删除、设为粘性、复制 cURL、验证、测试</td>
+</tr>
+<tr>
+<td><strong>导入&#x2F;导出</strong></td>
+<td>支持 <code>.txt</code> 文件批量导入导出</td>
+</tr>
+<tr>
+<td><strong>获取代理</strong></td>
+<td>支持从 URL 拉取代理列表</td>
+</tr>
+<tr>
+<td><strong>多语言支持</strong></td>
+<td>中文 &#x2F; English 自动切换</td>
+</tr>
+<tr>
+<td><strong>验证功能</strong></td>
+<td>批量验证 HTTP 和 HTTPS 可用性</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>打开 <strong>Burp Suite</strong></li>
+<li>进入 <code>Extender</code> → <code>Extensions</code></li>
+<li>点击 <code>Add</code></li>
+<li>选择扩展类型：<strong>Python</strong></li>
+<li>选择 <code>ProxySwitcher.py</code> 文件</li>
+<li>点击 <code>Next</code> → <code>Close</code></li>
+</ol>
+<blockquote>
+<p>插件将出现在 Burp 的标签页中：<strong>Proxy Switcher</strong></p>
+</blockquote>
+<hr>
+<h2 id="使用指南"><a href="#使用指南" class="headerlink" title="使用指南"></a>使用指南</h2><h3 id="1-获取代理"><a href="#1-获取代理" class="headerlink" title="1. 获取代理"></a>1. 获取代理</h3><ul>
+<li>在 <code>地址：</code> 输入框填入代理源 URL（如公开代理 API）</li>
+<li>点击 <code>获取</code></li>
+<li>示例：</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>xxx<span class="hljs-regexp">/all/</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-导入代理"><a href="#2-导入代理" class="headerlink" title="2. 导入代理"></a>2. 导入代理</h3><ul>
+<li><p>点击 <code>导入</code></p>
+</li>
+<li><p>选择 <code>.txt</code> 文件（每行一个代理）</p>
+</li>
+<li><p>支持格式：</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">1.2.3.4:8080</span><br>socks5://<span class="hljs-number">5</span>.<span class="hljs-number">6</span>.<span class="hljs-number">7</span>.<span class="hljs-number">8</span>:<span class="hljs-number">1080</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-验证代理"><a href="#3-验证代理" class="headerlink" title="3. 验证代理"></a>3. 验证代理</h3><ul>
+<li>点击 <code>验证全部</code> 或右键 → <code>验证全部</code></li>
+<li>验证后：<ul>
+<li><code>OK</code>：HTTP 或 HTTPS 任一可用</li>
+<li><code>FAIL</code>：完全不可用</li>
+<li>显示最小延迟（ms）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-切换模式"><a href="#4-切换模式" class="headerlink" title="4. 切换模式"></a>4. 切换模式</h3><table>
+<thead>
+<tr>
+<th>模式</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>随机</strong></td>
+<td>每次请求随机选择一个可用代理</td>
+</tr>
+<tr>
+<td><strong>轮询</strong></td>
+<td>按顺序轮流使用可用代理</td>
+</tr>
+<tr>
+<td><strong>粘性</strong></td>
+<td>固定使用“设为粘性”的代理</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>切换后日志会提示：<code>模式：随机</code></p>
+</blockquote>
+<h3 id="5-右键菜单"><a href="#5-右键菜单" class="headerlink" title="5. 右键菜单"></a>5. 右键菜单</h3><p>在代理列表右键任意一行：</p>
+<table>
+<thead>
+<tr>
+<th>菜单项</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>删除代理</strong></td>
+<td>删除选中行</td>
+</tr>
+<tr>
+<td><strong>设为粘性</strong></td>
+<td>固定使用该代理（粘性模式）</td>
+</tr>
+<tr>
+<td><strong>复制为 cURL</strong></td>
+<td>复制 <code>curl -x ...</code> 命令</td>
+</tr>
+<tr>
+<td><strong>验证全部</strong></td>
+<td>重新验证所有代理</td>
+</tr>
+<tr>
+<td><strong>测试选中</strong></td>
+<td>仅验证选中的代理</td>
+</tr>
+<tr>
+<td><strong>移除无效</strong></td>
+<td>删除所有 <code>FAIL</code> 代理</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="界面说明"><a href="#界面说明" class="headerlink" title="界面说明"></a>界面说明</h2>  <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs inform7"><span class="hljs-comment">[启用]</span> <span class="hljs-comment">[中文]</span> 地址：<span class="hljs-comment">[________]</span> <span class="hljs-comment">[获取]</span> <span class="hljs-comment">[模式下拉]</span> <span class="hljs-comment">[验证全部]</span> <span class="hljs-comment">[导入]</span> <span class="hljs-comment">[导出]</span> <span class="hljs-comment">[清空列表]</span> <span class="hljs-comment">[清空日志]</span><br><br>┌──────────────────────────────────────────────────────────────┐<br>│ 代理列表（右键操作）                                           │<br>│ 1.2.3.4:8080     | HTTP    | HTTP   |  128ms | OK         │<br>│ 5.6.7.8:1080     | SOCKS5  | -      |  892ms | OK         │<br>│ ...                                                          │<br>└──────────────────────────────────────────────────────────────┘<br>┌───────────────────────────────────────┐<br>│ 日志                                  │<br>│ Plugin Enabled                        │<br>│ 已获取 128 个代理                     │<br>│ <span class="hljs-comment">[Repeater]</span> Using: 1.2.3.4:8080         │<br>└───────────────────────────────────────┘<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/gh0stNinja/images/main/image-20251030103624415.png" srcset="/img/loading.gif" lazyload alt="image-20251030103624415"></p>
+<hr>
+<h2 id="导出有效代理"><a href="#导出有效代理" class="headerlink" title="导出有效代理"></a>导出有效代理</h2><ul>
+<li>点击 <code>导出</code></li>
+<li>选择保存路径</li>
+<li>仅导出 <code>OK</code> 的代理（每行一个）</li>
+</ul>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>插件仅在 <strong>Intruder</strong> 和 <strong>Repeater</strong> 中生效</li>
+<li>验证超时：3秒</li>
+<li>不支持用户名密码认证代理</li>
+</ul>
 
                 
               </div>
