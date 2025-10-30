@@ -266,15 +266,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/07/01/%E4%BD%BF%E7%94%A8%20python%20%E7%BC%96%E5%86%99%E7%9A%84%E5%BC%B1%E5%8F%A3%E4%BB%A4%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/" target="_self">
-          python编写的弱口令生成工具
+        <a href="/2024/07/01/%E4%BD%BF%E7%94%A8%20burp%20%E9%9A%8F%E6%9C%BA%E6%9E%9A%E4%B8%BE%E9%AA%8C%E8%AF%81%E7%A0%81%E6%88%96%E6%89%8B%E6%9C%BA%E5%8F%B7/" target="_self">
+          使用 burp 随机枚举验证码或手机号
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/%E4%BD%BF%E7%94%A8%20python%20%E7%BC%96%E5%86%99%E7%9A%84%E5%BC%B1%E5%8F%A3%E4%BB%A4%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/%E4%BD%BF%E7%94%A8%20burp%20%E9%9A%8F%E6%9C%BA%E6%9E%9A%E4%B8%BE%E9%AA%8C%E8%AF%81%E7%A0%81%E6%88%96%E6%89%8B%E6%9C%BA%E5%8F%B7/" target="_self">
         <div>
-          0、简介 ✨基于企业或单位信息，生成针对性的弱密码字典，提升密码破解成功率，助力安全测试更高效。🔐 1、代码示例 💻123456789101112131415161718#!/usr/bin/python3import itertoolsdef result(password):    with open(&#x27;password.txt&#x27;, &#x27;a+&#x27;) as
+          0、简介利用 Burp Suite 的 Intruder 模块对手机号、4位数或6位数验证码进行随机枚举，模拟爆破尝试。  1、操作流程 在 Intruder 的 Payloads 选项卡中，设置 Payload type 为 Numbers。 选择 Random，表示随机生成数字。 设置 How many 为爆破的总次数（即生成多少随机数字）。 设置 Min integer digits 和 M
         </div>
       </a>
 
@@ -292,7 +292,91 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%BC%B1%E5%8F%A3%E4%BB%A4/">#弱口令</a>
+              <a href="/tags/burp/">#burp</a>
+            
+              <a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/">#验证码</a>
+            
+              <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%9E%9A%E4%B8%BE/">#随机枚举</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/07/16/%E4%BD%BF%E7%94%A8%20python%20%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" target="_self">
+          使用 python 实现浏览器自动化
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/16/%E4%BD%BF%E7%94%A8%20python%20%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" target="_self">
+        <div>
+          0、简介 ✨Selenium 可以在无人参与的情况下自动操作浏览器，通过代码模拟用户行为，实现自动化流程，比如输入文本、提交表单等。 1、安装 🛠️ 安装 selenium 库  1pip3 install selenium   查看浏览器版本（确保驱动匹配）    下载对应浏览器驱动   Chrome 驱动下载地址：https://googlechromelabs.github.io/chro
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-07-16 14:21" pubdate>
+              2024-07-16
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">#自动化</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/07/01/%E4%BD%BF%E7%94%A8%20nc%20%E5%8F%8D%E5%BC%B9shell/" target="_self">
+          使用 nc 反弹shell
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/%E4%BD%BF%E7%94%A8%20nc%20%E5%8F%8D%E5%BC%B9shell/" target="_self">
+        <div>
+          🚀 0、简介nc（Netcat）被誉为网络中的瑞士军刀，功能强大且用途多样，既能进行端口扫描、监听，也能用于反弹shell、文件传输等。  ⚙️ 参数说明123456789101112131415-h    查看帮助信息   -d    后台模式   -e    程序重定向，一旦连接就执行（危险）  -i    延时秒数  -l    监听模式，用于入站连接   -L    监听模式，连接关闭后
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-07-01 17:13" pubdate>
+              2024-07-01
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%8F%8D%E5%BC%B9shell/">#反弹shell</a>
             
           </div>
         
@@ -335,6 +419,90 @@
               <a href="/tags/%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/">#扫描工具</a>
             
               <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F/">#漏洞扫描</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/07/01/dirsearch%20%E7%BD%91%E7%AB%99%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" target="_self">
+          dirsearch 网站目录扫描工具的使用方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/dirsearch%20%E7%BD%91%E7%AB%99%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" target="_self">
+        <div>
+          1、常用12345678910# 扫描单个目标python dirsearch.py -u https://target -r -x 400,500-599# 扫描多个目标python dirsearch.py -l url.txt -r -x 400,500-599 -w web_dirs_ext.txt # 扩展后缀名[php,jsp]python dirsearch.py -e php,js
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-07-01 17:13" pubdate>
+              2024-07-01
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/">#扫描工具</a>
+            
+              <a href="/tags/%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F/">#目录扫描</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/07/02/%E4%BD%BF%E7%94%A8%20frp%20%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84%E3%80%81%E8%BD%AC%E5%8F%91/" target="_self">
+          使用 frp 实现内网端口映射、转发
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/02/%E4%BD%BF%E7%94%A8%20frp%20%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84%E3%80%81%E8%BD%AC%E5%8F%91/" target="_self">
+        <div>
+          frp 是一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议，且支持 P2P 通信。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。 下载地址：https://github.com/fatedier/frp 🔐 1、frp 服务端配置 提示：在安全组策略放通对应的端口  frp服务端配置文件：frps.ini 1234567
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-07-02 14:56" pubdate>
+              2024-07-02
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/">#隧道代理</a>
+            
+              <a href="/tags/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/">#端口转发</a>
             
           </div>
         
@@ -392,15 +560,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/07/01/%E4%BD%BF%E7%94%A8%20nc%20%E5%8F%8D%E5%BC%B9shell/" target="_self">
-          使用 nc 反弹shell
+        <a href="/2024/07/01/sqlmap%20SQL%E6%B3%A8%E5%85%A5%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" target="_self">
+          sqlmap SQL注入工具的使用方法
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/%E4%BD%BF%E7%94%A8%20nc%20%E5%8F%8D%E5%BC%B9shell/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/sqlmap%20SQL%E6%B3%A8%E5%85%A5%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" target="_self">
         <div>
-          🚀 0、简介nc（Netcat）被誉为网络中的瑞士军刀，功能强大且用途多样，既能进行端口扫描、监听，也能用于反弹shell、文件传输等。  ⚙️ 参数说明123456789101112131415-h    查看帮助信息   -d    后台模式   -e    程序重定向，一旦连接就执行（危险）  -i    延时秒数  -l    监听模式，用于入站连接   -L    监听模式，连接关闭后
+          1️⃣ 常用命令1python sqlmap.py --random-agent --batch --level=2 --tamper=randomcase -u &lt;url&gt;   2️⃣ 进阶使用123456789101112131415161718192021222324# 指定注入点参数python sqlmap.py -r &quot;request.txt&quot; -p &
         </div>
       </a>
 
@@ -418,7 +586,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%8F%8D%E5%BC%B9shell/">#反弹shell</a>
+              <a href="/tags/sqlmap/">#sqlmap</a>
+            
+              <a href="/tags/SQL%E6%B3%A8%E5%85%A5/">#SQL注入</a>
             
           </div>
         
@@ -432,15 +602,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/07/01/%E5%88%A9%E7%94%A8%20mimikatz%20%E8%8E%B7%E5%8F%96%E6%98%8E%E6%96%87%E5%AF%86%E7%A0%81/" target="_self">
-          利用 mimikatz 获取明文密码
+        <a href="/2024/07/01/Windows%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E7%AB%AF%E5%8F%A3%E5%92%8Cssh%E7%AB%AF%E5%8F%A3%E4%BF%AE%E6%94%B9/" target="_self">
+          Windows 远程桌面端口和 SSH 端口修改
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/%E5%88%A9%E7%94%A8%20mimikatz%20%E8%8E%B7%E5%8F%96%E6%98%8E%E6%96%87%E5%AF%86%E7%A0%81/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/Windows%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E7%AB%AF%E5%8F%A3%E5%92%8Cssh%E7%AB%AF%E5%8F%A3%E4%BF%AE%E6%94%B9/" target="_self">
         <div>
-          📌 0、简介mimikatz 可以从 Windows 内存中获取账户明文密码、哈希、PIN、票据等敏感信息。 下载地址：👉 mimikatz 2.2.0-20200308-1  📌 1、常用命令12345678# 开始记录日志log# 获取调试权限（必须）privilege::debug# 列出当前登录用户凭据sekurlsa::logonpasswords   📌 2、保存内存转储Wi
+          🚀 0. 简介修改 远程桌面 (RDP) 和 SSH 的默认端口，是最简单的防爆破手段之一。  ⚠️ 重要提醒如果是在 阿里云、腾讯云 等云服务器上，修改前务必先在安全组策略里放行新的端口，否则可能会把自己锁在服务器外！   📌 1. 修改 Windows 远程桌面默认端口1️⃣ 打开注册表编辑器：Win + R ➜ 输入 regedit ➜ 回车 2️⃣ 找到键值路径： 1计算机\HKEY_
         </div>
       </a>
 
@@ -458,9 +628,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%98%8E%E6%96%87%E5%AF%86%E7%A0%81/">#明文密码</a>
+              <a href="/tags/ssh/">#ssh</a>
             
-              <a href="/tags/mimikatz/">#mimikatz</a>
+              <a href="/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">#远程桌面</a>
             
           </div>
         
@@ -474,15 +644,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/07/01/%E4%BD%BF%E7%94%A8%20docker%20%E6%90%AD%E5%BB%BA%E6%BC%8F%E6%B4%9E%E5%A4%8D%E6%B5%8B%E7%8E%AF%E5%A2%83/" target="_self">
-          使用 docker 搭建漏洞复测环境
+        <a href="/2024/08/23/%E4%BD%BF%E7%94%A8%20nps%20%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_self">
+          使用 nps 搭建内网穿透代理服务器
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/%E4%BD%BF%E7%94%A8%20docker%20%E6%90%AD%E5%BB%BA%E6%BC%8F%E6%B4%9E%E5%A4%8D%E6%B5%8B%E7%8E%AF%E5%A2%83/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/23/%E4%BD%BF%E7%94%A8%20nps%20%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_self">
         <div>
-          0、简介使用docker可以下载公开的漏洞镜像，从而简单的搭建漏洞复测环境。 1、演示(s2-048)12345678# 搜索struts2镜像docker search struts2# 下载s2-048&lt;CVE-2017-9791&gt;镜像docker pull vulfocus/struts2-cve_2017_9791# 查看镜像的详细信息，可以看到镜像运行的端口等信息docker
+          🚀 简介一款轻量级、高性能、功能强大的内网穿透代理服务器。支持tcp、udp、socks5、http等几乎所有流量转发，可用来访问内网网站、本地支付接口调试、ssh访问、远程桌面，内网dns解析、内网socks5代理等等……，并带有功能强大的web管理端。 📌 VPS 端配置123456789101112# 拉取 nps Docker 镜像docker pull ffdfgdfg/nps# 启
         </div>
       </a>
 
@@ -490,8 +660,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-01 17:13" pubdate>
-              2024-07-01
+            <time datetime="2024-08-23 17:36" pubdate>
+              2024-08-23
             </time>
           </div>
         
@@ -500,179 +670,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/docker/">#docker</a>
+              <a href="/tags/%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/">#隧道代理</a>
             
-              <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">#漏洞复现</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/07/01/dirsearch%20%E7%BD%91%E7%AB%99%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" target="_self">
-          dirsearch 网站目录扫描工具的使用方法
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/dirsearch%20%E7%BD%91%E7%AB%99%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" target="_self">
-        <div>
-          1、常用12345678910# 扫描单个目标python dirsearch.py -u https://target -r -x 400,500-599# 扫描多个目标python dirsearch.py -l url.txt -r -x 400,500-599 -w web_dirs_ext.txt # 扩展后缀名[php,jsp]python dirsearch.py -e php,js
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-01 17:13" pubdate>
-              2024-07-01
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/">#扫描工具</a>
-            
-              <a href="/tags/%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F/">#目录扫描</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/07/01/cobalt%20strike%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92%E5%92%8C%E7%AE%A1%E5%AE%B6/" target="_self">
-          cobalt strike免杀火绒和管家
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/cobalt%20strike%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92%E5%92%8C%E7%AE%A1%E5%AE%B6/" target="_self">
-        <div>
-          0、简介 🚀CS生成C格式的shellcode：  Attacks ——&gt; packages ——&gt; Payload Generator，选择一个listener生成payload.c。  1、CS-Avoid-killing 🖼️工具地址：Gality369&#x2F;CS-Loader: CS免杀 (github.com) 将图片放入同一文件夹，将shellcode填入gene
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-01 17:13" pubdate>
-              2024-07-01
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%85%8D%E6%9D%80/">#免杀</a>
-            
-              <a href="/tags/cobalt-strike/">#cobalt strike</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/07/01/cobalt%20strike%E5%85%8D%E6%9D%80360/" target="_self">
-          cobalt strike免杀360
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/cobalt%20strike%E5%85%8D%E6%9D%80360/" target="_self">
-        <div>
-          0、简介 🛡️CS 生成 Raw 格式的 shellcode：  Attacks ——&gt; packages ——&gt; Payload Generator，选择一个 listener，生成 payload.bin。  1、ThreadStackSpoofer 加载器 🧠ThreadStackSpoofer 加载器通过堆栈欺骗技术实现免杀。 工具地址：mgeeky &#x2F; Thre
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-01 17:13" pubdate>
-              2024-07-01
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%85%8D%E6%9D%80/">#免杀</a>
-            
-              <a href="/tags/cobalt-strike/">#cobalt strike</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/07/01/%E4%BD%BF%E7%94%A8%20burp%20%E9%9A%8F%E6%9C%BA%E6%9E%9A%E4%B8%BE%E9%AA%8C%E8%AF%81%E7%A0%81%E6%88%96%E6%89%8B%E6%9C%BA%E5%8F%B7/" target="_self">
-          使用 burp 随机枚举验证码或手机号
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/01/%E4%BD%BF%E7%94%A8%20burp%20%E9%9A%8F%E6%9C%BA%E6%9E%9A%E4%B8%BE%E9%AA%8C%E8%AF%81%E7%A0%81%E6%88%96%E6%89%8B%E6%9C%BA%E5%8F%B7/" target="_self">
-        <div>
-          0、简介利用 Burp Suite 的 Intruder 模块对手机号、4位数或6位数验证码进行随机枚举，模拟爆破尝试。  1、操作流程 在 Intruder 的 Payloads 选项卡中，设置 Payload type 为 Numbers。 选择 Random，表示随机生成数字。 设置 How many 为爆破的总次数（即生成多少随机数字）。 设置 Min integer digits 和 M
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-01 17:13" pubdate>
-              2024-07-01
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/burp/">#burp</a>
-            
-              <a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/">#验证码</a>
-            
-              <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%9E%9A%E4%B8%BE/">#随机枚举</a>
+              <a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">#内网穿透</a>
             
           </div>
         
